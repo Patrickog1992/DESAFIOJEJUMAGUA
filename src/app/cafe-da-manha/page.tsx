@@ -1,39 +1,38 @@
 'use client';
 
-import { HungerTimeSelection } from '@/components/hunger-time-selection';
+import { BreakfastTimeSelection } from '@/components/breakfast-time-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function HungerTimePageContent() {
+function BreakfastTimePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (hungerTimes: string[]) => {
+  const handleContinue = (breakfastTime: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
     const bodyShape = searchParams.get('bodyShape');
     const fastingExperience = searchParams.get('fastingExperience');
-    const hungerTimesQuery = hungerTimes
-      .map(t => encodeURIComponent(t))
-      .join(',');
+    const hungerTimes = searchParams.get('hungerTimes');
+    const breakfastTimeQuery = encodeURIComponent(breakfastTime);
 
     router.push(
-      `/cafe-da-manha?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimesQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTimeQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <HungerTimeSelection onContinue={handleContinue} />
+      <BreakfastTimeSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function HungerTimePage() {
+export default function BreakfastTimePage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <HungerTimePageContent />
+      <BreakfastTimePageContent />
     </Suspense>
   );
 }
