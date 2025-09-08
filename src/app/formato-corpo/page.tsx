@@ -15,7 +15,7 @@ function BodyShapePageContent() {
     const bodyShape = encodeURIComponent(selectedShape);
 
     router.push(
-      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}`
+      `/jejum-intermitente?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}`
     );
   };
 
