@@ -24,6 +24,7 @@ export default function Home() {
   const { toast } = useToast();
 
   const [userScores, setUserScores] = useState<number[]>([]);
+  const [gender, setGender] = useState<'male' | 'female' | null>(null);
 
   useEffect(() => {
     try {
@@ -37,6 +38,15 @@ export default function Home() {
   }, []);
 
   const handleStartQuiz = async () => {
+    if (!gender) {
+      toast({
+        title: 'Selecione um sexo',
+        description: 'Você precisa selecionar um sexo para começar o quiz.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setQuizState('loading');
     try {
       const averageScore =
@@ -102,6 +112,7 @@ export default function Home() {
   };
 
   const handleRestart = () => {
+    setGender(null);
     setQuizState('not-started');
   };
 
@@ -148,7 +159,12 @@ export default function Home() {
       case 'not-started':
       default:
         return (
-          <QuizStart onStart={handleStartQuiz} loading={quizState === 'loading'} />
+          <QuizStart
+            onStart={handleStartQuiz}
+            loading={quizState === 'loading'}
+            gender={gender}
+            setGender={setGender}
+          />
         );
     }
   };
