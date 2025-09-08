@@ -1,14 +1,14 @@
 'use client';
 
-import { DailyRoutineSelection } from '@/components/daily-routine-selection';
+import { ChallengeGoalSelection } from '@/components/challenge-goal-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function DailyRoutinePageContent() {
+function ChallengeGoalPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (dailyRoutine: string) => {
+  const handleContinue = (challengeGoal: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -22,24 +22,25 @@ function DailyRoutinePageContent() {
     const habitChange = searchParams.get('habitChange');
     const activityLevel = searchParams.get('activityLevel');
     const workSchedule = searchParams.get('workSchedule');
-    const dailyRoutineQuery = encodeURIComponent(dailyRoutine);
+    const dailyRoutine = searchParams.get('dailyRoutine');
+    const challengeGoalQuery = encodeURIComponent(challengeGoal);
 
     router.push(
-      `/objetivo-desafio?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workSchedule}&dailyRoutine=${dailyRoutineQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workSchedule}&dailyRoutine=${dailyRoutine}&challengeGoal=${challengeGoalQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <DailyRoutineSelection onContinue={handleContinue} />
+      <ChallengeGoalSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function DailyRoutinePage() {
+export default function ChallengeGoalPage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <DailyRoutinePageContent />
+      <ChallengeGoalPageContent />
     </Suspense>
   );
 }
