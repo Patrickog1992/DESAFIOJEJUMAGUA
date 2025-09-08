@@ -1,14 +1,14 @@
 'use client';
 
-import { LunchTimeSelection } from '@/components/lunch-time-selection';
+import { DinnerTimeSelection } from '@/components/dinner-time-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function LunchTimePageContent() {
+function DinnerTimePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (lunchTime: string) => {
+  const handleContinue = (dinnerTime: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -16,24 +16,25 @@ function LunchTimePageContent() {
     const fastingExperience = searchParams.get('fastingExperience');
     const hungerTimes = searchParams.get('hungerTimes');
     const breakfastTime = searchParams.get('breakfastTime');
-    const lunchTimeQuery = encodeURIComponent(lunchTime);
+    const lunchTime = searchParams.get('lunchTime');
+    const dinnerTimeQuery = encodeURIComponent(dinnerTime);
 
     router.push(
-      `/jantar?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTimeQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTimeQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <LunchTimeSelection onContinue={handleContinue} />
+      <DinnerTimeSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function LunchTimePage() {
+export default function DinnerTimePage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <LunchTimePageContent />
+      <DinnerTimePageContent />
     </Suspense>
   );
 }
