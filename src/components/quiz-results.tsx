@@ -7,15 +7,15 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Award, RefreshCw } from 'lucide-react';
+import { Award, ArrowRight } from 'lucide-react';
 
 type QuizResultsProps = {
   score: number;
   total: number;
-  onRestart: () => void;
+  onContinue: () => void;
 };
 
-export function QuizResults({ score, total, onRestart }: QuizResultsProps) {
+export function QuizResults({ score, total, onContinue }: QuizResultsProps) {
   const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
 
   const getFeedback = () => {
@@ -63,9 +63,9 @@ export function QuizResults({ score, total, onRestart }: QuizResultsProps) {
         <p className="font-semibold text-muted-foreground">({percentage}%)</p>
       </CardContent>
       <CardFooter className="flex justify-center p-6">
-        <Button onClick={onRestart} size="lg">
-          <RefreshCw className="mr-2 h-4 w-4" />
-          Tentar Novamente
+        <Button onClick={onContinue} size="lg">
+          Continuar
+          <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>

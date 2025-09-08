@@ -9,15 +9,15 @@ function ResultsPageContent() {
   const searchParams = useSearchParams();
 
   const score = parseInt(searchParams.get('score') || '0', 10);
-  const total = parseInt(searchParams.get('total') || '0', 10);
+  const total = parseInt(search_params.get('total') || '0', 10);
 
-  const handleRestart = () => {
-    router.push('/');
+  const handleContinue = () => {
+    router.push('/final');
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <QuizResults score={score} total={total} onRestart={handleRestart} />
+      <QuizResults score={score} total={total} onContinue={handleContinue} />
     </main>
   );
 }
