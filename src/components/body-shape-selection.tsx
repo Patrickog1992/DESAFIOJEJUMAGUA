@@ -6,11 +6,9 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
 
@@ -101,6 +99,11 @@ const bodyShapes = [
 export function BodyShapeSelection({ onContinue }: BodyShapeSelectionProps) {
   const [selectedShape, setSelectedShape] = useState<string | null>(null);
 
+  const handleSelection = (shape: string) => {
+    setSelectedShape(shape);
+    onContinue(shape);
+  };
+
   return (
     <Card className="w-full max-w-5xl mx-auto shadow-lg">
       <CardHeader>
@@ -108,10 +111,10 @@ export function BodyShapeSelection({ onContinue }: BodyShapeSelectionProps) {
           Como você descreve o formato do seu corpo atualmente
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-6">
         <RadioGroup
           value={selectedShape ?? ''}
-          onValueChange={setSelectedShape}
+          onValueChange={handleSelection}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
         >
           {bodyShapes.map(shape => (
@@ -139,14 +142,6 @@ export function BodyShapeSelection({ onContinue }: BodyShapeSelectionProps) {
           ))}
         </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button
-          onClick={() => selectedShape && onContinue(selectedShape)}
-          disabled={!selectedShape}
-        >
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
