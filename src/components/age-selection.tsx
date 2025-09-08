@@ -12,7 +12,28 @@ type AgeSelectionProps = {
   onSelectAge: (ageRange: string) => void;
 };
 
-const ageRanges = ['18 - 26', '27 - 38', '39 - 50', '51 +'];
+const ageOptions = [
+  {
+    range: '18 - 26',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
+  },
+  {
+    range: '27 - 38',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
+  },
+  {
+    range: '39 - 50',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
+  },
+  {
+    range: '51 +',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
+  },
+];
 
 export function AgeSelection({ onSelectAge }: AgeSelectionProps) {
   return (
@@ -24,23 +45,23 @@ export function AgeSelection({ onSelectAge }: AgeSelectionProps) {
       </CardHeader>
       <CardContent className="p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {ageRanges.map((ageRange) => (
+          {ageOptions.map((option) => (
             <div
-              key={ageRange}
+              key={option.range}
               className={cn(
                 'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary hover:ring-2 hover:ring-primary'
               )}
-              onClick={() => onSelectAge(ageRange)}
+              onClick={() => onSelectAge(option.range)}
             >
               <Image
-                src={`https://picsum.photos/200/200?grayscale&random=${ageRange}`}
-                alt={`Idade ${ageRange}`}
+                src={option.imageUrl}
+                alt={`Idade ${option.range}`}
                 width={200}
                 height={200}
-                className="rounded-md w-full h-auto object-cover aspect-square bg-muted"
+                className="rounded-md w-full h-auto object-contain aspect-square bg-muted"
                 data-ai-hint="person portrait"
               />
-              <p className="font-semibold text-lg mt-3">{ageRange}</p>
+              <p className="font-semibold text-lg mt-3">{option.range}</p>
             </div>
           ))}
         </div>
