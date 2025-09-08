@@ -38,7 +38,7 @@ export function QuizStart({ onSelectGender }: QuizStartProps) {
               alt="Feminino"
               width={400}
               height={400}
-              className="rounded-md w-full h-auto object-cover aspect-square"
+              className="rounded-md w-full h-auto object-contain aspect-square"
               data-ai-hint="woman"
             />
             <p className="font-semibold text-lg mt-3">Feminino</p>
@@ -54,7 +54,7 @@ export function QuizStart({ onSelectGender }: QuizStartProps) {
               alt="Masculino"
               width={400}
               height={400}
-              className="rounded-md w-full h-auto object-cover aspect-square"
+              className="rounded-md w-full h-auto object-contain aspect-square"
               data-ai-hint="man"
             />
             <p className="font-semibold text-lg mt-3">Masculino</p>
