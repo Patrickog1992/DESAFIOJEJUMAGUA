@@ -1,14 +1,14 @@
 'use client';
 
-import { ActivityLevelSelection } from '@/components/activity-level-selection';
+import { WorkScheduleSelection } from '@/components/work-schedule-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function ActivityLevelPageContent() {
+function WorkSchedulePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (activityLevel: string) => {
+  const handleContinue = (workSchedule: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -20,24 +20,25 @@ function ActivityLevelPageContent() {
     const dinnerTime = searchParams.get('dinnerTime');
     const mealPreparation = searchParams.get('mealPreparation');
     const habitChange = searchParams.get('habitChange');
-    const activityLevelQuery = encodeURIComponent(activityLevel);
+    const activityLevel = searchParams.get('activityLevel');
+    const workScheduleQuery = encodeURIComponent(workSchedule);
 
     router.push(
-      `/horario-trabalho?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevelQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workScheduleQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <ActivityLevelSelection onContinue={handleContinue} />
+      <WorkScheduleSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function ActivityLevelPage() {
+export default function WorkSchedulePage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <ActivityLevelPageContent />
+      <WorkSchedulePageContent />
     </Suspense>
   );
 }
