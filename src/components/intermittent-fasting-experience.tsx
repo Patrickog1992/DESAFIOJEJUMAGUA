@@ -1,18 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
 
 type IntermittentFastingExperienceProps = {
   onContinue: (experience: string) => void;
@@ -29,6 +27,11 @@ export function IntermittentFastingExperience({
 }: IntermittentFastingExperienceProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
+  const handleSelection = (option: string) => {
+    setSelectedOption(option);
+    onContinue(option);
+  };
+
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg">
       <CardHeader>
@@ -39,7 +42,7 @@ export function IntermittentFastingExperience({
       <CardContent>
         <RadioGroup
           value={selectedOption ?? ''}
-          onValueChange={setSelectedOption}
+          onValueChange={handleSelection}
           className="space-y-4"
         >
           {options.map(option => (
@@ -49,12 +52,15 @@ export function IntermittentFastingExperience({
               className={cn(
                 'flex items-center space-x-4 rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary',
                 {
-                  'ring-2 ring-primary border-primary': selectedOption === option,
+                  'ring-2 ring-primary border-primary':
+                    selectedOption === option,
                 }
               )}
             >
               <RadioGroupItem value={option} id={option} className="h-6 w-6" />
-              <span className="font-semibold text-lg flex-grow">{option}</span>
+              <span className="font-semibold text-lg flex-grow">
+                {option}
+              </span>
               {selectedOption === option && (
                 <CheckCircle2 className="h-6 w-6 text-primary" />
               )}
@@ -62,15 +68,6 @@ export function IntermittentFastingExperience({
           ))}
         </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button
-          onClick={() => selectedOption && onContinue(selectedOption)}
-          disabled={!selectedOption}
-          size="lg"
-        >
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
