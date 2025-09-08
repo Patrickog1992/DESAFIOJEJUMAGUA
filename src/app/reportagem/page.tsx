@@ -1,10 +1,10 @@
 'use client';
 
-import { ChallengeIntro } from '@/components/challenge-intro';
+import { ReportPage } from '@/components/report-page';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function ChallengeIntroPageContent() {
+function ReportPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -16,21 +16,21 @@ function ChallengeIntroPageContent() {
     const fastingExperience = searchParams.get('fastingExperience');
 
     router.push(
-      `/reportagem?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <ChallengeIntro onContinue={handleContinue} />
+      <ReportPage onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function ChallengeIntroPage() {
+export default function ReportagemPage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <ChallengeIntroPageContent />
+      <ReportPageContent />
     </Suspense>
   );
 }
