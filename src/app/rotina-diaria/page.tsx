@@ -1,14 +1,14 @@
 'use client';
 
-import { WorkScheduleSelection } from '@/components/work-schedule-selection';
+import { DailyRoutineSelection } from '@/components/daily-routine-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function WorkSchedulePageContent() {
+function DailyRoutinePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (workSchedule: string) => {
+  const handleContinue = (dailyRoutine: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -21,24 +21,25 @@ function WorkSchedulePageContent() {
     const mealPreparation = searchParams.get('mealPreparation');
     const habitChange = searchParams.get('habitChange');
     const activityLevel = searchParams.get('activityLevel');
-    const workScheduleQuery = encodeURIComponent(workSchedule);
+    const workSchedule = searchParams.get('workSchedule');
+    const dailyRoutineQuery = encodeURIComponent(dailyRoutine);
 
     router.push(
-      `/rotina-diaria?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workScheduleQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workSchedule}&dailyRoutine=${dailyRoutineQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <WorkScheduleSelection onContinue={handleContinue} />
+      <DailyRoutineSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function WorkSchedulePage() {
+export default function DailyRoutinePage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <WorkSchedulePageContent />
+      <DailyRoutinePageContent />
     </Suspense>
   );
 }
