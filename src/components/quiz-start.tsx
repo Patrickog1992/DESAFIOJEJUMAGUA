@@ -26,7 +26,7 @@ export function QuizStart({ onSelectGender }: QuizStartProps) {
       </CardHeader>
       <CardContent className="p-6">
         <h3 className="font-semibold text-lg mb-4">Selecione seu sexo</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-6">
           <div
             className={cn(
               'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary hover:ring-2 hover:ring-primary'
@@ -34,7 +34,7 @@ export function QuizStart({ onSelectGender }: QuizStartProps) {
             onClick={() => onSelectGender('female')}
           >
             <Image
-              src="https://picsum.photos/400/400"
+              src="https://picsum.photos/400/400?grayscale&random=female"
               alt="Feminino"
               width={400}
               height={400}
@@ -50,7 +50,7 @@ export function QuizStart({ onSelectGender }: QuizStartProps) {
             onClick={() => onSelectGender('male')}
           >
             <Image
-              src="https://picsum.photos/400/400"
+              src="https://picsum.photos/400/400?grayscale&random=male"
               alt="Masculino"
               width={400}
               height={400}
