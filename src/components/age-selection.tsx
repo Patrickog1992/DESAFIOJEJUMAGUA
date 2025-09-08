@@ -33,10 +33,10 @@ export function AgeSelection({ onSelectAge }: AgeSelectionProps) {
               onClick={() => onSelectAge(ageRange)}
             >
               <Image
-                src={`https://picsum.photos/300/300?grayscale&random=${ageRange}`}
+                src={`https://picsum.photos/200/200?grayscale&random=${ageRange}`}
                 alt={`Idade ${ageRange}`}
-                width={300}
-                height={300}
+                width={200}
+                height={200}
                 className="rounded-md w-full h-auto object-cover aspect-square bg-muted"
                 data-ai-hint="person portrait"
               />
