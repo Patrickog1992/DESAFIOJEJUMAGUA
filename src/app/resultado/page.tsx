@@ -9,7 +9,7 @@ function ResultsPageContent() {
   const searchParams = useSearchParams();
 
   const score = parseInt(searchParams.get('score') || '0', 10);
-  const total = parseInt(search_params.get('total') || '0', 10);
+  const total = parseInt(searchParams.get('total') || '0', 10);
 
   const handleContinue = () => {
     router.push('/final');
