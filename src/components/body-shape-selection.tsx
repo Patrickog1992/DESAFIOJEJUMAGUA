@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
+import React from 'react';
 
 type BodyShapeSelectionProps = {
   onContinue: (selectedShape: string) => void;
@@ -21,33 +21,80 @@ type BodyShapeSelectionProps = {
 const bodyShapes = [
   {
     name: 'Oval',
-    imageUrl: 'https://picsum.photos/200/300',
-    hint: 'body shape',
+    svg: (
+      <svg
+        viewBox="0 0 100 150"
+        className="h-48 w-auto"
+        fill="hsl(var(--primary))"
+      >
+        <ellipse cx="50" cy="75" rx="40" ry="60" />
+      </svg>
+    ),
   },
   {
     name: 'Ampulheta',
-    imageUrl: 'https://picsum.photos/200/301',
-    hint: 'body shape',
+    svg: (
+      <svg
+        viewBox="0 0 100 150"
+        className="h-48 w-auto"
+        fill="hsl(var(--primary))"
+      >
+        <path d="M20 10 L80 10 L50 75 L20 10 Z M20 140 L80 140 L50 75 L20 140 Z" />
+      </svg>
+    ),
   },
   {
     name: 'Retângulo',
-    imageUrl: 'https://picsum.photos/200/302',
-    hint: 'body shape',
+    svg: (
+      <svg
+        viewBox="0 0 100 150"
+        className="h-48 w-auto"
+        fill="hsl(var(--primary))"
+      >
+        <rect x="25" y="10" width="50" height="130" />
+      </svg>
+    ),
   },
   {
     name: 'Triângulo',
-    imageUrl: 'https://picsum.photos/200/303',
-    hint: 'body shape',
+    svg: (
+      <svg
+        viewBox="0 0 100 150"
+        className="h-48 w-auto"
+        fill="hsl(var(--primary))"
+      >
+        <polygon points="50,10 10,140 90,140" />
+      </svg>
+    ),
   },
   {
     name: 'Triângulo invertido',
-    imageUrl: 'https://picsum.photos/200/304',
-    hint: 'body shape',
+    svg: (
+      <svg
+        viewBox="0 0 100 150"
+        className="h-48 w-auto"
+        fill="hsl(var(--primary))"
+      >
+        <polygon points="10,10 90,10 50,140" />
+      </svg>
+    ),
   },
   {
     name: 'Não tenho a certeza',
-    imageUrl: 'https://picsum.photos/200/305',
-    hint: 'question mark',
+    svg: (
+      <svg
+        viewBox="0 0 100 150"
+        className="h-48 w-auto"
+        fill="none"
+        stroke="hsl(var(--primary))"
+        strokeWidth="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M30 60 C30 40, 50 20, 70 40 S50 80, 50 80" />
+        <circle cx="50" cy="110" r="5" fill="hsl(var(--primary))" />
+      </svg>
+    ),
   },
 ];
 
@@ -67,26 +114,21 @@ export function BodyShapeSelection({ onContinue }: BodyShapeSelectionProps) {
           onValueChange={setSelectedShape}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
         >
-          {bodyShapes.map((shape) => (
+          {bodyShapes.map(shape => (
             <Label
               key={shape.name}
               htmlFor={shape.name}
               className={cn(
-                'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary flex flex-col items-center text-center',
+                'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary flex flex-col items-center justify-between text-center',
                 {
                   'ring-2 ring-primary border-primary':
                     selectedShape === shape.name,
                 }
               )}
             >
-              <Image
-                src={shape.imageUrl}
-                alt={shape.name}
-                width={150}
-                height={250}
-                className="rounded-md object-contain mb-4 h-48 w-auto bg-muted"
-                data-ai-hint={shape.hint}
-              />
+              <div className="flex items-center justify-center h-48 w-full mb-4 bg-muted/30 rounded-md">
+                {shape.svg}
+              </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value={shape.name} id={shape.name} />
                 <span className="font-semibold text-base cursor-pointer">
