@@ -50,7 +50,7 @@ export function QuizStart({ onSelectGender }: QuizStartProps) {
             onClick={() => onSelectGender('male')}
           >
             <Image
-              src="https://picsum.photos/400/400?grayscale&random=male"
+              src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/GPITINsBsO-734.webp"
               alt="Masculino"
               width={400}
               height={400}
