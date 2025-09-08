@@ -1,14 +1,14 @@
 'use client';
 
-import { MealPreparationSelection } from '@/components/meal-preparation-selection';
+import { HabitChangeSelection } from '@/components/habit-change-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function MealPreparationPageContent() {
+function HabitChangePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (mealPreparation: string) => {
+  const handleContinue = (habitChange: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -18,24 +18,25 @@ function MealPreparationPageContent() {
     const breakfastTime = searchParams.get('breakfastTime');
     const lunchTime = searchParams.get('lunchTime');
     const dinnerTime = searchParams.get('dinnerTime');
-    const mealPreparationQuery = encodeURIComponent(mealPreparation);
+    const mealPreparation = searchParams.get('mealPreparation');
+    const habitChangeQuery = encodeURIComponent(habitChange);
 
     router.push(
-      `/habito-alimentar?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparationQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChangeQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <MealPreparationSelection onContinue={handleContinue} />
+      <HabitChangeSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function MealPreparationPage() {
+export default function HabitChangePage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <MealPreparationPageContent />
+      <HabitChangePageContent />
     </Suspense>
   );
 }
