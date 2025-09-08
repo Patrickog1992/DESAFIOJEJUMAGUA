@@ -8,57 +8,99 @@ import {
   CardTitle,
   CardFooter,
 } from '@/components/ui/card';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type GoalSelectionProps = {
-  onContinue: (selectedGoal: string) => void;
+  onContinue: (selectedGoals: string[]) => void;
 };
 
 const goals = [
-  'Perder peso',
-  'Melhorar a saúde geral',
-  'Um corpo firme e tonificado',
-  'Eliminar o stress',
+  {
+    text: 'Perder peso',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/KE8kAIUz7_-288.webp',
+  },
+  {
+    text: 'Melhorar a saúde geral',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/vbukDOJxm3-288.webp',
+  },
+  {
+    text: 'Um corpo firme e tonificado',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/254VGdQRMR-288.webp',
+  },
+  {
+    text: 'Eliminar o stress',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/q98RLmKnv0-288.webp',
+  },
 ];
 
 export function GoalSelection({ onContinue }: GoalSelectionProps) {
-  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+
+  const handleGoalToggle = (goal: string) => {
+    setSelectedGoals((prevSelected) =>
+      prevSelected.includes(goal)
+        ? prevSelected.filter((g) => g !== goal)
+        : [...prevSelected, goal]
+    );
+  };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-lg">
+    <Card className="w-full max-w-4xl mx-auto shadow-lg">
       <CardHeader>
-        <CardTitle className="font-headline text-2xl text-center">
-          O que queres atingir?
+        <CardTitle className="font-headline text-3xl text-center">
+          QUAL O SEU OBJETIVO
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <RadioGroup
-          value={selectedGoal ?? undefined}
-          onValueChange={setSelectedGoal}
-          className="space-y-3"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {goals.map((goal, index) => (
-            <Label
-              key={goal}
-              htmlFor={`goal-${index}`}
+            <div
+              key={goal.text}
+              onClick={() => handleGoalToggle(goal.text)}
               className={cn(
-                'flex items-center space-x-4 rounded-lg border p-4 text-base transition-all duration-300 cursor-pointer hover:bg-primary/5',
+                'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary flex flex-col items-center text-center',
                 {
-                  'ring-2 ring-primary border-primary': selectedGoal === goal,
+                  'ring-2 ring-primary border-primary': selectedGoals.includes(
+                    goal.text
+                  ),
                 }
               )}
             >
-              <RadioGroupItem value={goal} id={`goal-${index}`} />
-              <span>{goal}</span>
-            </Label>
+              <Image
+                src={goal.imageUrl}
+                alt={goal.text}
+                width={150}
+                height={150}
+                className="rounded-md object-contain mb-4"
+                data-ai-hint="lifestyle goal"
+              />
+              <div className="flex items-center space-x-3">
+                <Checkbox
+                  id={`goal-${index}`}
+                  checked={selectedGoals.includes(goal.text)}
+                  onCheckedChange={() => handleGoalToggle(goal.text)}
+                />
+                <Label htmlFor={`goal-${index}`} className="font-semibold text-base cursor-pointer">
+                  {goal.text}
+                </Label>
+              </div>
+            </div>
           ))}
-        </RadioGroup>
+        </div>
       </CardContent>
       <CardFooter className="justify-center">
-        <Button onClick={() => selectedGoal && onContinue(selectedGoal)} disabled={!selectedGoal}>
+        <Button
+          onClick={() => onContinue(selectedGoals)}
+          disabled={selectedGoals.length === 0}
+        >
           Continuar
         </Button>
       </CardFooter>

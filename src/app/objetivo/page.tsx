@@ -8,14 +8,13 @@ function GoalSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (selectedGoal: string) => {
+  const handleContinue = (selectedGoals: string[]) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
+    const goalsQuery = selectedGoals.map(g => encodeURIComponent(g)).join(',');
 
     router.push(
-      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${encodeURIComponent(
-        selectedGoal
-      )}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goalsQuery}`
     );
   };
 
