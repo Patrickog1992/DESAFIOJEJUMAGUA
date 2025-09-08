@@ -1,14 +1,14 @@
 'use client';
 
-import { HabitChangeSelection } from '@/components/habit-change-selection';
+import { ActivityLevelSelection } from '@/components/activity-level-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function HabitChangePageContent() {
+function ActivityLevelPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (habitChange: string) => {
+  const handleContinue = (activityLevel: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -19,24 +19,25 @@ function HabitChangePageContent() {
     const lunchTime = searchParams.get('lunchTime');
     const dinnerTime = searchParams.get('dinnerTime');
     const mealPreparation = searchParams.get('mealPreparation');
-    const habitChangeQuery = encodeURIComponent(habitChange);
+    const habitChange = searchParams.get('habitChange');
+    const activityLevelQuery = encodeURIComponent(activityLevel);
 
     router.push(
-      `/nivel-atividade?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChangeQuery}`
+      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevelQuery}`
     );
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <HabitChangeSelection onContinue={handleContinue} />
+      <ActivityLevelSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function HabitChangePage() {
+export default function ActivityLevelPage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <HabitChangePageContent />
+      <ActivityLevelPageContent />
     </Suspense>
   );
 }
