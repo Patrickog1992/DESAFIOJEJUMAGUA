@@ -12,7 +12,7 @@ function AgeSelectionPageContent() {
   const handleSelectAge = (selectedAgeRange: string) => {
     if (gender) {
       router.push(
-        `/quiz?gender=${gender}&ageRange=${encodeURIComponent(
+        `/objetivo?gender=${gender}&ageRange=${encodeURIComponent(
           selectedAgeRange
         )}`
       );
