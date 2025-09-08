@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import type { Question } from '@/types/quiz';
 import { getQuizQuestions } from '@/app/actions';
 import { QuizStart } from '@/components/quiz-start';
+import { AgeSelection } from '@/components/age-selection';
 import { QuizQuestion } from '@/components/quiz-question';
 import { QuizResults } from '@/components/quiz-results';
 import { QuizProgress } from '@/components/quiz-progress';
@@ -11,12 +12,17 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
-type QuizState = 'not-started' | 'in-progress' | 'loading' | 'finished';
+type QuizStep =
+  | 'gender-selection'
+  | 'age-selection'
+  | 'loading'
+  | 'in-progress'
+  | 'finished';
 const SCORE_STORAGE_KEY = 'waterFastQuiz_userScores';
 const NUM_QUESTIONS = 5;
 
 export default function Home() {
-  const [quizState, setQuizState] = useState<QuizState>('not-started');
+  const [quizStep, setQuizStep] = useState<QuizStep>('gender-selection');
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
@@ -25,6 +31,7 @@ export default function Home() {
 
   const [userScores, setUserScores] = useState<number[]>([]);
   const [gender, setGender] = useState<'male' | 'female' | null>(null);
+  const [ageRange, setAgeRange] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -37,23 +44,21 @@ export default function Home() {
     }
   }, []);
 
-  const handleStartQuiz = async () => {
-    if (!gender) {
-      toast({
-        title: 'Selecione um sexo',
-        description: 'Você precisa selecionar um sexo para começar o quiz.',
-        variant: 'destructive',
-      });
-      return;
-    }
+  const handleSelectGender = (selectedGender: 'male' | 'female') => {
+    setGender(selectedGender);
+    setQuizStep('age-selection');
+  };
 
-    setQuizState('loading');
+  const handleStartQuiz = async (selectedAgeRange: string) => {
+    setAgeRange(selectedAgeRange);
+    setQuizStep('loading');
     try {
       const averageScore =
         userScores.length > 0
           ? userScores.reduce((a, b) => a + b, 0) / userScores.length
           : null;
-      const avgScoreNormalized = averageScore !== null ? averageScore / 100 : null;
+      const avgScoreNormalized =
+        averageScore !== null ? averageScore / 100 : null;
 
       const newQuestions = await getQuizQuestions(
         NUM_QUESTIONS,
@@ -66,7 +71,7 @@ export default function Home() {
       setCurrentQuestionIndex(0);
       setUserAnswers([]);
       setScore(0);
-      setQuizState('in-progress');
+      setQuizStep('in-progress');
     } catch (error) {
       console.error(error);
       toast({
@@ -75,7 +80,7 @@ export default function Home() {
           'Não foi possível carregar as perguntas. Por favor, tente novamente mais tarde.',
         variant: 'destructive',
       });
-      setQuizState('not-started');
+      setQuizStep('gender-selection');
     }
   };
 
@@ -87,7 +92,7 @@ export default function Home() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       calculateAndSetScore(newAnswers);
-      setQuizState('finished');
+      setQuizStep('finished');
     }
   };
 
@@ -113,11 +118,16 @@ export default function Home() {
 
   const handleRestart = () => {
     setGender(null);
-    setQuizState('not-started');
+    setAgeRange(null);
+    setQuizStep('gender-selection');
   };
 
   const renderContent = () => {
-    switch (quizState) {
+    switch (quizStep) {
+      case 'gender-selection':
+        return <QuizStart onSelectGender={handleSelectGender} />;
+      case 'age-selection':
+        return <AgeSelection onSelectAge={handleStartQuiz} />;
       case 'in-progress':
         if (!questions[currentQuestionIndex]) return null;
         return (
@@ -156,16 +166,8 @@ export default function Home() {
             </CardContent>
           </Card>
         );
-      case 'not-started':
       default:
-        return (
-          <QuizStart
-            onStart={handleStartQuiz}
-            loading={quizState === 'loading'}
-            gender={gender}
-            setGender={setGender}
-          />
-        );
+        return <QuizStart onSelectGender={handleSelectGender} />;
     }
   };
 
