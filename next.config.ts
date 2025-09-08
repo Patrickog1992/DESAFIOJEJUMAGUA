@@ -22,6 +22,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'v3.certifiedfasting.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
