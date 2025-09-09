@@ -12,7 +12,14 @@ function HealthProblemsPageContent() {
   const handleContinue = (healthProblems: string[]) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('healthProblems', healthProblems.join(','));
-    router.push(`/progresso-acelerado?${params.toString()}`);
+
+    // If user selects "Nenhuma das opções acima" or has no health problems,
+    // they can go to the accelerated timeline. Otherwise, they go to the standard loading page.
+    if (healthProblems.includes('Nenhuma das opções acima')) {
+      router.push(`/progresso-acelerado?${params.toString()}`);
+    } else {
+      router.push(`/plano-carregando?${params.toString()}`);
+    }
   };
 
   return (
