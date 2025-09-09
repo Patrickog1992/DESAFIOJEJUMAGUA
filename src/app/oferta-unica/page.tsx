@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { UniqueOffer } from '@/components/unique-offer';
@@ -10,10 +11,9 @@ function UniqueOfferPageContent() {
   const searchParams = useSearchParams();
 
   const handleContinue = () => {
-    // This would typically go to a checkout page
-    // For now, we can just log it or redirect to the start
-    console.log('Redirecting to checkout...');
-    router.push('/');
+    // This function is no longer the primary action, but can be kept for other purposes
+    // or removed. For now, it will just log to the console.
+    console.log('Checkout link clicked.');
   };
 
   const name = searchParams.get('name') || '';

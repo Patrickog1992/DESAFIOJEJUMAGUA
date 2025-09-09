@@ -117,6 +117,8 @@ const writtenTestimonials = [
   },
 ];
 
+const checkoutUrl = 'https://pay.kirvano.com/2d175ad5-fb2b-4da3-92f2-21ac781ca8be';
+
 export function UniqueOffer({
   currentWeight,
   targetWeight,
@@ -284,14 +286,17 @@ export function UniqueOffer({
                 Acesso vitalício, sem mensalidades
               </p>
             </div>
+            
+            <a href={checkoutUrl} className="block w-full max-w-md mx-auto">
+              <Button
+                size="lg"
+                className="w-full text-lg h-14 animate-pulse-strong"
+                asChild={false} 
+              >
+                QUERO APROVEITAR A OFERTA
+              </Button>
+            </a>
 
-            <Button
-              size="lg"
-              className="w-full max-w-md mx-auto text-lg h-14 animate-pulse-strong"
-              onClick={onContinue}
-            >
-              QUERO APROVEITAR A OFERTA
-            </Button>
 
             <div className="text-xs text-muted-foreground flex items-center justify-center gap-2">
               <Lock className="w-4 h-4" />
@@ -346,13 +351,15 @@ export function UniqueOffer({
             </ul>
           </CardContent>
           <CardFooter className="justify-center">
-            <Button
-              size="lg"
-              className="w-full max-w-md mx-auto text-lg h-12 animate-pulse-strong"
-              onClick={onContinue}
-            >
-              Obter o meu plano
-            </Button>
+            <a href={checkoutUrl} className="block w-full max-w-md mx-auto">
+              <Button
+                size="lg"
+                className="w-full text-lg h-12 animate-pulse-strong"
+                asChild={false} 
+              >
+                Obter o meu plano
+              </Button>
+            </a>
           </CardFooter>
         </Card>
 
@@ -439,13 +446,15 @@ export function UniqueOffer({
               Novos utilizadores atingiram o seu objetivo de peso conosco e
               adotaram um estilo de vida mais saudável
             </p>
-            <Button
-              size="lg"
-              className="w-full max-w-sm mx-auto text-lg h-12 animate-pulse-strong"
-              onClick={onContinue}
-            >
-              Quero o meu plano
-            </Button>
+            <a href={checkoutUrl} className="block w-full max-w-sm mx-auto">
+              <Button
+                size="lg"
+                className="w-full text-lg h-12 animate-pulse-strong"
+                asChild={false} 
+              >
+                Quero o meu plano
+              </Button>
+            </a>
           </CardContent>
         </Card>
       </div>
