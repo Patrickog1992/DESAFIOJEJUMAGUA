@@ -6,15 +6,14 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { CheckCircle2 } from 'lucide-react';
 
 type HealthProblemsSelectionProps = {
-  onContinue: (selectedProblems: string[]) => void;
+  onContinue: (selectedProblem: string) => void;
 };
 
 const options = [
@@ -33,34 +32,11 @@ const options = [
 export function HealthProblemsSelection({
   onContinue,
 }: HealthProblemsSelectionProps) {
-  const [selectedProblems, setSelectedProblems] = useState<string[]>([]);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-  const handleToggle = (problem: string) => {
-    setSelectedProblems(prevSelected => {
-      if (problem === 'Nenhuma das opções acima') {
-        // If "None" is already selected, unselect it. Otherwise, select only "None".
-        return prevSelected.includes(problem) ? [] : [problem];
-      }
-
-      // If another problem is selected
-      const newSelection = prevSelected.filter(
-        item => item !== 'Nenhuma das opções acima'
-      );
-
-      if (newSelection.includes(problem)) {
-        // If the problem is already selected, unselect it.
-        return newSelection.filter(p => p !== problem);
-      } else {
-        // If the problem is not selected, add it.
-        return [...newSelection, problem];
-      }
-    });
-  };
-
-  const handleContinueClick = () => {
-    if (selectedProblems.length > 0) {
-      onContinue(selectedProblems);
-    }
+  const handleSelection = (option: string) => {
+    setSelectedOption(option);
+    onContinue(option);
   };
 
   return (
@@ -71,40 +47,34 @@ export function HealthProblemsSelection({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          {options.map((option, index) => (
+        <RadioGroup
+          value={selectedOption ?? ''}
+          onValueChange={handleSelection}
+          className="space-y-4"
+        >
+          {options.map(option => (
             <Label
               key={option}
-              htmlFor={`problem-${index}`}
+              htmlFor={option}
               className={cn(
                 'flex items-center space-x-4 rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary',
                 {
                   'ring-2 ring-primary border-primary':
-                    selectedProblems.includes(option),
+                    selectedOption === option,
                 }
               )}
             >
-              <Checkbox
-                id={`problem-${index}`}
-                checked={selectedProblems.includes(option)}
-                onCheckedChange={() => handleToggle(option)}
-                className="h-6 w-6"
-              />
+              <RadioGroupItem value={option} id={option} className="h-6 w-6" />
               <span className="font-semibold text-lg flex-grow">
                 {option}
               </span>
+              {selectedOption === option && (
+                <CheckCircle2 className="h-6 w-6 text-primary" />
+              )}
             </Label>
           ))}
-        </div>
+        </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button
-          onClick={handleContinueClick}
-          disabled={selectedProblems.length === 0}
-        >
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
