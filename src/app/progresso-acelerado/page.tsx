@@ -10,7 +10,7 @@ function AcceleratedTimelinePageContent() {
 
   const handleContinue = () => {
     const params = new URLSearchParams(searchParams.toString());
-    router.push(`/objetivo-desafio?${params.toString()}`);
+    router.push(`/plano-carregando?${params.toString()}`);
   };
 
   const name = searchParams.get('name') || '';
