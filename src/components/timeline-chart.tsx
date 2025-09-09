@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -20,6 +20,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  LabelList,
 } from 'recharts';
 import { format, addDays, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -142,7 +143,7 @@ export function TimelineChart({
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={chartInfo.chartData}
-                  margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+                  margin={{ top: 20, right: 20, left: 20, bottom: 5 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
                   <XAxis dataKey="date" tick={{ fontSize: 12 }} />
@@ -167,7 +168,15 @@ export function TimelineChart({
                     strokeWidth={3}
                     dot={{ r: 6 }}
                     activeDot={{ r: 8 }}
-                  />
+                  >
+                    <LabelList
+                      dataKey="weight"
+                      position="top"
+                      offset={10}
+                      className="font-bold"
+                      formatter={(value: number) => `${value}kg`}
+                    />
+                  </Line>
                 </LineChart>
               </ResponsiveContainer>
             )}
