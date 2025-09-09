@@ -217,7 +217,7 @@ export function PlanResult({
                 <div className="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
                   <div className="absolute top-0 left-0 h-full w-1/4 bg-blue-400"></div>
                   <div className="absolute top-0 left-1/4 h-full w-1/4 bg-green-400"></div>
-                  <div className="absolute top-0 left-2/4 h-full w-1/4 bg-yellow-400"></div>
+                  <div className="absolute top-0 left-2/4 h.full w-1/4 bg-yellow-400"></div>
                   <div className="absolute top-0 left-3/4 h-full w-1/4 bg-red-400"></div>
                   <div
                     className="absolute top-0 h-full w-1 rounded-full bg-black transition-all duration-500"
@@ -340,7 +340,7 @@ export function PlanResult({
             </p>
             <div className="text-center">
                 <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
-                  QUERO O MEU PLANO DE JEJUM INTERMITENTE
+                  QUERO O MEU JEJUM DE ÁGUA
                 </Button>
             </div>
         </div>
