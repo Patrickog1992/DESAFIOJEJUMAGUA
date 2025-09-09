@@ -20,6 +20,7 @@ function UniqueOfferPageContent() {
   const currentWeight = Number(searchParams.get('weight'));
   const targetWeight = Number(searchParams.get('targetWeight'));
   const height = Number(searchParams.get('height'));
+  const gender = searchParams.get('gender') as 'male' | 'female' | null;
 
   return (
     <main className="min-h-screen w-full bg-background">
@@ -29,6 +30,7 @@ function UniqueOfferPageContent() {
         targetWeight={targetWeight}
         height={height}
         onContinue={handleContinue}
+        gender={gender}
       />
     </main>
   );

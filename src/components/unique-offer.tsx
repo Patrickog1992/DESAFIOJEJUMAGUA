@@ -30,6 +30,7 @@ type UniqueOfferProps = {
   targetWeight: number;
   height: number;
   onContinue: () => void;
+  gender: 'male' | 'female' | null;
 };
 
 const benefits = [
@@ -40,13 +41,30 @@ const benefits = [
   'Orientação exclusiva e apoio ao longo da tua jornada de perda de peso pelos nossos nutricionistas certificados para garantir os melhores resultados',
 ];
 
-const testimonialImages = [
-  'https://i.imgur.com/4fc5yDb.jpeg',
-  'https://i.imgur.com/WJJuAy9.jpeg',
-  'https://i.imgur.com/QWy9aD8.jpeg',
-  'https://i.imgur.com/jJ7RuKK.jpeg',
-  'https://i.imgur.com/thHqvuZ.jpeg',
-];
+const maleImages = {
+  today: 'https://i.imgur.com/xOmKpfH.jpg',
+  after: 'https://i.imgur.com/TggWJmh.jpg',
+  testimonials: [
+    'https://i.imgur.com/4fc5yDb.jpeg',
+    'https://i.imgur.com/WJJuAy9.jpeg',
+    'https://i.imgur.com/QWy9aD8.jpeg',
+    'https://i.imgur.com/jJ7RuKK.jpeg',
+    'https://i.imgur.com/thHqvuZ.jpeg',
+  ],
+};
+
+const femaleImages = {
+  today: 'https://i.imgur.com/V6997ol.png',
+  after: 'https://i.imgur.com/kkc70lF.png',
+  testimonials: [
+    'https://i.imgur.com/Yd4f0L0.jpg',
+    'https://i.imgur.com/3FMNC9a.jpg',
+    'https://i.imgur.com/noSDgeA.jpg',
+    'https://i.imgur.com/Kd5Dboy.jpg',
+    'https://i.imgur.com/YOMEZLJ.jpg',
+    'https://i.imgur.com/fogjsiC.jpg',
+  ],
+};
 
 const writtenTestimonials = [
   {
@@ -104,6 +122,7 @@ export function UniqueOffer({
   targetWeight,
   height,
   onContinue,
+  gender,
 }: UniqueOfferProps) {
   const [isClient, setIsClient] = useState(false);
   const [today, setToday] = useState<Date | null>(null);
@@ -111,6 +130,8 @@ export function UniqueOffer({
   const [currentImc, setCurrentImc] = useState<number | null>(null);
   const [targetImc, setTargetImc] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState(10 * 60);
+
+  const images = gender === 'female' ? femaleImages : maleImages;
 
   useEffect(() => {
     setIsClient(true);
@@ -176,7 +197,7 @@ export function UniqueOffer({
             </CardHeader>
             <CardContent className="space-y-4">
               <Image
-                src="https://i.imgur.com/xOmKpfH.jpg"
+                src={images.today}
                 alt="Você hoje"
                 width={300}
                 height={300}
@@ -213,7 +234,7 @@ export function UniqueOffer({
             </CardHeader>
             <CardContent className="space-y-4">
               <Image
-                src="https://i.imgur.com/TggWJmh.jpg"
+                src={images.after}
                 alt="Você em um mês"
                 width={300}
                 height={300}
@@ -348,7 +369,7 @@ export function UniqueOffer({
               className="w-full"
             >
               <CarouselContent>
-                {testimonialImages.map((src, index) => (
+                {images.testimonials.map((src, index) => (
                   <CarouselItem
                     key={index}
                     className="md:basis-1/2 lg:basis-1/2"
