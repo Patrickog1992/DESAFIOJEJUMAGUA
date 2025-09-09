@@ -21,7 +21,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Check, Lock } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 type UniqueOfferProps = {
@@ -87,13 +87,20 @@ export function UniqueOffer({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Today Card */}
-          <Card className="shadow-lg border-red-500 border-2">
+          <Card className="shadow-lg border-red-500 border-2 overflow-hidden">
             <CardHeader>
               <CardTitle>
                 Você hoje ({today ? format(today, 'dd/MM/yyyy', { locale: ptBR }) : <Skeleton className="h-6 w-24 inline-block" />})
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+              <Image
+                src="https://i.imgur.com/V6997ol.png"
+                alt="Você hoje"
+                width={300}
+                height={300}
+                className="mx-auto"
+              />
               <div className="flex justify-between">
                 <span>Peso atual:</span>
                 <span className="font-bold">{currentWeight} kg</span>
@@ -109,13 +116,20 @@ export function UniqueOffer({
             </CardContent>
           </Card>
           {/* One Month Later Card */}
-          <Card className="shadow-lg border-green-500 border-2">
+          <Card className="shadow-lg border-green-500 border-2 overflow-hidden">
             <CardHeader>
               <CardTitle>
                 Você em ({oneMonthLater ? format(oneMonthLater, 'dd/MM/yyyy', { locale: ptBR }) : <Skeleton className="h-6 w-24 inline-block" />})
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+               <Image
+                src="https://i.imgur.com/kkc70lF.png"
+                alt="Você em um mês"
+                width={300}
+                height={300}
+                className="mx-auto"
+              />
               <div className="flex justify-between">
                 <span>Peso desejado:</span>
                 <span className="font-bold">{targetWeight} kg</span>
@@ -143,10 +157,15 @@ export function UniqueOffer({
             </CardContent>
         </Card>
         
-        <Card className="shadow-md">
-            <CardContent className="p-4 flex items-center justify-center gap-2">
-                <Lock className="h-5 w-5 text-muted-foreground" />
-                <p className="text-sm font-semibold text-muted-foreground">Garantia de devolução do dinheiro em 30 dias</p>
+        <Card className="shadow-md bg-transparent border-none">
+            <CardContent className="p-0">
+                <Image 
+                    src="https://i.imgur.com/0XA7W5K.png"
+                    alt="Garantia de 30 dias"
+                    width={700}
+                    height={150}
+                    className="mx-auto object-contain"
+                />
             </CardContent>
         </Card>
 
