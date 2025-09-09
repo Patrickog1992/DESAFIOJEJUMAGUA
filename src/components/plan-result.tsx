@@ -332,11 +332,11 @@ export function PlanResult({
             <p className="text-lg font-bold">
               Estamos aqui para garantir que atinges o teu objetivo de {targetWeight} kg!
             </p>
-             <div className="flex justify-center">
+            <div className="flex justify-center">
                 <Button size="lg" className="w-full max-w-md text-lg h-12">
                   QUERO O MEU PLANO DE JEJUM INTERMITENTE
                 </Button>
-              </div>
+            </div>
         </div>
 
       </div>
