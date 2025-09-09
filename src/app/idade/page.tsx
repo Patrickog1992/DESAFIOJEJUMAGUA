@@ -9,13 +9,9 @@ function AgeSelectionPageContent() {
   const searchParams = useSearchParams();
   const gender = searchParams.get('gender');
 
-  const handleSelectAge = (selectedAgeRange: string) => {
+  const handleContinue = (age: string) => {
     if (gender) {
-      router.push(
-        `/objetivo?gender=${gender}&ageRange=${encodeURIComponent(
-          selectedAgeRange
-        )}`
-      );
+      router.push(`/objetivo?gender=${gender}&ageRange=${encodeURIComponent(age)}`);
     } else {
       // Fallback in case gender is not in the URL, though it should be.
       router.push('/');
@@ -24,7 +20,7 @@ function AgeSelectionPageContent() {
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <AgeSelection onSelectAge={handleSelectAge} />
+      <AgeSelection onContinue={handleContinue} />
     </main>
   );
 }
