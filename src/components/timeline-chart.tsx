@@ -121,7 +121,7 @@ export function TimelineChart({
           {name}, aqui está a tua linha temporal de perda de peso prevista.
         </CardTitle>
         <CardDescription className="text-base pt-2">
-          Ajusta o teu ritmo abaixo para ver se podes atingir o teu objetivo
+          Ajuste o seu ritmo abaixo para ver se pode atingir o teu objetivo
           ainda mais rápido! 😉
         </CardDescription>
       </CardHeader>
