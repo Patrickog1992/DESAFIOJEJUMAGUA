@@ -19,19 +19,19 @@ type AgeRangeSelectionProps = {
 const ageRanges = [
   {
     range: '18-26',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/x8iI1jxq03-460.webp',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
   },
   {
     range: '27-38',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/ZzgcL9qTNs-460.webp',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
   },
   {
     range: '39-50',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jS4d6j7yJk-460.webp',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
   },
   {
     range: '51+',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/V3q5K9xG6E-460.webp',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
   },
 ];
 
