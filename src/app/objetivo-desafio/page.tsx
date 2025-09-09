@@ -9,6 +9,8 @@ function ChallengeGoalPageContent() {
   const searchParams = useSearchParams();
 
   const handleContinue = (challengeGoal: string) => {
+    // This is being intentionally left to show how you might collect the data,
+    // but the final routing will go to the /final page per the user's request.
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
@@ -25,9 +27,8 @@ function ChallengeGoalPageContent() {
     const dailyRoutine = searchParams.get('dailyRoutine');
     const challengeGoalQuery = encodeURIComponent(challengeGoal);
 
-    router.push(
-      `/quiz?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workSchedule}&dailyRoutine=${dailyRoutine}&challengeGoal=${challengeGoalQuery}`
-    );
+    // Redirect to the final page as requested.
+    router.push('/final');
   };
 
   return (
