@@ -106,12 +106,12 @@ export function PlanResult({
   
   const getWaterIntakeInLiters = () => {
     switch (waterIntake) {
-      case '1 copo ou menos': return 1;
+      case '1 copo ou menos': return 1.0;
       case '2–3 copos': return 1.5;
       case '4–5 copos': return 2.0;
       case '6–7 copos': return 2.5;
       case '8+ copos': return 3.0;
-      default: return 1;
+      default: return 1.0;
     }
   };
 
@@ -189,6 +189,12 @@ export function PlanResult({
           </Card>
         </div>
 
+        <div className="text-center">
+             <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+                QUERO MEU PLANO PERSONALIZADO
+              </Button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="shadow-md">
             <CardHeader>
@@ -246,7 +252,7 @@ export function PlanResult({
               </div>
               <div className="flex justify-between items-center">
                  <span className="text-sm">Consumo mínimo diário de água:</span>
-                 <span className="font-bold text-lg">{getWaterIntakeInLiters().toFixed(2)} litros</span>
+                 <span className="font-bold text-lg">{getWaterIntakeInLiters().toFixed(1)} litros</span>
               </div>
             </CardContent>
           </Card>
