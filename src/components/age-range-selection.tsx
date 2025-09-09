@@ -1,0 +1,91 @@
+'use client';
+
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
+
+type AgeRangeSelectionProps = {
+  onContinue: (selectedRange: string) => void;
+};
+
+const ageRanges = [
+  {
+    range: '18-26',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/x8iI1jxq03-460.webp',
+  },
+  {
+    range: '27-38',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/ZzgcL9qTNs-460.webp',
+  },
+  {
+    range: '39-50',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jS4d6j7yJk-460.webp',
+  },
+  {
+    range: '51+',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/V3q5K9xG6E-460.webp',
+  },
+];
+
+export function AgeRangeSelection({ onContinue }: AgeRangeSelectionProps) {
+  const [selectedRange, setSelectedRange] = useState<string | null>(null);
+
+  const handleSelection = (range: string) => {
+    setSelectedRange(range);
+    onContinue(range);
+  };
+
+  return (
+    <Card className="w-full max-w-4xl mx-auto shadow-lg">
+      <CardHeader>
+        <CardTitle className="font-headline text-3xl text-center">
+          Qual a sua idade?
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <RadioGroup
+          value={selectedRange ?? ''}
+          onValueChange={handleSelection}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {ageRanges.map(age => (
+            <Label
+              key={age.range}
+              htmlFor={age.range}
+              className={cn(
+                'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary flex flex-col items-center text-center',
+                {
+                  'ring-2 ring-primary border-primary':
+                    selectedRange === age.range,
+                }
+              )}
+            >
+              <Image
+                src={age.imageUrl}
+                alt={`Idade ${age.range}`}
+                width={200}
+                height={200}
+                className="rounded-md object-contain mb-4 aspect-square"
+                data-ai-hint="person age group"
+              />
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value={age.range} id={age.range} />
+                <span className="font-semibold text-lg cursor-pointer">
+                  {age.range}
+                </span>
+              </div>
+            </Label>
+          ))}
+        </RadioGroup>
+      </CardContent>
+    </Card>
+  );
+}

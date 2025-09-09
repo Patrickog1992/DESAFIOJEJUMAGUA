@@ -1,17 +1,17 @@
 'use client';
 
-import { AgeInput } from '@/components/age-input';
+import { AgeRangeSelection } from '@/components/age-range-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import Image from 'next/image';
 
-function AgeInputPageContent() {
+function AgeRangeSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (age: string) => {
+  const handleContinue = (ageRange: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('ageRange', age);
+    params.set('ageRange', ageRange);
     router.push(`/objetivo?${params.toString()}`);
   };
 
@@ -25,7 +25,7 @@ function AgeInputPageContent() {
           height={100}
           className="mb-8"
         />
-        <AgeInput onContinue={handleContinue} />
+        <AgeRangeSelection onContinue={handleContinue} />
       </div>
       <footer className="w-full text-center text-sm text-muted-foreground mt-8">
         <p>Desafio do Jejum de Água todos os direitos reservados</p>
@@ -34,10 +34,10 @@ function AgeInputPageContent() {
   );
 }
 
-export default function AgeInputPage() {
+export default function AgeRangeSelectionPage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <AgeInputPageContent />
+      <AgeRangeSelectionPageContent />
     </Suspense>
   );
 }

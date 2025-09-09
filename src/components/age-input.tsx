@@ -13,11 +13,11 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
-type AgeSelectionProps = {
+type AgeInputProps = {
   onContinue: (age: string) => void;
 };
 
-export function AgeSelection({ onContinue }: AgeSelectionProps) {
+export function AgeInput({ onContinue }: AgeInputProps) {
   const [age, setAge] = useState('');
   const { toast } = useToast();
 
