@@ -30,7 +30,7 @@ export function TestimonialPage({ onContinue }: TestimonialPageProps) {
             alt="Depoimento de Andreia Silva"
             width={200}
             height={200}
-            className="rounded-full border-4 border-primary"
+            className="rounded-lg border-4 border-primary"
             data-ai-hint="woman smiling"
           />
         </div>
