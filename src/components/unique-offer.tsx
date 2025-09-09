@@ -110,6 +110,7 @@ export function UniqueOffer({
   const [oneMonthLater, setOneMonthLater] = useState<Date | null>(null);
   const [currentImc, setCurrentImc] = useState<number | null>(null);
   const [targetImc, setTargetImc] = useState<number | null>(null);
+  const [timeLeft, setTimeLeft] = useState(10 * 60);
 
   useEffect(() => {
     setIsClient(true);
@@ -126,12 +127,34 @@ export function UniqueOffer({
         setTargetImc(targetWeight / (heightInMeters * heightInMeters));
       }
     }
+
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, [height, currentWeight, targetWeight]);
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+      .toString()
+      .padStart(2, '0')}`;
+  };
 
   return (
     <div className="bg-muted/20">
       <div className="container mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
         <header className="text-center space-y-2">
+          <div className="text-center mb-2">
+            <p className="font-bold text-lg text-primary">
+              60% DESCONTO ativo por{' '}
+              <span className="bg-primary text-primary-foreground rounded-md px-2 py-1">
+                {isClient ? formatTime(timeLeft) : '10:00'}
+              </span>
+            </p>
+          </div>
           <h1 className="text-3xl font-extrabold text-red-600 tracking-tight">
             ESSA É UMA OFERTA ÚNICA, NÃO PERCA!
           </h1>
