@@ -19,28 +19,23 @@ type AgeSelectionProps = {
 
 const ageRanges = [
   {
-    range: '18–24',
-    imageUrl: 'https://picsum.photos/400/400?random=1',
+    range: '18-24',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
     hint: 'young adult',
   },
   {
-    range: '25–34',
-    imageUrl: 'https://picsum.photos/400/400?random=2',
+    range: '25-34',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
     hint: 'adult professional',
   },
   {
-    range: '35–44',
-    imageUrl: 'https://picsum.photos/400/400?random=3',
+    range: '39-50',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
     hint: 'middle-aged person',
   },
   {
-    range: '45–54',
-    imageUrl: 'https://picsum.photos/400/400?random=4',
-    hint: 'mature adult',
-  },
-  {
-    range: '55+',
-    imageUrl: 'https://picsum.photos/400/400?random=5',
+    range: '51+',
+    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
     hint: 'senior citizen',
   },
 ];
@@ -67,7 +62,7 @@ export function AgeSelection({ onContinue }: AgeSelectionProps) {
         <RadioGroup
           value={selectedRange ?? ''}
           onValueChange={handleSelection}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {ageRanges.map(({ range, imageUrl, hint }) => (
             <Label
@@ -84,8 +79,8 @@ export function AgeSelection({ onContinue }: AgeSelectionProps) {
               <Image
                 src={imageUrl}
                 alt={range}
-                width={150}
-                height={150}
+                width={200}
+                height={200}
                 className="rounded-md object-cover aspect-square"
                 data-ai-hint={hint}
               />
