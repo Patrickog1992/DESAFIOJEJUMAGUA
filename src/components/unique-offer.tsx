@@ -21,7 +21,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Check, Lock, Heart, ThumbsUp } from 'lucide-react';
+import { Check, Heart, ThumbsUp } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 type UniqueOfferProps = {
@@ -55,47 +55,52 @@ const writtenTestimonials = [
   {
     name: 'Maria',
     imageUrl: 'https://i.imgur.com/Sza1ZfT.png',
-    comment: 'Estou amando os resultados! Em poucas semanas já sinto uma diferença enorme na minha energia e na balança. Super recomendo!',
+    comment:
+      'Estou amando os resultados! Em poucas semanas já sinto uma diferença enorme na minha energia e na balança. Super recomendo!',
     likes: 128,
     hearts: 45,
   },
   {
     name: 'Marta',
     imageUrl: 'https://i.imgur.com/NVXnmUf.jpg',
-    comment: 'Nunca pensei que seria tão fácil seguir um plano. As receitas são deliciosas e o jejum é mais simples do que eu imaginava. Já perdi 6kg!',
+    comment:
+      'Nunca pensei que seria tão fácil seguir um plano. As receitas são deliciosas e o jejum é mais simples do que eu imaginava. Já perdi 6kg!',
     likes: 97,
     hearts: 32,
   },
   {
     name: 'Joelma',
     imageUrl: 'https://i.imgur.com/SPsVs9s.jpg',
-    comment: 'O melhor investimento que fiz pela minha saúde. O acompanhamento dos nutricionistas faz toda a diferença!',
+    comment:
+      'O melhor investimento que fiz pela minha saúde. O acompanhamento dos nutricionistas faz toda a diferença!',
     likes: 215,
     hearts: 88,
   },
   {
     name: 'Geraldo',
     imageUrl: 'https://i.imgur.com/pN0xdAe.jpg',
-    comment: 'Finalmente um plano que se encaixa na minha rotina corrida. Os resultados apareceram muito rápido, estou muito satisfeito.',
+    comment:
+      'Finalmente um plano que se encaixa na minha rotina corrida. Os resultados apareceram muito rápido, estou muito satisfeito.',
     likes: 76,
     hearts: 21,
   },
   {
     name: 'Pedro',
     imageUrl: 'https://i.imgur.com/W0KgtQV.png',
-    comment: 'Recomendo a todos! Além de perder peso, aprendi a me alimentar melhor e ter um estilo de vida mais saudável.',
+    comment:
+      'Recomendo a todos! Além de perder peso, aprendi a me alimentar melhor e ter um estilo de vida mais saudável.',
     likes: 153,
     hearts: 64,
   },
   {
     name: 'Junior',
     imageUrl: 'https://i.imgur.com/J4omSDG.jpg',
-    comment: 'Funciona mesmo! Já tinha tentado de tudo, mas só com esse desafio consegui atingir meu objetivo.',
+    comment:
+      'Funciona mesmo! Já tinha tentado de tudo, mas só com esse desafio consegui atingir meu objetivo.',
     likes: 112,
     hearts: 41,
   },
 ];
-
 
 export function UniqueOffer({
   currentWeight,
@@ -140,7 +145,13 @@ export function UniqueOffer({
           <Card className="shadow-lg border-red-500 border-2 overflow-hidden">
             <CardHeader>
               <CardTitle>
-                Você hoje ({today ? format(today, 'dd/MM/yyyy', { locale: ptBR }) : <Skeleton className="h-6 w-24 inline-block" />})
+                Você hoje (
+                {today ? (
+                  format(today, 'dd/MM/yyyy', { locale: ptBR })
+                ) : (
+                  <Skeleton className="h-6 w-24 inline-block" />
+                )}
+                )
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -157,7 +168,9 @@ export function UniqueOffer({
               </div>
               <div className="flex justify-between">
                 <span>IMC atual:</span>
-                <span className="font-bold">{currentImc?.toFixed(2) ?? '...'}</span>
+                <span className="font-bold">
+                  {currentImc?.toFixed(2) ?? '...'}
+                </span>
               </div>
               <div>
                 <p className="font-semibold mb-2">Eficiência metabólica</p>
@@ -169,11 +182,17 @@ export function UniqueOffer({
           <Card className="shadow-lg border-green-500 border-2 overflow-hidden">
             <CardHeader>
               <CardTitle>
-                Você em ({oneMonthLater ? format(oneMonthLater, 'dd/MM/yyyy', { locale: ptBR }) : <Skeleton className="h-6 w-24 inline-block" />})
+                Você em (
+                {oneMonthLater ? (
+                  format(oneMonthLater, 'dd/MM/yyyy', { locale: ptBR })
+                ) : (
+                  <Skeleton className="h-6 w-24 inline-block" />
+                )}
+                )
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-               <Image
+              <Image
                 src="https://i.imgur.com/kkc70lF.png"
                 alt="Você em um mês"
                 width={300}
@@ -186,7 +205,9 @@ export function UniqueOffer({
               </div>
               <div className="flex justify-between">
                 <span>IMC projetado:</span>
-                <span className="font-bold">{targetImc?.toFixed(2) ?? '...'}</span>
+                <span className="font-bold">
+                  {targetImc?.toFixed(2) ?? '...'}
+                </span>
               </div>
               <div>
                 <p className="font-semibold mb-2">Eficiência metabólica</p>
@@ -218,8 +239,8 @@ export function UniqueOffer({
             <Image
               src="https://i.imgur.com/0XA7W5K.png"
               alt="Garantia de 30 dias"
-              width={400}
-              height={100}
+              width={200}
+              height={50}
               className="mx-auto object-contain"
             />
             <p className="mt-2 text-sm font-semibold text-muted-foreground">
@@ -230,9 +251,13 @@ export function UniqueOffer({
 
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle className="text-center text-2xl">O que está incluído?</CardTitle>
+            <CardTitle className="text-center text-2xl">
+              O que está incluído?
+            </CardTitle>
             <CardDescription className="text-center text-base">
-              A combinação perfeita de refeições saudáveis, seguimento de jejum intermitente e ferramentas de apoio para resultados mais rápidos e duradouros.
+              A combinação perfeita de refeições saudáveis, seguimento de jejum
+              intermitente e ferramentas de apoio para resultados mais rápidos
+              e duradouros.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -255,19 +280,25 @@ export function UniqueOffer({
             </ul>
           </CardContent>
           <CardFooter className="justify-center">
-             <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12" onClick={onContinue}>
-                Obter o meu plano
+            <Button
+              size="lg"
+              className="w-full max-w-md mx-auto text-lg h-12"
+              onClick={onContinue}
+            >
+              Obter o meu plano
             </Button>
           </CardFooter>
         </Card>
 
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle className="text-center text-2xl">Vê mudanças reais e visíveis após a primeira semana</CardTitle>
+            <CardTitle className="text-center text-2xl">
+              Vê mudanças reais e visíveis após a primeira semana
+            </CardTitle>
           </CardHeader>
           <CardContent className="p-4">
             <Carousel
-              opts={{ loop: true, align: "start" }}
+              opts={{ loop: true, align: 'start' }}
               plugins={[Autoplay({ delay: 3000 })]}
               className="w-full"
             >
@@ -292,23 +323,38 @@ export function UniqueOffer({
 
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle className="text-center text-2xl">Mais pessoas que alcançaram seus objetivos</CardTitle>
+            <CardTitle className="text-center text-2xl">
+              Mais pessoas que alcançaram seus objetivos
+            </CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {writtenTestimonials.map((testimonial) => (
-              <div key={testimonial.name} className="bg-white p-4 rounded-lg shadow-sm border space-y-3">
+            {writtenTestimonials.map(testimonial => (
+              <div
+                key={testimonial.name}
+                className="bg-white p-4 rounded-lg shadow-sm border space-y-3"
+              >
                 <div className="flex items-center gap-3">
-                  <Image src={testimonial.imageUrl} alt={testimonial.name} width={40} height={40} className="rounded-full" />
+                  <Image
+                    src={testimonial.imageUrl}
+                    alt={testimonial.name}
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
                   <p className="font-bold">{testimonial.name}</p>
                 </div>
                 <p className="text-foreground/90">{testimonial.comment}</p>
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
-                    <button className="p-1 rounded-full bg-blue-500 text-white"><ThumbsUp size={12} /></button>
+                    <button className="p-1 rounded-full bg-blue-500 text-white">
+                      <ThumbsUp size={12} />
+                    </button>
                     <span>{testimonial.likes}</span>
                   </div>
-                   <div className="flex items-center gap-1">
-                    <button className="p-1 rounded-full bg-red-500 text-white"><Heart size={12} /></button>
+                  <div className="flex items-center gap-1">
+                    <button className="p-1 rounded-full bg-red-500 text-white">
+                      <Heart size={12} />
+                    </button>
                     <span>{testimonial.hearts}</span>
                   </div>
                 </div>
@@ -316,6 +362,24 @@ export function UniqueOffer({
             ))}
           </CardContent>
         </Card>
+        
+        <Card className="shadow-md text-center">
+          <CardContent className="p-6 space-y-4">
+            <p className="text-5xl font-extrabold text-primary">400.000+</p>
+            <p className="text-lg text-foreground max-w-md mx-auto">
+              Novos utilizadores atingiram o seu objetivo de peso connosco e
+              adotaram um estilo de vida mais saudável
+            </p>
+            <Button
+              size="lg"
+              className="w-full max-w-sm mx-auto text-lg h-12"
+              onClick={onContinue}
+            >
+              Quero o meu plano
+            </Button>
+          </CardContent>
+        </Card>
+
       </div>
     </div>
   );
