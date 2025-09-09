@@ -13,6 +13,7 @@ function PlanResultPageContent() {
   const height = Number(searchParams.get('height'));
   const walkingTime = searchParams.get('walkingTime') || '20 minutos';
   const waterIntake = searchParams.get('waterIntake') || '1 copo ou menos';
+  const gender = searchParams.get('gender') as 'male' | 'female' | null;
 
   return (
     <main className="min-h-screen w-full bg-background">
@@ -23,6 +24,7 @@ function PlanResultPageContent() {
         height={height}
         walkingTime={walkingTime}
         waterIntake={waterIntake}
+        gender={gender}
       />
     </main>
   );
