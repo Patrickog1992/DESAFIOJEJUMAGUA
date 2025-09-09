@@ -2,13 +2,13 @@
 
 import { LoadingPlan } from '@/components/loading-plan';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 function LoadingPlanPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isComplete, setIsComplete] = React.useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
     if (isComplete) {
