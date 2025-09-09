@@ -30,7 +30,7 @@ export function TestimonialPage({ onContinue }: TestimonialPageProps) {
             alt="Depoimento de Roberto Alves antes"
             width={150}
             height={150}
-            className="rounded-lg border-4 border-muted object-cover w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
+            className="rounded-lg border-4 border-muted object-contain w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
             data-ai-hint="man before weight loss"
           />
           <Image
@@ -38,7 +38,7 @@ export function TestimonialPage({ onContinue }: TestimonialPageProps) {
             alt="Depoimento de Roberto Alves depois"
             width={150}
             height={150}
-            className="rounded-lg border-4 border-primary object-cover w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
+            className="rounded-lg border-4 border-primary object-contain w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
             data-ai-hint="man after weight loss"
           />
         </div>
