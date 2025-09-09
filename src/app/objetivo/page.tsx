@@ -8,6 +8,7 @@ import Image from 'next/image';
 function GoalSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const gender = searchParams.get('gender') as 'male' | 'female' | null;
 
   const handleContinue = (selectedGoals: string[]) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -25,7 +26,7 @@ function GoalSelectionPageContent() {
           height={100}
           className="mb-8"
         />
-        <GoalSelection onContinue={handleContinue} />
+        <GoalSelection onContinue={handleContinue} gender={gender} />
       </div>
       <footer className="w-full text-center text-sm text-muted-foreground mt-8">
         <p>Desafio do Jejum de Água todos os direitos reservados</p>

@@ -16,9 +16,33 @@ import Image from 'next/image';
 
 type GoalSelectionProps = {
   onContinue: (selectedGoals: string[]) => void;
+  gender: 'male' | 'female' | null;
 };
 
-const goals = [
+const maleGoals = [
+  {
+    text: 'Perder peso',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/-MIGESxZbn-288.webp',
+  },
+  {
+    text: 'Melhorar a saúde geral',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/YGcLz4pLRS-288.webp',
+  },
+  {
+    text: 'Um corpo firme e tonificado',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/uy7YLerw8o-288.webp',
+  },
+  {
+    text: 'Eliminar o stress',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/LC8BxJKQeS-288.webp',
+  },
+];
+
+const femaleGoals = [
   {
     text: 'Perder peso',
     imageUrl:
@@ -41,13 +65,15 @@ const goals = [
   },
 ];
 
-export function GoalSelection({ onContinue }: GoalSelectionProps) {
+export function GoalSelection({ onContinue, gender }: GoalSelectionProps) {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
 
+  const goals = gender === 'male' ? maleGoals : femaleGoals;
+
   const handleGoalToggle = (goal: string) => {
-    setSelectedGoals((prevSelected) =>
+    setSelectedGoals(prevSelected =>
       prevSelected.includes(goal)
-        ? prevSelected.filter((g) => g !== goal)
+        ? prevSelected.filter(g => g !== goal)
         : [...prevSelected, goal]
     );
   };
@@ -88,7 +114,10 @@ export function GoalSelection({ onContinue }: GoalSelectionProps) {
                   checked={selectedGoals.includes(goal.text)}
                   onCheckedChange={() => handleGoalToggle(goal.text)}
                 />
-                <Label htmlFor={`goal-${index}`} className="font-semibold text-base cursor-pointer">
+                <Label
+                  htmlFor={`goal-${index}`}
+                  className="font-semibold text-base cursor-pointer"
+                >
                   {goal.text}
                 </Label>
               </div>
