@@ -21,7 +21,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Check, Heart, ThumbsUp } from 'lucide-react';
+import { Check, Heart, ThumbsUp, Lock } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 type UniqueOfferProps = {
@@ -237,27 +237,41 @@ export function UniqueOffer({
           </Card>
         </div>
 
-        <Card className="shadow-md text-center">
-          <CardHeader>
-            <CardTitle className="text-2xl">
-              Tenha o seu desafio do Jejum da Água
+        <Card className="shadow-lg border-2 border-primary bg-background overflow-hidden text-center">
+          <CardHeader className="bg-primary/10 p-4">
+            <CardTitle className="text-2xl text-primary font-bold">
+              OFERTA EXCLUSIVA
             </CardTitle>
+            <CardDescription>
+              Tenha acesso completo ao Desafio do Jejum da Água
+            </CardDescription>
           </CardHeader>
-          <CardContent className='space-y-4'>
-            <div className="flex items-center justify-center gap-4">
-              <p className="text-2xl text-muted-foreground line-through">
-                R$99,90
+          <CardContent className="p-6 space-y-6">
+            <div>
+              <p className="text-lg text-muted-foreground">
+                De <span className="line-through">R$99,90</span> por apenas:
               </p>
-              <p className="text-5xl font-bold text-primary">R$37,00</p>
+              <p className="text-6xl font-extrabold text-primary my-2">
+                R$37,00
+              </p>
+              <p className="text-lg font-semibold">Pagamento Único</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Acesso vitalício, sem mensalidades
+              </p>
             </div>
-            <p className='text-sm text-muted-foreground'>Pagamento único</p>
+
             <Button
               size="lg"
-              className="w-full max-w-md mx-auto text-lg h-12"
+              className="w-full max-w-md mx-auto text-lg h-14"
               onClick={onContinue}
             >
-              QUERO O MEU PLANO
+              QUERO APROVEITAR A OFERTA
             </Button>
+
+            <div className="text-xs text-muted-foreground flex items-center justify-center gap-2">
+              <Lock className="w-4 h-4" />
+              <span>Pagamento 100% seguro</span>
+            </div>
           </CardContent>
         </Card>
 
