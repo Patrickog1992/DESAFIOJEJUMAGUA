@@ -11,7 +11,7 @@ function NameSelectionPageContent() {
   const handleContinue = (name: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('name', name);
-    router.push(`/objetivo?${params.toString()}`);
+    router.push(`/cronograma?${params.toString()}`);
   };
 
   return (
