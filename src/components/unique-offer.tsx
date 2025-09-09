@@ -260,6 +260,16 @@ export function UniqueOffer({
           </Card>
         </div>
 
+        <div className="text-center my-6">
+          <Image
+            src="https://i.imgur.com/RwRWGDz.jpeg"
+            alt="Oferta Especial"
+            width={800}
+            height={150}
+            className="mx-auto"
+          />
+        </div>
+
         <Card className="shadow-lg border-2 border-primary bg-white overflow-hidden text-center">
           <CardHeader className="bg-primary/10 p-4">
             <CardTitle className="text-2xl text-primary font-bold">
