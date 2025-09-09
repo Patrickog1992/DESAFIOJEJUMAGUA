@@ -13,9 +13,24 @@ import { Button } from './ui/button';
 
 type FinalPageProps = {
   onContinue: () => void;
+  gender: 'male' | 'female' | null;
 };
 
-export function FinalPage({ onContinue }: FinalPageProps) {
+const images = {
+  female: {
+    src: 'https://i.imgur.com/Bljsc8Q.jpeg',
+    hint: 'woman celebrating',
+  },
+  male: {
+    src: 'https://i.imgur.com/PIHuZrw.jpg',
+    hint: 'man celebrating',
+  },
+};
+
+export function FinalPage({ onContinue, gender }: FinalPageProps) {
+  const { src, hint } =
+    gender === 'male' ? images.male : images.female;
+
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg text-center">
       <CardHeader>
@@ -29,12 +44,12 @@ export function FinalPage({ onContinue }: FinalPageProps) {
       </CardHeader>
       <CardContent className="p-0">
         <Image
-          src="https://i.imgur.com/Bljsc8Q.jpeg"
+          src={src}
           alt="Success"
           width={800}
           height={600}
           className="w-full h-auto object-contain"
-          data-ai-hint="woman celebrating"
+          data-ai-hint={hint}
         />
       </CardContent>
       <CardFooter className="justify-center p-6">
