@@ -21,7 +21,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Check, Lock } from 'lucide-react';
+import { Check, Lock, Heart, ThumbsUp } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 type UniqueOfferProps = {
@@ -50,6 +50,52 @@ const testimonialImages = [
   'https://i.imgur.com/fogjsiC.jpeg',
   'https://i.imgur.com/Kd5Dboy.jpeg',
 ];
+
+const writtenTestimonials = [
+  {
+    name: 'Maria',
+    imageUrl: 'https://i.imgur.com/Sza1ZfT.png',
+    comment: 'Estou amando os resultados! Em poucas semanas já sinto uma diferença enorme na minha energia e na balança. Super recomendo!',
+    likes: 128,
+    hearts: 45,
+  },
+  {
+    name: 'Marta',
+    imageUrl: 'https://i.imgur.com/NVXnmUf.jpg',
+    comment: 'Nunca pensei que seria tão fácil seguir um plano. As receitas são deliciosas e o jejum é mais simples do que eu imaginava. Já perdi 6kg!',
+    likes: 97,
+    hearts: 32,
+  },
+  {
+    name: 'Joelma',
+    imageUrl: 'https://i.imgur.com/SPsVs9s.jpg',
+    comment: 'O melhor investimento que fiz pela minha saúde. O acompanhamento dos nutricionistas faz toda a diferença!',
+    likes: 215,
+    hearts: 88,
+  },
+  {
+    name: 'Geraldo',
+    imageUrl: 'https://i.imgur.com/pN0xdAe.jpg',
+    comment: 'Finalmente um plano que se encaixa na minha rotina corrida. Os resultados apareceram muito rápido, estou muito satisfeito.',
+    likes: 76,
+    hearts: 21,
+  },
+  {
+    name: 'Pedro',
+    imageUrl: 'https://i.imgur.com/W0KgtQV.png',
+    comment: 'Recomendo a todos! Além de perder peso, aprendi a me alimentar melhor e ter um estilo de vida mais saudável.',
+    likes: 153,
+    hearts: 64,
+  },
+  {
+    name: 'Junior',
+    imageUrl: 'https://i.imgur.com/J4omSDG.jpg',
+    comment: 'Funciona mesmo! Já tinha tentado de tudo, mas só com esse desafio consegui atingir meu objetivo.',
+    likes: 112,
+    hearts: 41,
+  },
+];
+
 
 export function UniqueOffer({
   currentWeight,
@@ -232,6 +278,33 @@ export function UniqueOffer({
                 ))}
               </CarouselContent>
             </Carousel>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-md">
+          <CardHeader>
+            <CardTitle className="text-center text-2xl">Mais pessoas que alcançaram seus objetivos</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {writtenTestimonials.map((testimonial) => (
+              <div key={testimonial.name} className="bg-white p-4 rounded-lg shadow-sm border space-y-3">
+                <div className="flex items-center gap-3">
+                  <Image src={testimonial.imageUrl} alt={testimonial.name} width={40} height={40} className="rounded-full" />
+                  <p className="font-bold">{testimonial.name}</p>
+                </div>
+                <p className="text-foreground/90">{testimonial.comment}</p>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <button className="p-1 rounded-full bg-blue-500 text-white"><ThumbsUp size={12} /></button>
+                    <span>{testimonial.likes}</span>
+                  </div>
+                   <div className="flex items-center gap-1">
+                    <button className="p-1 rounded-full bg-red-500 text-white"><Heart size={12} /></button>
+                    <span>{testimonial.hearts}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </CardContent>
         </Card>
       </div>
