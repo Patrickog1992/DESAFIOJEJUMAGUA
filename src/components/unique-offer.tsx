@@ -21,7 +21,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Check } from 'lucide-react';
+import { Check, Lock } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 type UniqueOfferProps = {
@@ -45,6 +45,9 @@ const testimonialImages = [
   'https://i.imgur.com/Cdj7dbg.jpeg',
   'https://i.imgur.com/yBhptzd.jpeg',
   'https://i.imgur.com/T9AoMhE.jpeg',
+  'https://i.imgur.com/a3Jcu1Z.jpeg',
+  'https://i.imgur.com/YOMEZLJ.jpeg',
+  'https://i.imgur.com/fogjsiC.jpeg',
 ];
 
 export function UniqueOffer({
