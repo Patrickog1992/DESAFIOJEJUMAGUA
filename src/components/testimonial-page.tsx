@@ -28,16 +28,16 @@ export function TestimonialPage({ onContinue }: TestimonialPageProps) {
           <Image
             src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/0lTIBNHU7R-734.webp"
             alt="Depoimento de Roberto Alves antes"
-            width={150}
-            height={150}
+            width={140}
+            height={140}
             className="rounded-lg border-4 border-muted object-contain w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
             data-ai-hint="man before weight loss"
           />
           <Image
             src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/GF1sQ1rSir-734.webp"
             alt="Depoimento de Roberto Alves depois"
-            width={150}
-            height={150}
+            width={140}
+            height={140}
             className="rounded-lg border-4 border-primary object-contain w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
             data-ai-hint="man after weight loss"
           />
