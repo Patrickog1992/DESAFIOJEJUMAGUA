@@ -10,7 +10,7 @@ function DepoimentoPageContent() {
 
   const handleContinue = () => {
     const params = new URLSearchParams(searchParams.toString());
-    router.push(`/objetivo?${params.toString()}`);
+    router.push(`/tempo-caminhada?${params.toString()}`);
   };
 
   return (
