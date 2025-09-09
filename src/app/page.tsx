@@ -8,7 +8,7 @@ export default function GenderSelectionPage() {
   const router = useRouter();
 
   const handleSelectGender = (selectedGender: 'male' | 'female') => {
-    router.push(`/idade?gender=${selectedGender}`);
+    router.push(`/desafio?gender=${selectedGender}`);
   };
 
   return (
