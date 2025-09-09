@@ -237,7 +237,7 @@ export function UniqueOffer({
           </Card>
         </div>
 
-        <Card className="shadow-lg border-2 border-primary bg-background overflow-hidden text-center">
+        <Card className="shadow-lg border-2 border-primary bg-white overflow-hidden text-center">
           <CardHeader className="bg-primary/10 p-4">
             <CardTitle className="text-2xl text-primary font-bold">
               OFERTA EXCLUSIVA
@@ -249,9 +249,13 @@ export function UniqueOffer({
           <CardContent className="p-6 space-y-6">
             <div>
               <p className="text-lg text-muted-foreground">
-                De <span className="line-through">R$99,90</span> por apenas:
+                De{' '}
+                <span className="line-through text-red-600 font-semibold">
+                  R$99,90
+                </span>{' '}
+                por apenas:
               </p>
-              <p className="text-6xl font-extrabold text-primary my-2">
+              <p className="text-6xl font-extrabold text-green-600 my-2">
                 R$37,00
               </p>
               <p className="text-lg font-semibold">Pagamento Único</p>
@@ -262,7 +266,7 @@ export function UniqueOffer({
 
             <Button
               size="lg"
-              className="w-full max-w-md mx-auto text-lg h-14"
+              className="w-full max-w-md mx-auto text-lg h-14 animate-pulse-strong"
               onClick={onContinue}
             >
               QUERO APROVEITAR A OFERTA
@@ -323,7 +327,7 @@ export function UniqueOffer({
           <CardFooter className="justify-center">
             <Button
               size="lg"
-              className="w-full max-w-md mx-auto text-lg h-12"
+              className="w-full max-w-md mx-auto text-lg h-12 animate-pulse-strong"
               onClick={onContinue}
             >
               Obter o meu plano
@@ -345,7 +349,10 @@ export function UniqueOffer({
             >
               <CarouselContent>
                 {testimonialImages.map((src, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
+                  <CarouselItem
+                    key={index}
+                    className="md:basis-1/2 lg:basis-1/2"
+                  >
                     <div className="p-1">
                       <Image
                         src={src}
@@ -403,7 +410,7 @@ export function UniqueOffer({
             ))}
           </CardContent>
         </Card>
-        
+
         <Card className="shadow-md text-center">
           <CardContent className="p-6 space-y-4">
             <p className="text-5xl font-extrabold text-primary">400.000+</p>
@@ -413,14 +420,13 @@ export function UniqueOffer({
             </p>
             <Button
               size="lg"
-              className="w-full max-w-sm mx-auto text-lg h-12"
+              className="w-full max-w-sm mx-auto text-lg h-12 animate-pulse-strong"
               onClick={onContinue}
             >
               Quero o meu plano
             </Button>
           </CardContent>
         </Card>
-
       </div>
     </div>
   );
