@@ -48,6 +48,7 @@ const testimonialImages = [
   'https://i.imgur.com/a3Jcu1Z.jpeg',
   'https://i.imgur.com/YOMEZLJ.jpeg',
   'https://i.imgur.com/fogjsiC.jpeg',
+  'https://i.imgur.com/Kd5Dboy.jpeg',
 ];
 
 export function UniqueOffer({
