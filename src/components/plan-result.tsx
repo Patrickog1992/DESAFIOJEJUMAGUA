@@ -123,9 +123,9 @@ export function PlanResult({
             ISTO É INCRÍVEL
           </h1>
           <p className="text-xl text-foreground max-w-2xl mx-auto">
-            <span className="font-bold">{name}</span>, com base nos teus
-            resultados, pode perder <strong>11 kg no 1.º mês</strong>.
-            Alcança o teu objetivo com um plano personalizado, fácil de seguir e
+            <span className="font-bold">{name}</span>, com base nos seus
+            resultados, você pode perder <strong>11 kg no 1.º mês</strong>.
+            Alcança o seu objetivo com um plano personalizado, fácil de seguir e
             saudável criado só para você.
           </p>
         </header>
@@ -341,5 +341,3 @@ export function PlanResult({
     </div>
   );
 }
-
-    
