@@ -92,7 +92,7 @@ export function TargetWeightSelection({
           </div>
           {healthyRange && (
             <p className="text-sm text-muted-foreground text-center px-4">
-              Considera o teu objetivo de peso num intervalo saudável entre{' '}
+              Considere o seu objetivo de peso num intervalo saudável entre{' '}
               <strong>{healthyRange}</strong>.
             </p>
           )}
