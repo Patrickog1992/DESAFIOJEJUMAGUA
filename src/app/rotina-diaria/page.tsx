@@ -12,7 +12,7 @@ function DailyRoutinePageContent() {
   const handleContinue = (dailyRoutine: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('dailyRoutine', dailyRoutine);
-    router.push(`/horas-sono?${params.toString()}`);
+    router.push(`/objetivo-desafio?${params.toString()}`);
   };
 
   return (
