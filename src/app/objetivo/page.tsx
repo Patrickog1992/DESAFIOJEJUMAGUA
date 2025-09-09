@@ -9,15 +9,9 @@ function GoalSelectionPageContent() {
   const searchParams = useSearchParams();
 
   const handleContinue = (selectedGoals: string[]) => {
-    const gender = searchParams.get('gender');
-    const ageRange = searchParams.get('ageRange');
-    const height = searchParams.get('height');
-    const weight = searchParams.get('weight');
-    const goalsQuery = selectedGoals.map(g => encodeURIComponent(g)).join(',');
-
-    router.push(
-      `/formato-corpo?gender=${gender}&ageRange=${ageRange}&height=${height}&weight=${weight}&goal=${goalsQuery}`
-    );
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('goal', selectedGoals.map(g => encodeURIComponent(g)).join(','));
+    router.push(`/formato-corpo?${params.toString()}`);
   };
 
   return (

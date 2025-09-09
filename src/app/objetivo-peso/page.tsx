@@ -1,34 +1,36 @@
 'use client';
 
-import { WeightSelection } from '@/components/weight-selection';
+import { TargetWeightSelection } from '@/components/target-weight-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function WeightSelectionPageContent() {
+function TargetWeightPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const height = searchParams.get('height');
+  const gender = searchParams.get('gender');
 
-  const handleContinue = (weight: string) => {
+  const handleContinue = (targetWeight: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('weight', weight);
-    router.push(`/objetivo-peso?${params.toString()}`);
+    params.set('targetWeight', targetWeight);
+    router.push(`/objetivo?${params.toString()}`);
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <WeightSelection
+      <TargetWeightSelection
         onContinue={handleContinue}
         height={height ? parseInt(height, 10) : null}
+        gender={gender as 'male' | 'female' | null}
       />
     </main>
   );
 }
 
-export default function WeightSelectionPage() {
+export default function TargetWeightPage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <WeightSelectionPageContent />
+      <TargetWeightPageContent />
     </Suspense>
   );
 }
