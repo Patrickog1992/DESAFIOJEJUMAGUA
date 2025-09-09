@@ -14,29 +14,62 @@ import Image from 'next/image';
 
 type AgeRangeSelectionProps = {
   onContinue: (selectedRange: string) => void;
+  gender: 'male' | 'female' | null;
 };
 
-const ageRanges = [
+const femaleAgeRanges = [
   {
     range: '18-26',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
   },
   {
     range: '27-38',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
   },
   {
     range: '39-50',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
   },
   {
     range: '51+',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
   },
 ];
 
-export function AgeRangeSelection({ onContinue }: AgeRangeSelectionProps) {
+const maleAgeRanges = [
+  {
+    range: '18-26',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/QFGTm2gwUb-734.webp',
+  },
+  {
+    range: '27-38',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/ixzle3qwER-734.webp',
+  },
+  {
+    range: '39-50',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/oxqn5H3qgk-734.webp',
+  },
+  {
+    range: '51+',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/4JyxeXx6AK-734.webp',
+  },
+];
+
+export function AgeRangeSelection({
+  onContinue,
+  gender,
+}: AgeRangeSelectionProps) {
   const [selectedRange, setSelectedRange] = useState<string | null>(null);
+
+  const ageRanges = gender === 'male' ? maleAgeRanges : femaleAgeRanges;
 
   const handleSelection = (range: string) => {
     setSelectedRange(range);
