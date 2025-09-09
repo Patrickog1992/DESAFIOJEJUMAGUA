@@ -9,10 +9,9 @@ function AgeSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (age: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('age', age);
-    router.push(`/objetivo?${params.toString()}`);
+  const handleContinue = (ageRange: string) => {
+    const gender = searchParams.get('gender');
+    router.push(`/objetivo?gender=${gender}&ageRange=${encodeURIComponent(ageRange)}`);
   };
 
   return (
