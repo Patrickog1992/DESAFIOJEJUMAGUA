@@ -2,7 +2,7 @@
 
 import { LoadingPlan } from '@/components/loading-plan';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import Image from 'next/image';
 
 function LoadingPlanPageContent() {
