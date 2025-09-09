@@ -12,7 +12,7 @@ function AgeSelectionPageContent() {
 
   const handleContinue = (ageRange: string) => {
     if (gender) {
-      router.push(`/altura?gender=${gender}&ageRange=${encodeURIComponent(ageRange)}`);
+      router.push(`/objetivo?gender=${gender}&ageRange=${encodeURIComponent(ageRange)}`);
     } else {
       router.push('/');
     }
