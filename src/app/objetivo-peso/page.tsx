@@ -14,7 +14,7 @@ function TargetWeightPageContent() {
   const handleContinue = (targetWeight: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('targetWeight', targetWeight);
-    router.push(`/objetivo?${params.toString()}`);
+    router.push(`/nome?${params.toString()}`);
   };
 
   return (
