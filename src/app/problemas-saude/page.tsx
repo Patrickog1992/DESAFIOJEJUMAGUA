@@ -12,7 +12,7 @@ function HealthProblemsPageContent() {
   const handleContinue = (healthProblems: string[]) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('healthProblems', healthProblems.join(','));
-    router.push(`/nome?${params.toString()}`);
+    router.push(`/progresso-acelerado?${params.toString()}`);
   };
 
   return (
