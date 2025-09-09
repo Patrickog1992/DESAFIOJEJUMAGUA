@@ -41,14 +41,11 @@ const benefits = [
 ];
 
 const testimonialImages = [
-  'https://i.imgur.com/R6HKKtp.jpeg',
-  'https://i.imgur.com/Cdj7dbg.jpeg',
-  'https://i.imgur.com/yBhptzd.jpeg',
-  'https://i.imgur.com/T9AoMhE.jpeg',
-  'https://i.imgur.com/a3Jcu1Z.jpeg',
-  'https://i.imgur.com/YOMEZLJ.jpeg',
-  'https://i.imgur.com/fogjsiC.jpeg',
-  'https://i.imgur.com/Kd5Dboy.jpeg',
+  'https://i.imgur.com/4fc5yDb.jpeg',
+  'https://i.imgur.com/WJJuAy9.jpeg',
+  'https://i.imgur.com/QWy9aD8.jpeg',
+  'https://i.imgur.com/jJ7RuKK.jpeg',
+  'https://i.imgur.com/thHqvuZ.jpeg',
 ];
 
 const writtenTestimonials = [
@@ -156,7 +153,7 @@ export function UniqueOffer({
             </CardHeader>
             <CardContent className="space-y-4">
               <Image
-                src="https://i.imgur.com/V6997ol.png"
+                src="https://i.imgur.com/xOmKpfH.jpg"
                 alt="Você hoje"
                 width={300}
                 height={300}
@@ -193,7 +190,7 @@ export function UniqueOffer({
             </CardHeader>
             <CardContent className="space-y-4">
               <Image
-                src="https://i.imgur.com/kkc70lF.png"
+                src="https://i.imgur.com/TggWJmh.jpg"
                 alt="Você em um mês"
                 width={300}
                 height={300}
