@@ -15,7 +15,7 @@ function TimelinePageContent() {
   
   const name = searchParams.get('name') || '';
   const currentWeight = Number(searchParams.get('weight'));
-  const targetWeight = Number(search_params.get('targetWeight'));
+  const targetWeight = Number(searchParams.get('targetWeight'));
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
