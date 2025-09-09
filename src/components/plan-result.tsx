@@ -106,11 +106,11 @@ export function PlanResult({
   
   const getWaterIntakeInLiters = () => {
     switch (waterIntake) {
-      case '1 copo ou menos': return 0.25;
-      case '2–3 copos': return 0.75;
-      case '4–5 copos': return 1.25;
-      case '6–7 copos': return 1.75;
-      case '8+ copos': return 2;
+      case '1 copo ou menos': return 1;
+      case '2–3 copos': return 1.5;
+      case '4–5 copos': return 2.0;
+      case '6–7 copos': return 2.5;
+      case '8+ copos': return 3.0;
       default: return 1;
     }
   };
@@ -309,7 +309,7 @@ export function PlanResult({
         <Card className="shadow-md overflow-hidden">
           <CardContent className="p-6 md:flex md:items-center md:gap-6">
             <div className="mb-4 md:mb-0 md:shrink-0">
-              <Image src="https://i.imgur.com/SMrGKnM.png" alt="Nutri. Amanda Nunes" width={150} height={150} className="rounded-full mx-auto border-4 border-primary" />
+              <Image src="https://i.imgur.com/52gwXD4.png" alt="Nutri. Amanda Nunes" width={150} height={150} className="rounded-full mx-auto border-4 border-primary" />
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-bold">Nutri. Amanda Nunes</h3>
@@ -341,3 +341,5 @@ export function PlanResult({
     </div>
   );
 }
+
+    
