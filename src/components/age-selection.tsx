@@ -6,36 +6,50 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
   CardDescription,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type AgeSelectionProps = {
-  onContinue: (age: string) => void;
+  onContinue: (ageRange: string) => void;
 };
 
-export function AgeSelection({ onContinue }: AgeSelectionProps) {
-  const [age, setAge] = useState('');
-  const { toast } = useToast();
+const ageRanges = [
+  {
+    range: '18-26',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
+  },
+  {
+    range: '27-38',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
+  },
+  {
+    range: '39-50',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
+  },
+  {
+    range: '51+',
+    imageUrl:
+      'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
+  },
+];
 
-  const handleContinueClick = () => {
-    const ageNumber = parseInt(age, 10);
-    if (!age || isNaN(ageNumber) || ageNumber < 18 || ageNumber > 99) {
-      toast({
-        title: 'Idade inválida',
-        description: 'Por favor, insira uma idade válida entre 18 e 99 anos.',
-        variant: 'destructive',
-      });
-      return;
-    }
-    onContinue(age);
+export function AgeSelection({ onContinue }: AgeSelectionProps) {
+  const [selectedRange, setSelectedRange] = useState<string | null>(null);
+
+  const handleSelection = (range: string) => {
+    setSelectedRange(range);
+    onContinue(range);
   };
 
   return (
-    <Card className="w-full max-w-lg mx-auto shadow-lg">
+    <Card className="w-full max-w-5xl mx-auto shadow-lg">
       <CardHeader className="text-center">
         <CardTitle className="font-headline text-3xl">
           Qual é a sua idade?
@@ -45,23 +59,40 @@ export function AgeSelection({ onContinue }: AgeSelectionProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-center items-center gap-2">
-          <Input
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            placeholder="Digite sua idade"
-            className="max-w-xs text-center text-lg"
-            min="18"
-            max="99"
-          />
-        </div>
+        <RadioGroup
+          value={selectedRange ?? ''}
+          onValueChange={handleSelection}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+        >
+          {ageRanges.map(({ range, imageUrl }) => (
+            <Label
+              key={range}
+              htmlFor={range}
+              className={cn(
+                'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary flex flex-col items-center justify-between text-center',
+                {
+                  'ring-2 ring-primary border-primary':
+                    selectedRange === range,
+                }
+              )}
+            >
+              <div className="mb-4">
+                <Image
+                  src={imageUrl}
+                  alt={`Faixa etária ${range}`}
+                  width={200}
+                  height={200}
+                  className="rounded-md object-contain aspect-square"
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value={range} id={range} />
+                <span className="font-semibold text-lg">{range}</span>
+              </div>
+            </Label>
+          ))}
+        </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button onClick={handleContinueClick} size="lg">
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }

@@ -9,9 +9,9 @@ function AgeSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (age: string) => {
+  const handleContinue = (ageRange: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('age', age);
+    params.set('ageRange', ageRange);
     router.push(`/altura?${params.toString()}`);
   };
 
