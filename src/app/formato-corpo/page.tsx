@@ -9,13 +9,11 @@ function BodyShapePageContent() {
   const searchParams = useSearchParams();
 
   const handleContinue = (selectedShape: string) => {
-    const gender = searchParams.get('gender');
-    const ageRange = searchParams.get('ageRange');
-    const goal = searchParams.get('goal');
-    const bodyShape = encodeURIComponent(selectedShape);
-
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('bodyShape', encodeURIComponent(selectedShape));
+    
     router.push(
-      `/jejum-intermitente?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}`
+      `/jejum-intermitente?${params.toString()}`
     );
   };
 

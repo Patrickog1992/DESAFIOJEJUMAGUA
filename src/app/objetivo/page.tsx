@@ -11,10 +11,11 @@ function GoalSelectionPageContent() {
   const handleContinue = (selectedGoals: string[]) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
+    const height = searchParams.get('height');
     const goalsQuery = selectedGoals.map(g => encodeURIComponent(g)).join(',');
 
     router.push(
-      `/formato-corpo?gender=${gender}&ageRange=${ageRange}&goal=${goalsQuery}`
+      `/formato-corpo?gender=${gender}&ageRange=${ageRange}&height=${height}&goal=${goalsQuery}`
     );
   };
 
