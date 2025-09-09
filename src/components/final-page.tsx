@@ -1,20 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 
-type FinalPageProps = {
-  onContinue: () => void;
-};
-
-export function FinalPage({ onContinue }: FinalPageProps) {
+export function FinalPage() {
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg text-center">
       <CardHeader>
@@ -33,11 +27,6 @@ export function FinalPage({ onContinue }: FinalPageProps) {
           data-ai-hint="woman celebrating"
         />
       </CardContent>
-      <CardFooter className="justify-center p-6">
-        <Button onClick={onContinue} size="lg">
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }

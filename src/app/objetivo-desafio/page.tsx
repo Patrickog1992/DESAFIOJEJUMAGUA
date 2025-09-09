@@ -10,7 +10,7 @@ function ChallengeGoalPageContent() {
 
   const handleContinue = (challengeGoal: string) => {
     const gender = searchParams.get('gender');
-    const ageRange = searchParams.get('ageRange');
+    const ageRange = search_params.get('ageRange');
     const goal = searchParams.get('goal');
     const bodyShape = searchParams.get('bodyShape');
     const fastingExperience = searchParams.get('fastingExperience');
