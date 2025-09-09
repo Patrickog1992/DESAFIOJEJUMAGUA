@@ -12,7 +12,7 @@ function AgeInputPageContent() {
   const handleContinue = (age: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('ageRange', age);
-    router.push(`/objetivo?${params.toString()}`);
+    router.push(`/altura?${params.toString()}`);
   };
 
   return (
