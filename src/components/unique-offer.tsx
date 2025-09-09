@@ -367,7 +367,7 @@ export function UniqueOffer({
           <CardContent className="p-6 space-y-4">
             <p className="text-5xl font-extrabold text-primary">400.000+</p>
             <p className="text-lg text-foreground max-w-md mx-auto">
-              Novos utilizadores atingiram o seu objetivo de peso connosco e
+              Novos utilizadores atingiram o seu objetivo de peso conosco e
               adotaram um estilo de vida mais saudável
             </p>
             <Button
