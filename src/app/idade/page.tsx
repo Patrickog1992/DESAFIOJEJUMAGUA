@@ -9,9 +9,19 @@ function AgeSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (ageRange: string) => {
-    const gender = searchParams.get('gender');
-    router.push(`/objetivo?gender=${gender}&ageRange=${encodeURIComponent(ageRange)}`);
+  const handleContinue = (age: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('ageRange', age); // Though it's a single age, we use the same param name for simplicity
+    
+    // Check if coming from the initial flow or the final flow
+    if (searchParams.has('gender')) {
+      router.push(`/objetivo?${params.toString()}`);
+    } else {
+       // This is the flow after the final page, it should probably go somewhere else,
+       // but for now, we'll assume it might restart or go to a summary.
+       // Let's keep the original logic for now which was to go to `objetivo`.
+       router.push(`/objetivo?${params.toString()}`);
+    }
   };
 
   return (
