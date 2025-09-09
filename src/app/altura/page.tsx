@@ -17,7 +17,7 @@ function HeightSelectionPageContent() {
         ageRange,
         height,
       });
-      router.push(`/objetivo?${params.toString()}`);
+      router.push(`/peso?${params.toString()}`);
     } else {
       router.push('/');
     }
