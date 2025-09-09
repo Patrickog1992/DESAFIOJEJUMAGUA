@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 
 type LoadingPlanProps = {
   onComplete: () => void;
@@ -27,18 +26,17 @@ export function LoadingPlan({ onComplete }: LoadingPlanProps) {
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(progressInterval);
-          onComplete();
-          return 100;
-        }
-        return prev + 1;
-      });
+      setProgress(prev => (prev >= 100 ? 100 : prev + 1));
     }, 50); // 5 seconds total for 100%
 
     return () => clearInterval(progressInterval);
-  }, [onComplete]);
+  }, []);
+
+  useEffect(() => {
+    if (progress >= 100) {
+      onComplete();
+    }
+  }, [progress, onComplete]);
 
   useEffect(() => {
     const messageInterval = setInterval(() => {
