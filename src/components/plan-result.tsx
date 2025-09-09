@@ -55,9 +55,9 @@ const benefits = [
 ];
 
 const testimonialImages = [
-  'https://i.imgur.com/aY0P64q.jpg',
-  'https://i.imgur.com/yyU45hE.jpg',
-  'https://i.imgur.com/qb8KJZq.jpg',
+  'https://i.imgur.com/PIEWVJJ.jpeg',
+  'https://i.imgur.com/e64XRjq.jpeg',
+  'https://i.imgur.com/xMHRSiO.jpg',
 ];
 
 export function PlanResult({
