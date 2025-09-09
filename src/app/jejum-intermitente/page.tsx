@@ -17,7 +17,7 @@ function IntermittentFastingPageContent() {
     const fastingExperience = encodeURIComponent(experience);
 
     router.push(
-      `/horario-fome?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}`
+      `/desafio?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}`
     );
   };
 
