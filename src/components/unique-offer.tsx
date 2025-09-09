@@ -146,11 +146,11 @@ export function UniqueOffer({
   return (
     <div className="bg-muted/20">
       <div className="container mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
-        <header className="text-center space-y-2">
+        <header className="text-center space-y-4">
           <div className="text-center mb-2">
-            <p className="font-bold text-lg text-primary">
+            <p className="font-bold text-lg bg-red-600 text-white rounded-md p-2">
               60% DESCONTO ativo por{' '}
-              <span className="bg-primary text-primary-foreground rounded-md px-2 py-1">
+              <span className="text-yellow-300">
                 {isClient ? formatTime(timeLeft) : '10:00'}
               </span>
             </p>
