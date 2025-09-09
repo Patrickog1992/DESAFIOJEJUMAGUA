@@ -51,6 +51,7 @@ const maleImages = {
     'https://i.imgur.com/jJ7RuKK.jpeg',
     'https://i.imgur.com/thHqvuZ.jpeg',
   ],
+  offer: 'https://i.imgur.com/KDJiZEj.jpeg',
 };
 
 const femaleImages = {
@@ -64,6 +65,7 @@ const femaleImages = {
     'https://i.imgur.com/YOMEZLJ.jpg',
     'https://i.imgur.com/fogjsiC.jpg',
   ],
+  offer: 'https://i.imgur.com/RwRWGDz.jpeg',
 };
 
 const writtenTestimonials = [
@@ -262,7 +264,7 @@ export function UniqueOffer({
 
         <div className="text-center my-6">
           <Image
-            src="https://i.imgur.com/RwRWGDz.jpeg"
+            src={images.offer}
             alt="Oferta Especial"
             width={800}
             height={150}
