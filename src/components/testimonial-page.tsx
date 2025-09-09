@@ -24,22 +24,14 @@ export function TestimonialPage({ onContinue }: TestimonialPageProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex justify-center items-center gap-2 sm:gap-4">
-          <Image
-            src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/u5uM71C9tF-734.webp"
-            alt="Depoimento de Joana Sousa antes"
-            width={140}
-            height={140}
-            className="rounded-lg border-4 border-muted object-contain w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
-            data-ai-hint="woman before weight loss"
-          />
-          <Image
-            src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/x5YnU5g6rE-734.webp"
-            alt="Depoimento de Joana Sousa depois"
-            width={140}
-            height={140}
-            className="rounded-lg border-4 border-primary object-contain w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
-            data-ai-hint="woman after weight loss"
+        <div className="flex justify-center items-center">
+           <Image
+            src="https://i.imgur.com/SMrGKnM.png"
+            alt="Depoimento de Joana Sousa"
+            width={400}
+            height={300}
+            className="rounded-lg border-4 border-muted"
+            data-ai-hint="woman happy"
           />
         </div>
         <div className="bg-accent/50 p-4 rounded-lg">
