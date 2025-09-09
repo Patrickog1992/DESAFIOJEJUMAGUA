@@ -13,9 +13,11 @@ function DepoimentoPageContent() {
     router.push(`/tempo-caminhada?${params.toString()}`);
   };
 
+  const gender = searchParams.get('gender') as 'male' | 'female' | null;
+
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <TestimonialPage onContinue={handleContinue} />
+      <TestimonialPage onContinue={handleContinue} gender={gender} />
     </main>
   );
 }
