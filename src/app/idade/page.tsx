@@ -8,14 +8,11 @@ import Image from 'next/image';
 function AgeSelectionPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const gender = searchParams.get('gender');
 
-  const handleContinue = (ageRange: string) => {
-    if (gender) {
-      router.push(`/objetivo?gender=${gender}&ageRange=${encodeURIComponent(ageRange)}`);
-    } else {
-      router.push('/');
-    }
+  const handleContinue = (age: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('age', age);
+    router.push(`/altura?${params.toString()}`);
   };
 
   return (

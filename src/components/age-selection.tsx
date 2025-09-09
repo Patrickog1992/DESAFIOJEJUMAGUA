@@ -6,92 +6,62 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  CardFooter,
   CardDescription,
 } from '@/components/ui/card';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 type AgeSelectionProps = {
-  onContinue: (ageRange: string) => void;
+  onContinue: (age: string) => void;
 };
 
-const ageRanges = [
-  {
-    range: '18-26',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
-    hint: 'young adult',
-  },
-  {
-    range: '27-38',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
-    hint: 'adult professional',
-  },
-  {
-    range: '39-50',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/v_d79rax5a-734.webp',
-    hint: 'middle-aged person',
-  },
-  {
-    range: '51+',
-    imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/jkzsicYwBF-734.webp',
-    hint: 'senior citizen',
-  },
-];
-
 export function AgeSelection({ onContinue }: AgeSelectionProps) {
-  const [selectedRange, setSelectedRange] = useState<string | null>(null);
+  const [age, setAge] = useState('');
+  const { toast } = useToast();
 
-  const handleSelection = (range: string) => {
-    setSelectedRange(range);
-    onContinue(range);
+  const handleContinueClick = () => {
+    const ageNumber = parseInt(age, 10);
+    if (!age || isNaN(ageNumber) || ageNumber < 18 || ageNumber > 99) {
+      toast({
+        title: 'Idade inválida',
+        description: 'Por favor, insira uma idade válida entre 18 e 99 anos.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    onContinue(age);
   };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto shadow-lg">
-      <CardHeader>
-        <CardTitle className="font-headline text-3xl text-center">
-          Qual a sua faixa etária?
+    <Card className="w-full max-w-lg mx-auto shadow-lg">
+      <CardHeader className="text-center">
+        <CardTitle className="font-headline text-3xl">
+          Qual é a sua idade?
         </CardTitle>
-        <CardDescription className="text-center">
+        <CardDescription>
           Isso nos ajudará a personalizar seu plano.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <RadioGroup
-          value={selectedRange ?? ''}
-          onValueChange={handleSelection}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          {ageRanges.map(({ range, imageUrl, hint }) => (
-            <Label
-              key={range}
-              htmlFor={range}
-              className={cn(
-                'flex flex-col items-center space-y-4 rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary',
-                {
-                  'ring-2 ring-primary border-primary':
-                    selectedRange === range,
-                }
-              )}
-            >
-              <Image
-                src={imageUrl}
-                alt={range}
-                width={200}
-                height={200}
-                className="rounded-md object-cover aspect-square"
-                data-ai-hint={hint}
-              />
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value={range} id={range} className="h-6 w-6" />
-                <span className="font-semibold text-lg">{range}</span>
-              </div>
-            </Label>
-          ))}
-        </RadioGroup>
+        <div className="flex justify-center items-center gap-2">
+          <Input
+            type="number"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            placeholder="Digite sua idade"
+            className="max-w-xs text-center text-lg"
+            min="18"
+            max="99"
+          />
+        </div>
       </CardContent>
+      <CardFooter className="justify-center">
+        <Button onClick={handleContinueClick} size="lg">
+          Continuar
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

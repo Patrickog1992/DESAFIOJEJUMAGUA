@@ -9,7 +9,6 @@ function FinalPageContent() {
   const searchParams = useSearchParams();
 
   const handleContinue = () => {
-    // Preserve all existing query parameters
     const params = new URLSearchParams(searchParams.toString());
     router.push(`/idade?${params.toString()}`);
   };
