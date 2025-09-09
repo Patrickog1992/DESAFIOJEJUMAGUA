@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -20,10 +20,10 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceLine,
 } from 'recharts';
 import { format, addDays, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { Skeleton } from './ui/skeleton';
 
 type Pace = 'accelerated' | 'normal' | 'slow';
 
@@ -34,6 +34,12 @@ type TimelineChartProps = {
   onContinue: () => void;
 };
 
+type ChartInfo = {
+  chartData: { date: string; weight: number }[];
+  endDate: Date;
+  weeklyLoss: string;
+};
+
 export function TimelineChart({
   name,
   currentWeight,
@@ -41,44 +47,52 @@ export function TimelineChart({
   onContinue,
 }: TimelineChartProps) {
   const [pace, setPace] = useState<Pace>('normal');
+  const [chartInfo, setChartInfo] = useState<ChartInfo | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
-  const { chartData, endDate, weeklyLoss } = useMemo(() => {
-    const today = new Date();
-    let endDate: Date;
-    let totalDays: number;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-    switch (pace) {
-      case 'accelerated':
-        endDate = addDays(today, 15);
-        totalDays = 15;
-        break;
-      case 'slow':
-        endDate = addMonths(today, 2);
-        totalDays = (endDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
-        break;
-      default: // normal
-        endDate = addMonths(today, 1);
-        totalDays = (endDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
-        break;
+  useEffect(() => {
+    if (isClient) {
+      const today = new Date();
+      let endDate: Date;
+      let totalDays: number;
+
+      switch (pace) {
+        case 'accelerated':
+          endDate = addDays(today, 15);
+          totalDays = 15;
+          break;
+        case 'slow':
+          endDate = addMonths(today, 2);
+          totalDays = (endDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+          break;
+        default: // normal
+          endDate = addMonths(today, 1);
+          totalDays = (endDate.getTime() - today.getTime()) / (1000 * 3600 * 24);
+          break;
+      }
+
+      const totalWeightLoss = currentWeight - targetWeight;
+      const dailyLoss = totalWeightLoss > 0 ? totalWeightLoss / totalDays : 0;
+      const weeklyLoss = (dailyLoss * 7).toFixed(1);
+
+      const data = [
+        {
+          date: 'Hoje',
+          weight: currentWeight,
+        },
+        {
+          date: format(endDate, 'dd/MM/yyyy', { locale: ptBR }),
+          weight: targetWeight,
+        },
+      ];
+
+      setChartInfo({ chartData: data, endDate, weeklyLoss });
     }
-
-    const totalWeightLoss = currentWeight - targetWeight;
-    const dailyLoss = totalWeightLoss / totalDays;
-    const weeklyLoss = (dailyLoss * 7).toFixed(1);
-
-    const data = [
-      {
-        date: 'Hoje',
-        weight: currentWeight,
-      },
-      {
-        date: format(endDate, 'dd/MM/yyyy', { locale: ptBR }),
-        weight: targetWeight,
-      },
-    ];
-
-    return { chartData: data, endDate, weeklyLoss };
-  }, [pace, currentWeight, targetWeight]);
+  }, [pace, currentWeight, targetWeight, isClient]);
 
   if (!currentWeight || !targetWeight) {
     return (
@@ -116,50 +130,64 @@ export function TimelineChart({
             O teu progresso previsto
           </h4>
           <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                data={chartData}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
-                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                <YAxis
-                  domain={[targetWeight - 5, currentWeight + 5]}
-                  tick={{ fontSize: 12 }}
-                  label={{
-                    value: 'Peso (kg)',
-                    angle: -90,
-                    position: 'insideLeft',
-                    style: { textAnchor: 'middle', fontSize: 14 },
-                  }}
-                />
-                <Tooltip
-                  formatter={(value) => [`${value} kg`, 'Peso']}
-                  labelStyle={{ fontWeight: 'bold' }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="weight"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth={3}
-                  dot={{ r: 6 }}
-                  activeDot={{ r: 8 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            {!isClient || !chartInfo ? (
+              <div className="flex flex-col space-y-4">
+                <Skeleton className="h-[190px] w-full" />
+                <div className="flex justify-between">
+                  <Skeleton className="h-4 w-12" />
+                  <Skeleton className="h-4 w-12" />
+                </div>
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  data={chartInfo.chartData}
+                  margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
+                  <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                  <YAxis
+                    domain={[targetWeight - 5, currentWeight + 5]}
+                    tick={{ fontSize: 12 }}
+                    label={{
+                      value: 'Peso (kg)',
+                      angle: -90,
+                      position: 'insideLeft',
+                      style: { textAnchor: 'middle', fontSize: 14 },
+                    }}
+                  />
+                  <Tooltip
+                    formatter={(value: number) => [`${value} kg`, 'Peso']}
+                    labelStyle={{ fontWeight: 'bold' }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="weight"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth={3}
+                    dot={{ r: 6 }}
+                    activeDot={{ r: 8 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </div>
 
-        <div className="text-center bg-accent/50 p-4 rounded-lg">
-          <p className="text-lg">
-            Para atingir o seu objetivo em{' '}
-            <strong className="text-primary">
-              {format(endDate, 'dd/MM/yyyy')}
-            </strong>
-            , você precisa perder cerca de{' '}
-            <strong className="text-primary">{weeklyLoss} kg</strong> por
-            semana.
-          </p>
+        <div className="text-center bg-accent/50 p-4 rounded-lg min-h-[72px] flex items-center justify-center">
+          {!isClient || !chartInfo ? (
+            <Skeleton className="h-6 w-3/4" />
+          ) : (
+            <p className="text-lg">
+              Para atingir o seu objetivo em{' '}
+              <strong className="text-primary">
+                {format(chartInfo.endDate, 'dd/MM/yyyy', { locale: ptBR })}
+              </strong>
+              , você precisa perder cerca de{' '}
+              <strong className="text-primary">{chartInfo.weeklyLoss} kg</strong> por
+              semana.
+            </p>
+          )}
         </div>
 
         <div>
