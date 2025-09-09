@@ -6,16 +6,14 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Clock, Coffee, Moon, Sun } from 'lucide-react';
 
 type HungerTimeSelectionProps = {
-  onContinue: (selectedTimes: string[]) => void;
+  onContinue: (selectedTime: string) => void;
 };
 
 const options = [
@@ -38,14 +36,11 @@ const options = [
 ];
 
 export function HungerTimeSelection({ onContinue }: HungerTimeSelectionProps) {
-  const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-  const handleToggle = (time: string) => {
-    setSelectedTimes(prevSelected =>
-      prevSelected.includes(time)
-        ? prevSelected.filter(t => t !== time)
-        : [...prevSelected, time]
-    );
+  const handleSelection = (time: string) => {
+    setSelectedTime(time);
+    onContinue(time);
   };
 
   return (
@@ -56,25 +51,25 @@ export function HungerTimeSelection({ onContinue }: HungerTimeSelectionProps) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <RadioGroup
+          value={selectedTime ?? ''}
+          onValueChange={handleSelection}
+          className="space-y-4"
+        >
           {options.map((option, index) => (
             <Label
               key={option.text}
               htmlFor={`time-${index}`}
-              onClick={() => handleToggle(option.text)}
               className={cn(
                 'flex items-center space-x-4 rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary',
                 {
-                  'ring-2 ring-primary border-primary': selectedTimes.includes(
-                    option.text
-                  ),
+                  'ring-2 ring-primary border-primary': selectedTime === option.text,
                 }
               )}
             >
-              <Checkbox
+              <RadioGroupItem
+                value={option.text}
                 id={`time-${index}`}
-                checked={selectedTimes.includes(option.text)}
-                onCheckedChange={() => handleToggle(option.text)}
                 className="h-6 w-6"
               />
               <div className="flex items-center gap-4">
@@ -85,16 +80,8 @@ export function HungerTimeSelection({ onContinue }: HungerTimeSelectionProps) {
               </div>
             </Label>
           ))}
-        </div>
+        </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button
-          onClick={() => onContinue(selectedTimes)}
-          disabled={selectedTimes.length === 0}
-        >
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }

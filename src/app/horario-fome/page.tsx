@@ -9,15 +9,13 @@ function HungerTimePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (hungerTimes: string[]) => {
+  const handleContinue = (hungerTime: string) => {
     const gender = searchParams.get('gender');
     const ageRange = searchParams.get('ageRange');
     const goal = searchParams.get('goal');
     const bodyShape = searchParams.get('bodyShape');
     const fastingExperience = searchParams.get('fastingExperience');
-    const hungerTimesQuery = hungerTimes
-      .map(t => encodeURIComponent(t))
-      .join(',');
+    const hungerTimesQuery = encodeURIComponent(hungerTime);
 
     router.push(
       `/cafe-da-manha?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimesQuery}`
