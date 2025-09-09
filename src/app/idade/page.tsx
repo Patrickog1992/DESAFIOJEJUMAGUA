@@ -10,11 +10,10 @@ function AgeSelectionPageContent() {
   const searchParams = useSearchParams();
   const gender = searchParams.get('gender');
 
-  const handleContinue = (age: string) => {
+  const handleContinue = (ageRange: string) => {
     if (gender) {
-      router.push(`/altura?gender=${gender}&ageRange=${encodeURIComponent(age)}`);
+      router.push(`/altura?gender=${gender}&ageRange=${encodeURIComponent(ageRange)}`);
     } else {
-      // Fallback in case gender is not in the URL, though it should be.
       router.push('/');
     }
   };

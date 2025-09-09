@@ -6,62 +6,64 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
   CardDescription,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import { CheckCircle2 } from 'lucide-react';
 
 type AgeSelectionProps = {
-  onContinue: (age: string) => void;
+  onContinue: (ageRange: string) => void;
 };
 
-export function AgeSelection({ onContinue }: AgeSelectionProps) {
-  const [age, setAge] = useState('');
-  const { toast } = useToast();
+const ageRanges = ['18–24', '25–34', '35–44', '45–54', '55+'];
 
-  const handleContinueClick = () => {
-    const ageNumber = parseInt(age, 10);
-    if (!age || isNaN(ageNumber) || ageNumber < 18 || ageNumber > 100) {
-      toast({
-        title: 'Idade inválida',
-        description: 'Por favor, insira uma idade válida entre 18 e 100 anos.',
-        variant: 'destructive',
-      });
-      return;
-    }
-    onContinue(age);
+export function AgeSelection({ onContinue }: AgeSelectionProps) {
+  const [selectedRange, setSelectedRange] = useState<string | null>(null);
+
+  const handleSelection = (range: string) => {
+    setSelectedRange(range);
+    onContinue(range);
   };
 
   return (
-    <Card className="w-full max-w-lg mx-auto shadow-lg">
-      <CardHeader className="text-center">
-        <CardTitle className="font-headline text-3xl">
-          Quantos anos você tem ?
+    <Card className="w-full max-w-2xl mx-auto shadow-lg">
+      <CardHeader>
+        <CardTitle className="font-headline text-3xl text-center">
+          Qual a sua faixa etária?
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-center">
           Isso nos ajudará a personalizar seu plano.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex justify-center">
-          <Input
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            placeholder="Digite sua idade"
-            className="max-w-xs text-center text-lg"
-            min="18"
-            max="100"
-          />
-        </div>
+        <RadioGroup
+          value={selectedRange ?? ''}
+          onValueChange={handleSelection}
+          className="space-y-4"
+        >
+          {ageRanges.map(range => (
+            <Label
+              key={range}
+              htmlFor={range}
+              className={cn(
+                'flex items-center space-x-4 rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary',
+                {
+                  'ring-2 ring-primary border-primary':
+                    selectedRange === range,
+                }
+              )}
+            >
+              <RadioGroupItem value={range} id={range} className="h-6 w-6" />
+              <span className="font-semibold text-lg flex-grow">{range}</span>
+              {selectedRange === range && (
+                <CheckCircle2 className="h-6 w-6 text-primary" />
+              )}
+            </Label>
+          ))}
+        </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button onClick={handleContinueClick} size="lg">
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
