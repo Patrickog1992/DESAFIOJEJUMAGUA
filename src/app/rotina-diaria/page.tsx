@@ -9,24 +9,9 @@ function DailyRoutinePageContent() {
   const searchParams = useSearchParams();
 
   const handleContinue = (dailyRoutine: string) => {
-    const gender = searchParams.get('gender');
-    const ageRange = searchParams.get('ageRange');
-    const goal = searchParams.get('goal');
-    const bodyShape = searchParams.get('bodyShape');
-    const fastingExperience = searchParams.get('fastingExperience');
-    const hungerTimes = searchParams.get('hungerTimes');
-    const breakfastTime = searchParams.get('breakfastTime');
-    const lunchTime = searchParams.get('lunchTime');
-    const dinnerTime = searchParams.get('dinnerTime');
-    const mealPreparation = searchParams.get('mealPreparation');
-    const habitChange = searchParams.get('habitChange');
-    const activityLevel = searchParams.get('activityLevel');
-    const workSchedule = searchParams.get('workSchedule');
-    const dailyRoutineQuery = encodeURIComponent(dailyRoutine);
-
-    router.push(
-      `/objetivo-desafio?gender=${gender}&ageRange=${ageRange}&goal=${goal}&bodyShape=${bodyShape}&fastingExperience=${fastingExperience}&hungerTimes=${hungerTimes}&breakfastTime=${breakfastTime}&lunchTime=${lunchTime}&dinnerTime=${dinnerTime}&mealPreparation=${mealPreparation}&habitChange=${habitChange}&activityLevel=${activityLevel}&workSchedule=${workSchedule}&dailyRoutine=${dailyRoutineQuery}`
-    );
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('dailyRoutine', dailyRoutine);
+    router.push(`/tempo-caminhada?${params.toString()}`);
   };
 
   return (

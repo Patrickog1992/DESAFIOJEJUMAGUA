@@ -1,30 +1,30 @@
 'use client';
 
-import { ChallengeGoalSelection } from '@/components/challenge-goal-selection';
+import { WalkingTimeSelection } from '@/components/walking-time-selection';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
-function ChallengeGoalPageContent() {
+function WalkingTimePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleContinue = (challengeGoal: string) => {
+  const handleContinue = (walkingTime: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('challengeGoal', challengeGoal);
-    router.push(`/final?${params.toString()}`);
+    params.set('walkingTime', walkingTime);
+    router.push(`/objetivo-desafio?${params.toString()}`);
   };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      <ChallengeGoalSelection onContinue={handleContinue} />
+      <WalkingTimeSelection onContinue={handleContinue} />
     </main>
   );
 }
 
-export default function ChallengeGoalPage() {
+export default function WalkingTimePage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <ChallengeGoalPageContent />
+      <WalkingTimePageContent />
     </Suspense>
   );
 }
