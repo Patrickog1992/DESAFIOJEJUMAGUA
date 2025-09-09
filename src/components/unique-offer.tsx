@@ -243,7 +243,14 @@ export function UniqueOffer({
               Tenha o seu desafio do Jejum da Água
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className='space-y-4'>
+            <div className="flex items-center justify-center gap-4">
+              <p className="text-2xl text-muted-foreground line-through">
+                R$99,90
+              </p>
+              <p className="text-5xl font-bold text-primary">R$37,00</p>
+            </div>
+            <p className='text-sm text-muted-foreground'>Pagamento único</p>
             <Button
               size="lg"
               className="w-full max-w-md mx-auto text-lg h-12"
