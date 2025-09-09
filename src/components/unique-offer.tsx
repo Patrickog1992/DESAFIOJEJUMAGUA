@@ -197,26 +197,35 @@ export function UniqueOffer({
         </div>
 
         <Card className="shadow-md text-center">
-            <CardHeader>
-                <CardTitle className="text-2xl">Tenha o seu desafio do Jejum da Água</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12" onClick={onContinue}>
-                    QUERO O MEU PLANO
-                </Button>
-            </CardContent>
+          <CardHeader>
+            <CardTitle className="text-2xl">
+              Tenha o seu desafio do Jejum da Água
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Button
+              size="lg"
+              className="w-full max-w-md mx-auto text-lg h-12"
+              onClick={onContinue}
+            >
+              QUERO O MEU PLANO
+            </Button>
+          </CardContent>
         </Card>
-        
-        <Card className="shadow-md bg-transparent border-none">
-            <CardContent className="p-0">
-                <Image 
-                    src="https://i.imgur.com/0XA7W5K.png"
-                    alt="Garantia de 30 dias"
-                    width={700}
-                    height={150}
-                    className="mx-auto object-contain"
-                />
-            </CardContent>
+
+        <Card className="shadow-md bg-transparent border-none text-center">
+          <CardContent className="p-4">
+            <Image
+              src="https://i.imgur.com/0XA7W5K.png"
+              alt="Garantia de 30 dias"
+              width={400}
+              height={100}
+              className="mx-auto object-contain"
+            />
+            <p className="mt-2 text-sm font-semibold text-muted-foreground">
+              Garantia de devolução do dinheiro em 30 dias
+            </p>
+          </CardContent>
         </Card>
 
         <Card className="shadow-md">
