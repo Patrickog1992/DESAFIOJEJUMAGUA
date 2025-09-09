@@ -12,7 +12,7 @@ function WalkingTimePageContent() {
   const handleContinue = (walkingTime: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('walkingTime', walkingTime);
-    router.push(`/rotina-diaria?${params.toString()}`);
+    router.push(`/horas-sono?${params.toString()}`);
   };
 
   return (
