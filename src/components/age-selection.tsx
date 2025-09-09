@@ -19,12 +19,12 @@ type AgeSelectionProps = {
 
 const ageRanges = [
   {
-    range: '18-24',
+    range: '18-26',
     imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/plBUBd3x9H-734.webp',
     hint: 'young adult',
   },
   {
-    range: '25-34',
+    range: '27-38',
     imageUrl: 'https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/B6rsyI0Q5b-734.webp',
     hint: 'adult professional',
   },
