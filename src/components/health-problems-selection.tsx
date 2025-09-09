@@ -38,16 +38,29 @@ export function HealthProblemsSelection({
   const handleToggle = (problem: string) => {
     setSelectedProblems(prevSelected => {
       if (problem === 'Nenhuma das opções acima') {
-        return [problem];
+        // If "None" is already selected, unselect it. Otherwise, select only "None".
+        return prevSelected.includes(problem) ? [] : [problem];
       }
+
+      // If another problem is selected
       const newSelection = prevSelected.filter(
         item => item !== 'Nenhuma das opções acima'
       );
+
       if (newSelection.includes(problem)) {
+        // If the problem is already selected, unselect it.
         return newSelection.filter(p => p !== problem);
+      } else {
+        // If the problem is not selected, add it.
+        return [...newSelection, problem];
       }
-      return [...newSelection, problem];
     });
+  };
+
+  const handleContinueClick = () => {
+    if (selectedProblems.length > 0) {
+      onContinue(selectedProblems);
+    }
   };
 
   return (
@@ -63,7 +76,6 @@ export function HealthProblemsSelection({
             <Label
               key={option}
               htmlFor={`problem-${index}`}
-              onClick={() => handleToggle(option)}
               className={cn(
                 'flex items-center space-x-4 rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary',
                 {
@@ -87,7 +99,7 @@ export function HealthProblemsSelection({
       </CardContent>
       <CardFooter className="justify-center">
         <Button
-          onClick={() => onContinue(selectedProblems)}
+          onClick={handleContinueClick}
           disabled={selectedProblems.length === 0}
         >
           Continuar
