@@ -24,21 +24,21 @@ export function TestimonialPage({ onContinue }: TestimonialPageProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center items-center gap-2 sm:gap-4">
           <Image
             src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/0lTIBNHU7R-734.webp"
             alt="Depoimento de Roberto Alves antes"
-            width={250}
-            height={250}
-            className="rounded-lg border-4 border-muted object-cover"
+            width={150}
+            height={150}
+            className="rounded-lg border-4 border-muted object-cover w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
             data-ai-hint="man before weight loss"
           />
           <Image
             src="https://v3.certifiedfasting.com/pt-pt/g-22m-eur/img/GF1sQ1rSir-734.webp"
             alt="Depoimento de Roberto Alves depois"
-            width={250}
-            height={250}
-            className="rounded-lg border-4 border-primary object-cover"
+            width={150}
+            height={150}
+            className="rounded-lg border-4 border-primary object-cover w-[140px] h-[140px] sm:w-[200px] sm:h-[200px]"
             data-ai-hint="man after weight loss"
           />
         </div>
