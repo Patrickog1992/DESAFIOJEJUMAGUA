@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -8,6 +9,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -30,6 +32,7 @@ import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Clock, Scale, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type PlanResultProps = {
   name: string;
@@ -65,6 +68,8 @@ export function PlanResult({
   walkingTime,
   waterIntake,
 }: PlanResultProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [isClient, setIsClient] = useState(false);
   const [imc, setImc] = useState<number>(0);
   const [imcStatus, setImcStatus] = useState<string>('');
@@ -92,6 +97,11 @@ export function PlanResult({
       }
     }
   }, [height, currentWeight]);
+
+  const handleContinue = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    router.push(`/oferta-unica?${params.toString()}`);
+  };
 
   const chartData = [
     {
@@ -197,7 +207,11 @@ export function PlanResult({
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+          <Button
+            size="lg"
+            className="w-full max-w-md mx-auto text-lg h-12"
+            onClick={handleContinue}
+          >
             QUERO MEU PLANO PERSONALIZADO
           </Button>
         </div>
@@ -224,7 +238,7 @@ export function PlanResult({
                 <div className="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
                   <div className="absolute top-0 left-0 h-full w-1/4 bg-blue-400"></div>
                   <div className="absolute top-0 left-1/4 h-full w-1/4 bg-green-400"></div>
-                  <div className="absolute top-0 left-2/4 h.full w-1/4 bg-yellow-400"></div>
+                  <div className="absolute top-0 left-2/4 h-full w-1/4 bg-yellow-400"></div>
                   <div className="absolute top-0 left-3/4 h-full w-1/4 bg-red-400"></div>
                   <div
                     className="absolute top-0 h-full w-1 rounded-full bg-black transition-all duration-500"
@@ -290,7 +304,11 @@ export function PlanResult({
         </Card>
 
         <div className="text-center">
-          <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+          <Button
+            size="lg"
+            className="w-full max-w-md mx-auto text-lg h-12"
+            onClick={handleContinue}
+          >
             OBTER O DESAFIO DO JEJUM DE ÁGUA
           </Button>
         </div>
@@ -371,7 +389,11 @@ export function PlanResult({
             {targetWeight} kg!
           </p>
           <div className="text-center">
-            <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+            <Button
+              size="lg"
+              className="w-full max-w-md mx-auto text-lg h-12"
+              onClick={handleContinue}
+            >
               QUERO O MEU JEJUM DE ÁGUA
             </Button>
           </div>
