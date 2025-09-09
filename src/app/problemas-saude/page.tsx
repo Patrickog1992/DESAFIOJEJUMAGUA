@@ -13,7 +13,7 @@ function HealthProblemsPageContent() {
     const params = new URLSearchParams(searchParams.toString());
     params.set('healthProblems', healthProblem);
 
-    // Now, all options will lead to the accelerated timeline page.
+    // Todas as opções levarão para a página de progresso acelerado.
     router.push(`/progresso-acelerado?${params.toString()}`);
   };
 
