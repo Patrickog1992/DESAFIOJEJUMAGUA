@@ -10,12 +10,12 @@ function TimelinePageContent() {
 
   const handleContinue = () => {
     const params = new URLSearchParams(searchParams.toString());
-    router.push(`/objetivo?${params.toString()}`);
+    router.push(`/depoimento?${params.toString()}`);
   };
   
   const name = searchParams.get('name') || '';
   const currentWeight = Number(searchParams.get('weight'));
-  const targetWeight = Number(searchParams.get('targetWeight'));
+  const targetWeight = Number(search_params.get('targetWeight'));
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
