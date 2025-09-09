@@ -10,9 +10,9 @@ function GoalSelectionPageContent() {
   const searchParams = useSearchParams();
   const gender = searchParams.get('gender') as 'male' | 'female' | null;
 
-  const handleContinue = (selectedGoals: string[]) => {
+  const handleContinue = (selectedGoal: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('goal', selectedGoals.map(g => encodeURIComponent(g)).join(','));
+    params.set('goal', encodeURIComponent(selectedGoal));
     router.push(`/formato-corpo?${params.toString()}`);
   };
 

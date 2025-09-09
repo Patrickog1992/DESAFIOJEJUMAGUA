@@ -6,16 +6,14 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 type GoalSelectionProps = {
-  onContinue: (selectedGoals: string[]) => void;
+  onContinue: (selectedGoal: string) => void;
   gender: 'male' | 'female' | null;
 };
 
@@ -66,16 +64,13 @@ const femaleGoals = [
 ];
 
 export function GoalSelection({ onContinue, gender }: GoalSelectionProps) {
-  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
+  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
 
   const goals = gender === 'male' ? maleGoals : femaleGoals;
 
-  const handleGoalToggle = (goal: string) => {
-    setSelectedGoals(prevSelected =>
-      prevSelected.includes(goal)
-        ? prevSelected.filter(g => g !== goal)
-        : [...prevSelected, goal]
-    );
+  const handleGoalSelection = (goal: string) => {
+    setSelectedGoal(goal);
+    onContinue(goal);
   };
 
   return (
@@ -86,17 +81,20 @@ export function GoalSelection({ onContinue, gender }: GoalSelectionProps) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <RadioGroup
+          value={selectedGoal ?? ''}
+          onValueChange={handleGoalSelection}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        >
           {goals.map((goal, index) => (
-            <div
+            <Label
               key={goal.text}
-              onClick={() => handleGoalToggle(goal.text)}
+              htmlFor={`goal-${index}`}
               className={cn(
                 'rounded-lg border-2 p-4 cursor-pointer transition-all hover:border-primary flex flex-col items-center text-center',
                 {
-                  'ring-2 ring-primary border-primary': selectedGoals.includes(
-                    goal.text
-                  ),
+                  'ring-2 ring-primary border-primary':
+                    selectedGoal === goal.text,
                 }
               )}
             >
@@ -109,30 +107,20 @@ export function GoalSelection({ onContinue, gender }: GoalSelectionProps) {
                 data-ai-hint="lifestyle goal"
               />
               <div className="flex items-center space-x-3">
-                <Checkbox
+                <RadioGroupItem
+                  value={goal.text}
                   id={`goal-${index}`}
-                  checked={selectedGoals.includes(goal.text)}
-                  onCheckedChange={() => handleGoalToggle(goal.text)}
                 />
-                <Label
-                  htmlFor={`goal-${index}`}
+                <span
                   className="font-semibold text-base cursor-pointer"
                 >
                   {goal.text}
-                </Label>
+                </span>
               </div>
-            </div>
+            </Label>
           ))}
-        </div>
+        </RadioGroup>
       </CardContent>
-      <CardFooter className="justify-center">
-        <Button
-          onClick={() => onContinue(selectedGoals)}
-          disabled={selectedGoals.length === 0}
-        >
-          Continuar
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
