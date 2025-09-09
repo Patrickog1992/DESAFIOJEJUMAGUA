@@ -99,8 +99,7 @@ export function WeightSelection({ onContinue, height }: WeightSelectionProps) {
               type="number"
               value={weight}
               onChange={e => setWeight(e.target.value)}
-              placeholder="Digite seu peso"
-              className="w-full max-w-md text-center text-lg"
+              className="w-full max-w-xs text-center text-lg"
               min="30"
               max="300"
             />
