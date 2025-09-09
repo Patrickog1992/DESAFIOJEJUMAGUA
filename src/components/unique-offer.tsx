@@ -21,7 +21,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Check } from 'lucide-react';
+import { Check, Lock } from 'lucide-react';
 import { Skeleton } from './ui/skeleton';
 
 type UniqueOfferProps = {
@@ -141,9 +141,13 @@ export function UniqueOffer({
                     QUERO O MEU PLANO
                 </Button>
             </CardContent>
-            <CardFooter className="justify-center">
-                <p className="text-sm font-semibold">Garantia de devolução do dinheiro em 30 dias</p>
-            </CardFooter>
+        </Card>
+        
+        <Card className="shadow-md">
+            <CardContent className="p-4 flex items-center justify-center gap-2">
+                <Lock className="h-5 w-5 text-muted-foreground" />
+                <p className="text-sm font-semibold text-muted-foreground">Garantia de devolução do dinheiro em 30 dias</p>
+            </CardContent>
         </Card>
 
         <Card className="shadow-md">
