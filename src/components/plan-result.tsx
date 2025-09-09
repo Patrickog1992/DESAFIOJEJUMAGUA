@@ -103,15 +103,21 @@ export function PlanResult({
       weight: targetWeight,
     },
   ];
-  
+
   const getWaterIntakeInLiters = () => {
     switch (waterIntake) {
-      case '1 copo ou menos': return 1.0;
-      case '2–3 copos': return 1.5;
-      case '4–5 copos': return 2.0;
-      case '6–7 copos': return 2.5;
-      case '8+ copos': return 3.0;
-      default: return 1.0;
+      case '1 copo ou menos':
+        return 1.0;
+      case '2–3 copos':
+        return 1.5;
+      case '4–5 copos':
+        return 2.0;
+      case '6–7 copos':
+        return 2.5;
+      case '8+ copos':
+        return 3.0;
+      default:
+        return 1.0;
     }
   };
 
@@ -124,14 +130,14 @@ export function PlanResult({
           </h1>
           <p className="text-xl text-foreground max-w-2xl mx-auto">
             <span className="font-bold">{name}</span>, com base nos seus
-            resultados, você pode perder <strong>11 kg no 1.º mês</strong>.
-            Alcança o seu objetivo com um plano personalizado, fácil de seguir e
-            saudável criado só para você.
+            resultados, você pode perder 11 kg no 1.º mês. Alcance o seu
+            objetivo com um plano personalizado, fácil de seguir e saudável
+            criado só para você.
           </p>
         </header>
 
         {isClient && currentWeight > 0 && targetWeight > 0 && (
-           <Card className="shadow-lg">
+          <Card className="shadow-lg">
             <CardContent className="p-4 h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
@@ -177,7 +183,8 @@ export function PlanResult({
           <Card className="shadow-md flex flex-col items-center justify-center text-center p-6">
             <Clock className="h-12 w-12 text-primary mb-3" />
             <CardTitle className="text-lg">
-              O esperado é perder peso 89% mais rápido que o nosso utilizador médio
+              O esperado é perder peso 89% mais rápido que o nosso utilizador
+              médio
             </CardTitle>
             <CardDescription>(com base nas tuas respostas)</CardDescription>
           </Card>
@@ -190,9 +197,9 @@ export function PlanResult({
         </div>
 
         <div className="text-center">
-             <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
-                QUERO MEU PLANO PERSONALIZADO
-              </Button>
+          <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+            QUERO MEU PLANO PERSONALIZADO
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -239,20 +246,24 @@ export function PlanResult({
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between items-center">
-                 <span className="text-sm">Calorias:</span>
-                 <span className="font-bold text-lg">1600-1400</span>
-              </div>
-               <div className="flex justify-between items-center">
-                 <span className="text-sm">Caminhar:</span>
-                 <span className="font-bold text-lg">{walkingTime}</span>
-              </div>
-               <div className="flex justify-between items-center">
-                 <span className="text-sm">Atividade que gosta:</span>
-                 <span className="font-bold text-lg">30 min</span>
+                <span className="text-sm">Calorias:</span>
+                <span className="font-bold text-lg">1600-1400</span>
               </div>
               <div className="flex justify-between items-center">
-                 <span className="text-sm">Consumo mínimo diário de água:</span>
-                 <span className="font-bold text-lg">{getWaterIntakeInLiters().toFixed(1)} litros</span>
+                <span className="text-sm">Caminhar:</span>
+                <span className="font-bold text-lg">{walkingTime}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm">Atividade que gosta:</span>
+                <span className="font-bold text-lg">30 min</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm">
+                  Consumo mínimo diário de água:
+                </span>
+                <span className="font-bold text-lg">
+                  {getWaterIntakeInLiters().toFixed(1)} litros
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -277,13 +288,12 @@ export function PlanResult({
             </ul>
           </CardContent>
         </Card>
-        
-        <div className="text-center">
-             <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
-                OBTER O DESAFIO DO JEJUM DE ÁGUA
-              </Button>
-        </div>
 
+        <div className="text-center">
+          <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+            OBTER O DESAFIO DO JEJUM DE ÁGUA
+          </Button>
+        </div>
 
         <Card className="shadow-md">
           <CardContent className="p-4">
@@ -303,7 +313,7 @@ export function PlanResult({
                       alt={`Depoimento ${index + 1}`}
                       width={600}
                       height={400}
-                      className="rounded-lg object-cover w-full"
+                      className="rounded-lg object-cover w-full h-64"
                     />
                   </CarouselItem>
                 ))}
@@ -311,40 +321,61 @@ export function PlanResult({
             </Carousel>
           </CardContent>
         </Card>
-        
+
         <Card className="shadow-md overflow-hidden">
           <CardContent className="p-6 md:flex md:items-center md:gap-6">
             <div className="mb-4 md:mb-0 md:shrink-0">
-              <Image src="https://i.imgur.com/52gwXD4.png" alt="Nutri. Amanda Nunes" width={150} height={150} className="rounded-full mx-auto border-4 border-primary" />
+              <Image
+                src="https://i.imgur.com/52gwXD4.png"
+                alt="Nutri. Amanda Nunes"
+                width={150}
+                height={150}
+                className="rounded-full mx-auto border-4 border-primary"
+              />
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-bold">Nutri. Amanda Nunes</h3>
               <p className="mt-2">
-               Transforme a sua saúde com o poder do jejum intermitente. Perder peso pode ser um desafio, mas com a orientação certa é possível alcançar resultados duradouros. O nosso programa certificado já ajudou mais de 500.000 pessoas a transformar a sua relação com a alimentação através do jejum intermitente. Com um plano personalizado, vai aprender a controlar os seus hábitos alimentares e a conquistar resultados incríveis.
+                Transforme a sua saúde com o poder do jejum intermitente. Perder
+                peso pode ser um desafio, mas com a orientação certa é possível
+                alcançar resultados duradouros. O nosso programa certificado já
+                ajudou mais de 500.000 pessoas a transformar a sua relação com
+                a alimentação através do jejum intermitente.
               </p>
               <ul className="mt-4 space-y-2 text-left">
-                <li className="flex items-center"><Check className="h-5 w-5 text-green-500 mr-2" /> Regular a pressão arterial</li>
-                <li className="flex items-center"><Check className="h-5 w-5 text-green-500 mr-2" /> Melhorar os níveis de colesterol</li>
-                <li className="flex items-center"><Check className="h-5 w-5 text-green-500 mr-2" /> Aumentar a sensibilidade à insulina</li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" /> Regular a
+                  pressão arterial
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" /> Melhorar os
+                  níveis de colesterol
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-5 w-5 text-green-500 mr-2" /> Aumentar a
+                  sensibilidade à insulina
+                </li>
               </ul>
             </div>
           </CardContent>
         </Card>
 
         <div className="text-center space-y-4">
-           <p className="text-lg">
-             Lembre-se: pequenas escolhas diárias podem gerar grandes mudanças ao longo do tempo. O seu objetivo está mais perto do que imagina e nós estamos aqui para o ajudar a alcançá-lo.
-           </p>
-            <p className="text-lg font-bold">
-              Estamos aqui para garantir que atinges o teu objetivo de {targetWeight} kg!
-            </p>
-            <div className="text-center">
-                <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
-                  QUERO O MEU JEJUM DE ÁGUA
-                </Button>
-            </div>
+          <p className="text-lg">
+            Lembre-se: pequenas escolhas diárias podem gerar grandes mudanças
+            ao longo do tempo. O seu objetivo está mais perto do que imagina e
+            nós estamos aqui para o ajudar a alcançá-lo.
+          </p>
+          <p className="text-lg font-bold">
+            Estamos aqui para garantir que atinges o teu objetivo de{' '}
+            {targetWeight} kg!
+          </p>
+          <div className="text-center">
+            <Button size="lg" className="w-full max-w-md mx-auto text-lg h-12">
+              QUERO O MEU JEJUM DE ÁGUA
+            </Button>
+          </div>
         </div>
-
       </div>
     </div>
   );
