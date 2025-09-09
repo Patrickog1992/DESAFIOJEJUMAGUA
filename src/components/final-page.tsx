@@ -7,6 +7,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from '@/components/ui/card';
 import { Button } from './ui/button';
 
@@ -21,6 +22,10 @@ export function FinalPage({ onContinue }: FinalPageProps) {
         <CardTitle className="text-2xl font-headline">
           VOCÊ VAI TER UM ÓTIMO RESULTADO !
         </CardTitle>
+        <CardDescription className="text-lg pt-2">
+          Já ajudámos 497.565 pessoas a perder peso! Vamos alcançar também o teu
+          corpo ideal!
+        </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
         <Image
