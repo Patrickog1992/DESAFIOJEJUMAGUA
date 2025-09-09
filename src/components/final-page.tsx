@@ -19,8 +19,7 @@ export function FinalPage({ onContinue }: FinalPageProps) {
     <Card className="w-full max-w-2xl mx-auto shadow-lg text-center">
       <CardHeader>
         <CardTitle className="text-2xl font-headline">
-          Já ajudámos 497.565 pessoas a perder peso! Vamos alcançar também o teu
-          corpo ideal!
+          VOCÊ VAI TER UM ÓTIMO RESULTADO !
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
