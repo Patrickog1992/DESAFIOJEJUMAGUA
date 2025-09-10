@@ -20,7 +20,7 @@ const options = [
   'Das 8 às 17',
   'Trabalho noturno',
   'Irregular, turnos diferentes',
-  'Estou nas reforma',
+  'Estou desempregado (a)',
 ];
 
 export function WorkScheduleSelection({ onContinue }: WorkScheduleSelectionProps) {
