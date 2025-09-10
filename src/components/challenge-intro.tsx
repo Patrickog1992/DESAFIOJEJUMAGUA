@@ -19,7 +19,7 @@ const benefits = [
   'Pode reduzir a resistência à insulina, baixando o açúcar no sangue em 3–6% e os níveis de insulina em 20–31%',
   'Reduz o risco de inflamação',
   'Reduz o colesterol "mau" LDL, os triglicéridos no sangue, marcadores inflamatórios e o açúcar no sangue',
-  'Aumenta a hormona cerebral BDNF e pode ajudar no crescimento de novas células nervosas',
+  'Aumenta o hormônio cerebral BDNF e pode ajudar no crescimento de novas células nervosas',
 ];
 
 export function ChallengeIntro({ onContinue }: ChallengeIntroProps) {
