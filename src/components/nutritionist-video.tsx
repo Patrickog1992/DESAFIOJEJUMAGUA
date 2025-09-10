@@ -27,30 +27,15 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center overflow-hidden">
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              height: 0,
-              paddingBottom: '177.78%',
-            }}
-          >
-            <iframe
-              src="https://www.youtube.com/embed/KJjoEC6p0CQ?autoplay=1&mute=1"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-            ></iframe>
-          </div>
+        <div className="aspect-video w-full overflow-hidden rounded-lg">
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/KJjoEC6p0CQ?autoplay=1&mute=1"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </CardContent>
       <CardFooter className="justify-center">
