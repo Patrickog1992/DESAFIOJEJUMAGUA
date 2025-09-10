@@ -22,8 +22,7 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
           Nossa especialista tem um recado para você!
         </CardTitle>
         <CardDescription className="text-lg pt-2">
-          Assista ao vídeo para entender como o nosso desafio pode transformar
-          sua vida.
+          verifique o volume para esse breve recado
         </CardDescription>
       </CardHeader>
       <CardContent>
