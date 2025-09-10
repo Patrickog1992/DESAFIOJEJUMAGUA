@@ -9,7 +9,6 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlayCircle } from 'lucide-react';
 
 type NutritionistVideoProps = {
   onContinue: () => void;
@@ -28,11 +27,29 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-          {/* Você pode substituir esta div pelo seu player de vídeo */}
-          <div className="text-center text-muted-foreground">
-            <PlayCircle className="h-16 w-16 mx-auto mb-2" />
-            <p>Seu vídeo será inserido aqui.</p>
+        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center overflow-hidden">
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: 0,
+              paddingBottom: '177.78%',
+            }}
+          >
+            <iframe
+              src="https://www.youtube.com/embed/KJjoEC6p0CQ?autoplay=1&mute=1"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+              }}
+            ></iframe>
           </div>
         </div>
       </CardContent>
