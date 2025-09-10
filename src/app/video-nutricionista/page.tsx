@@ -1,14 +1,17 @@
 'use client';
 
-import { QuizStart } from '@/components/quiz-start';
-import { useRouter } from 'next/navigation';
+import { NutritionistVideo } from '@/components/nutritionist-video';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import Image from 'next/image';
 
-export default function GenderSelectionPage() {
+function NutritionistVideoPageContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const handleSelectGender = (selectedGender: 'male' | 'female') => {
-    router.push(`/video-nutricionista?gender=${selectedGender}`);
+  const handleContinue = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    router.push(`/age-range?${params.toString()}`);
   };
 
   return (
@@ -21,11 +24,19 @@ export default function GenderSelectionPage() {
           height={100}
           className="mb-8"
         />
-        <QuizStart onSelectGender={handleSelectGender} />
+        <NutritionistVideo onContinue={handleContinue} />
       </div>
       <footer className="w-full text-center text-sm text-muted-foreground mt-8">
         <p>Desafio do Jejum de Água todos os direitos reservados</p>
       </footer>
     </main>
+  );
+}
+
+export default function NutritionistVideoPage() {
+  return (
+    <Suspense fallback={<div>Carregando...</div>}>
+      <NutritionistVideoPageContent />
+    </Suspense>
   );
 }
