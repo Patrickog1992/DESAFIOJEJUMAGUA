@@ -26,14 +26,14 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="aspect-video w-full overflow-hidden rounded-lg">
+        <div style={{position: 'relative', width: '100%', height: 0, paddingBottom: '177.78%'}}>
           <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/KJjoEC6p0CQ?autoplay=1&controls=1&showinfo=0&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/KJjoEC6p0CQ?rel=0&controls=1&modestbranding=1"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
           ></iframe>
         </div>
       </CardContent>
