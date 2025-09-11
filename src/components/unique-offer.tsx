@@ -119,7 +119,7 @@ const writtenTestimonials = [
   },
 ];
 
-const checkoutUrl = 'https://pay.kirvano.com/2d175ad5-fb2b-4da3-92f2-21ac781ca8be';
+const checkoutUrl = 'https://pay.kirvano.com/c88b0cec-6218-4328-8321-f28e03f4f1d7';
 
 export function UniqueOffer({
   currentWeight,
