@@ -291,7 +291,7 @@ export function UniqueOffer({
                 por apenas:
               </p>
               <p className="text-6xl font-extrabold text-green-600 my-2">
-                R$37,00
+                R$27,00
               </p>
               <p className="text-lg font-semibold">Pagamento Único</p>
               <p className="text-sm text-muted-foreground mt-1">
