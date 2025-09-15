@@ -31,7 +31,9 @@ export function WaterIntakeSelection({
 
   const handleSelection = (option: string) => {
     setSelectedOption(option);
-    onContinue(option);
+    setTimeout(() => {
+      onContinue(option);
+    }, 300);
   };
 
   return (

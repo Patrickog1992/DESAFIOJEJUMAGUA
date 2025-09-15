@@ -73,7 +73,9 @@ export function AgeRangeSelection({
 
   const handleSelection = (range: string) => {
     setSelectedRange(range);
-    onContinue(range);
+    setTimeout(() => {
+      onContinue(range);
+    }, 300);
   };
 
   return (

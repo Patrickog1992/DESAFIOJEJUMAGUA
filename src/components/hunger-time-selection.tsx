@@ -40,7 +40,9 @@ export function HungerTimeSelection({ onContinue }: HungerTimeSelectionProps) {
 
   const handleSelection = (time: string) => {
     setSelectedTime(time);
-    onContinue(time);
+    setTimeout(() => {
+      onContinue(time);
+    }, 300);
   };
 
   return (

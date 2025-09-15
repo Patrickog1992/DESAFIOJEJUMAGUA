@@ -101,7 +101,9 @@ export function BodyShapeSelection({ onContinue }: BodyShapeSelectionProps) {
 
   const handleSelection = (shape: string) => {
     setSelectedShape(shape);
-    onContinue(shape);
+    setTimeout(() => {
+      onContinue(shape);
+    }, 300);
   };
 
   return (
