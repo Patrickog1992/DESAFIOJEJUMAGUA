@@ -30,9 +30,7 @@ export function BreakfastTimeSelection({
 
   const handleSelection = (option: string) => {
     setSelectedOption(option);
-    setTimeout(() => {
-      onContinue(option);
-    }, 300);
+    onContinue(option);
   };
 
   return (

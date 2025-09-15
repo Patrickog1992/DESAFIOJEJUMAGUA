@@ -70,9 +70,7 @@ export function GoalSelection({ onContinue, gender }: GoalSelectionProps) {
 
   const handleGoalSelection = (goal: string) => {
     setSelectedGoal(goal);
-    setTimeout(() => {
-      onContinue(goal);
-    }, 300);
+    onContinue(goal);
   };
 
   return (
