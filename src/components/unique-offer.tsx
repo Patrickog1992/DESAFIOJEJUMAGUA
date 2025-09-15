@@ -302,7 +302,7 @@ export function UniqueOffer({
             <a href={checkoutUrl} className="block w-full max-w-md mx-auto">
               <Button
                 size="lg"
-                className="w-full text-lg h-14 animate-pulse-strong"
+                className="w-full text-lg h-14 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
                 asChild={false} 
               >
                 QUERO APROVEITAR A OFERTA
@@ -366,7 +366,7 @@ export function UniqueOffer({
             <a href={checkoutUrl} className="block w-full max-w-md mx-auto">
               <Button
                 size="lg"
-                className="w-full text-lg h-12 animate-pulse-strong"
+                className="w-full text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
                 asChild={false} 
               >
                 Obter o meu plano
@@ -461,7 +461,7 @@ export function UniqueOffer({
             <a href={checkoutUrl} className="block w-full max-w-sm mx-auto">
               <Button
                 size="lg"
-                className="w-full text-lg h-12 animate-pulse-strong"
+                className="w-full text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
                 asChild={false} 
               >
                 Quero o meu plano

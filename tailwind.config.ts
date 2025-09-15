@@ -95,14 +95,14 @@ export default {
           },
           '50%': {
             opacity: '0.9',
-            transform: 'scale(1.05)',
+            transform: 'scale(1.08)',
           },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'pulse-strong': 'pulse-strong 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-strong': 'pulse-strong 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },
