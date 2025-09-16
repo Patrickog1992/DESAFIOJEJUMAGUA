@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Check, ThumbsUp, Heart } from 'lucide-react';
 import { useMemo, useState, useEffect, useRef } from 'react';
 import Autoplay from "embla-carousel-autoplay";
@@ -43,6 +44,29 @@ const writtenTestimonials = [
     { name: 'Geraldo', imageUrl: 'https://i.imgur.com/pN0xdAe.jpg', comment: 'Finalmente um plano que se encaixa na minha rotina corrida. Os resultados apareceram muito rápido, estou muito satisfeito.', likes: 76, hearts: 21 },
     { name: 'Pedro', imageUrl: 'https://i.imgur.com/W0KgtQV.png', comment: 'Recomendo a todos! Além de perder peso, aprendi a me alimentar melhor e ter um estilo de vida mais saudável.', likes: 153, hearts: 64 },
     { name: 'Junior', imageUrl: 'https://i.imgur.com/J4omSDG.jpg', comment: 'Funciona mesmo! Já tinha tentado de tudo, mas só com esse desafio consegui atingir meu objetivo.', likes: 112, hearts: 41 },
+];
+
+const faqItems = [
+    {
+        question: "O plano é realmente personalizado?",
+        answer: "Sim! O plano é criado com base nas suas respostas ao questionário, levando em conta seus objetivos, tipo de corpo, nível de atividade e preferências alimentares. É um plano feito sob medida para você."
+    },
+    {
+        question: "E se eu não gostar das receitas?",
+        answer: "Com mais de 500 receitas disponíveis, você terá muitas opções para escolher. O plano é flexível e permite que você substitua refeições por outras que agradem mais o seu paladar, mantendo o balanço calórico e nutricional."
+    },
+    {
+        question: "Preciso comprar equipamentos de ginástica?",
+        answer: "Não! Os mais de 100 treinos e exercícios foram desenvolvidos para serem feitos em casa, utilizando apenas o peso do corpo. Você não precisa de nenhum equipamento especial."
+    },
+    {
+        question: "O pagamento é único?",
+        answer: "Sim, o pagamento de R$ 37,00 é único e você terá acesso vitalício a todo o material, incluindo futuras atualizações. Não há mensalidades ou taxas escondidas."
+    },
+    {
+        question: "Como funciona a garantia de reembolso?",
+        answer: "Se por qualquer motivo você não estiver satisfeito com o plano nos primeiros 30 dias, basta enviar um e-mail para dietamediterranea@dieta.com.br e nós reembolsaremos 100% do valor pago, sem burocracia."
+    }
 ];
 
 export function Step35_FinalOffer({ data }: Props) {
@@ -249,8 +273,24 @@ export function Step35_FinalOffer({ data }: Props) {
             </p>
           </CardContent>
         </Card>
+
+        <Card className="w-full max-w-4xl mx-auto">
+            <CardHeader>
+                <CardTitle className="text-center text-2xl font-bold">Perguntas Frequentes (FAQ)</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                    {faqItems.map((item, index) => (
+                        <AccordionItem value={`item-${index}`} key={index}>
+                            <AccordionTrigger className="font-semibold text-left">{item.question}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">
+                                {item.answer}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </CardContent>
+        </Card>
     </div>
   );
 }
-
-    
