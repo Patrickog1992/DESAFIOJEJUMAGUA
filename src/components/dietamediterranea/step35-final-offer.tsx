@@ -226,7 +226,7 @@ export function Step35_FinalOffer({ data }: Props) {
                                             <Image src={testimonial.imageUrl} alt={testimonial.name} width={40} height={40} className="rounded-full" />
                                             <p className="font-bold">{testimonial.name}</p>
                                         </div>
-                                        <p className="text-foreground/90 text-sm">{testimonial.comment}</p>
+                                        <p className="text-black">{testimonial.comment}</p>
                                         <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2">
                                             <div className="flex items-center gap-1">
                                                 <div className="p-1 rounded-full bg-blue-500 text-white flex items-center justify-center w-5 h-5">
