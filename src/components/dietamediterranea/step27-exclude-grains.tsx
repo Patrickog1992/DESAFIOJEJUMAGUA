@@ -11,27 +11,27 @@ type Props = {
 };
 
 const options = [
-  'Como de tudo',
-  'Amêndoas',
-  'Nozes',
-  'Amendoins',
-  'Arroz',
-  'Cuscuz',
-  'Quinoa',
-  'Aveia',
-  'Trigo',
-  'Milho',
+  '😊 Como de tudo',
+  '🌰 Amêndoas',
+  '🌰 Nozes',
+  '🥜 Amendoins',
+  '🍚 Arroz',
+  '🥣 Cuscuz',
+  '🥣 Quinoa',
+  '🥣 Aveia',
+  '🌾 Trigo',
+  '🌽 Milho',
 ];
 
 export function Step27_ExcludeProducts_Grains({ onContinue }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleSelect = (option: string) => {
-    if (option === 'Como de tudo') {
-      setSelected(['Como de tudo']);
+    if (option === '😊 Como de tudo') {
+      setSelected(['😊 Como de tudo']);
     } else {
       setSelected(prev => {
-        const newSelection = prev.filter(item => item !== 'Como de tudo');
+        const newSelection = prev.filter(item => item !== '😊 Como de tudo');
         return newSelection.includes(option) ? newSelection.filter(item => item !== option) : [...newSelection, option]
       });
     }

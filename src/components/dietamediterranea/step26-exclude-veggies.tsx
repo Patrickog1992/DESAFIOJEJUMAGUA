@@ -11,26 +11,26 @@ type Props = {
 };
 
 const options = [
-  'Como de tudo',
-  'Azeitonas',
-  'Abacate',
-  'Tomates',
-  'Brócolos',
-  'Espinafres',
-  'Pepino',
-  'Pimentão',
-  'Cebolas',
+  '😊 Como de tudo',
+  '🫒 Azeitonas',
+  '🥑 Abacate',
+  '🍅 Tomates',
+  '🥦 Brócolos',
+  '🥬 Espinafres',
+  '🥒 Pepino',
+  '🌶️ Pimentão',
+  '🧅 Cebolas',
 ];
 
 export function Step26_ExcludeProducts_Veggies({ onContinue }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleSelect = (option: string) => {
-    if (option === 'Como de tudo') {
-      setSelected(['Como de tudo']);
+    if (option === '😊 Como de tudo') {
+      setSelected(['😊 Como de tudo']);
     } else {
       setSelected(prev => {
-        const newSelection = prev.filter(item => item !== 'Como de tudo');
+        const newSelection = prev.filter(item => item !== '😊 Como de tudo');
         return newSelection.includes(option) ? newSelection.filter(item => item !== option) : [...newSelection, option]
       });
     }

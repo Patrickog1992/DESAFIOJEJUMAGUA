@@ -11,28 +11,28 @@ type Props = {
 };
 
 const options = [
-  'Como de tudo',
-  'Frango',
-  'Carne vermelha',
-  'Queijo',
-  'Atum',
-  'Iogurte',
-  'Salmão',
-  'Bacalhau',
-  'Ovos',
-  'Grão-de-bico',
-  'Lentilhas',
+  '😊 Como de tudo',
+  '🍗 Frango',
+  '🥩 Carne vermelha',
+  '🧀 Queijo',
+  '🐟 Atum',
+  '🥛 Iogurte',
+  '🐟 Salmão',
+  '🐟 Bacalhau',
+  '🥚 Ovos',
+  '🫘 Grão-de-bico',
+  '🫘 Lentilhas',
 ];
 
 export function Step25_ExcludeProducts_Protein({ onContinue }: Props) {
   const [selected, setSelected] = useState<string[]>([]);
 
   const handleSelect = (option: string) => {
-    if (option === 'Como de tudo') {
-      setSelected(['Como de tudo']);
+    if (option === '😊 Como de tudo') {
+      setSelected(['😊 Como de tudo']);
     } else {
       setSelected(prev => {
-        const newSelection = prev.filter(item => item !== 'Como de tudo');
+        const newSelection = prev.filter(item => item !== '😊 Como de tudo');
         return newSelection.includes(option) ? newSelection.filter(item => item !== option) : [...newSelection, option]
       });
     }
