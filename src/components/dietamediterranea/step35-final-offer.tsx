@@ -157,7 +157,7 @@ export function Step35_FinalOffer({ data }: Props) {
                   onMouseLeave={plugin.current.reset}>
                     <CarouselContent>
                         {testimonialsImages.map((src, index) => (
-                             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                             <CarouselItem key={index}>
                                 <Image src={src} alt={`Depoimento ${index + 1}`} width={300} height={400} className="rounded-lg object-contain w-full h-96" />
                             </CarouselItem>
                         ))}
