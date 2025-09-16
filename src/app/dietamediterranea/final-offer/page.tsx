@@ -16,13 +16,11 @@ function FinalOfferPageContent() {
   }
 
   return (
-    <div className="dietamediterranea-bg min-h-screen w-full">
-      <main className="flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="w-full max-w-4xl">
-          <Step35_FinalOffer data={data} />
-        </div>
-      </main>
-    </div>
+    <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="w-full max-w-4xl">
+        <Step35_FinalOffer data={data} />
+      </div>
+    </main>
   );
 }
 
