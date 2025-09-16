@@ -12,7 +12,7 @@ export function Step1_GenderSelection({ onContinue }: Props) {
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader className="items-center">
         <CardTitle className="text-center text-2xl font-bold">
-          Perca peso e renova sua energia com a dieta mediterrânica personalizada
+          Perca peso e renove sua energia com a dieta mediterrânica personalizada
         </CardTitle>
         <Image
           src="https://i.imgur.com/gi1RhCn.png"
