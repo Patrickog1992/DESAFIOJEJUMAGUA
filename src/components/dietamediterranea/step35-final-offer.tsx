@@ -126,8 +126,17 @@ export function Step35_FinalOffer({ data }: Props) {
                     </div>
                 ))}
             </CardContent>
-             <CardFooter>
-                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">Obter o meu plano</Button>
+             <CardFooter className="flex-col items-center gap-4">
+                <div className="text-center">
+                    <p className="text-lg text-muted-foreground">
+                        De <span className="line-through text-red-600 font-semibold">R$ 97,00</span> por apenas:
+                    </p>
+                    <p className="text-4xl font-extrabold text-green-600">
+                        R$ 37,00
+                    </p>
+                    <p className="font-semibold">Pagamento Único</p>
+                </div>
+                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">OBTER O MEU PLANO</Button>
             </CardFooter>
         </Card>
         
