@@ -35,7 +35,11 @@ export function Step28_Loading({ onComplete }: Props) {
 
   useEffect(() => {
     const stepIndex = Math.floor(progress / (100 / loadingSteps.length));
-    setCurrentStep(stepIndex);
+    if (stepIndex < loadingSteps.length) {
+      setCurrentStep(stepIndex);
+    } else {
+      setCurrentStep(loadingSteps.length -1)
+    }
   }, [progress]);
 
   return (

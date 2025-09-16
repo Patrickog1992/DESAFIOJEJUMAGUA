@@ -1,21 +1,24 @@
 'use client';
 import { Step28_Loading } from '@/components/dietamediterranea/step28-loading';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 function LoadingPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [isComplete, setIsComplete] = useState(false);
 
-  const handleComplete = () => {
-    router.push(`/dietamediterranea/good-news?${searchParams.toString()}`);
-  };
+  useEffect(() => {
+    if (isComplete) {
+      router.push(`/dietamediterranea/good-news?${searchParams.toString()}`);
+    }
+  }, [isComplete, router, searchParams]);
 
   return (
     <div className="dietamediterranea-bg min-h-screen w-full">
       <main className="flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-4xl">
-          <Step28_Loading onComplete={handleComplete} />
+          <Step28_Loading onComplete={() => setIsComplete(true)} />
         </div>
       </main>
     </div>
