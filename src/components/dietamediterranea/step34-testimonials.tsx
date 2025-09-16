@@ -3,6 +3,9 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Check } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import * as React from "react";
 
 type Props = {
   onContinue: () => void;
@@ -16,32 +19,53 @@ const testimonials = [
 ];
 
 export function Step34_Testimonials({ onContinue }: Props) {
+    const plugin = React.useRef(
+        Autoplay({ delay: 3000, stopOnInteraction: true })
+    );
+
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-bold">Mas não acredite somente na nossa palavra. Ouça o que os outros dizem sobre a Dieta Mediterrânea</CardTitle>
         <CardDescription>Já ajudámos milhões de pessoas a atingir os seus objetivos corporais. Também o podemos te ajudar</CardDescription>
       </CardHeader>
-      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {testimonials.map(testimonial => (
-          <Card key={testimonial.name}>
-            <CardContent className="p-4 space-y-2">
-               <p className="italic text-muted-foreground">{testimonial.text}</p>
-               <div className="flex items-center gap-4">
-                  <Image src={testimonial.img} alt={testimonial.name} width={50} height={50} className="rounded-full" />
-                  <div>
-                      <p className="font-bold">{testimonial.name}</p>
-                      <div className="flex items-center gap-1 text-xs text-green-600">
-                        <Check className="h-3 w-3"/>
-                        <span>Verificado</span>
-                      </div>
-                  </div>
-               </div>
-            </CardContent>
-          </Card>
-        ))}
+      <CardContent>
+        <Carousel
+            plugins={[plugin.current]}
+            className="w-full"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+        >
+            <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                    <CarouselItem key={index} className="flex justify-center">
+                        <Card className="w-full max-w-sm overflow-hidden">
+                            <CardContent className="p-0 text-center">
+                                <Image 
+                                    src={testimonial.img} 
+                                    alt={testimonial.name} 
+                                    width={400} 
+                                    height={400} 
+                                    className="object-cover w-full h-[400px]" 
+                                />
+                                <div className="p-4 space-y-2">
+                                    <p className="italic text-muted-foreground">{testimonial.text}</p>
+                                    <p className="font-bold">{testimonial.name}</p>
+                                    <div className="flex items-center justify-center gap-1 text-xs text-green-600">
+                                        <Check className="h-3 w-3"/>
+                                        <span>Verificado</span>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+        </Carousel>
       </CardContent>
-      <CardFooter className="justify-center">
+      <CardFooter className="justify-center mt-4">
         <Button onClick={onContinue} size="lg">Continuar</Button>
       </CardFooter>
     </Card>
