@@ -1,0 +1,27 @@
+'use client';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import type { QuizData } from '@/app/dietamediterranea/page';
+
+type Props = {
+  onContinue: (data: Partial<QuizData>) => void;
+};
+
+export function Step1_GenderSelection({ onContinue }: Props) {
+  return (
+    <Card className="w-full max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-center text-2xl font-bold">
+          Perca peso e renova sua energia com a dieta mediterrânica personalizada
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col items-center gap-4">
+        <p>Selecione o tipo de dieta mediterrânica:</p>
+        <div className="flex gap-4">
+          <Button onClick={() => onContinue({ gender: 'male' })} size="lg">Dieta para homens</Button>
+          <Button onClick={() => onContinue({ gender: 'female' })} size="lg">Dieta para mulheres</Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
