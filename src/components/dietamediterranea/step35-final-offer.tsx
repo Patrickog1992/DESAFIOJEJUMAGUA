@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { Check } from 'lucide-react';
+import { Check, ThumbsUp, Heart } from 'lucide-react';
 import { useMemo, useState, useEffect, useRef } from 'react';
 import Autoplay from "embla-carousel-autoplay";
 
@@ -29,21 +29,32 @@ const features = [
 ]
 
 const testimonialsImages = [
-    "https://i.imgur.com/Yd4f0L0.jpg",
-    "https://i.imgur.com/3FMNC9a.jpg",
-    "https://i.imgur.com/noSDgeA.jpg",
-    "https://i.imgur.com/Kd5Dboy.jpg",
-    "https://i.imgur.com/YOMEZLJ.jpg",
-    "https://i.imgur.com/fogjsiC.jpg",
-]
+    "https://i.imgur.com/AJCfcXk.jpeg",
+    "https://i.imgur.com/BTYdqvQ.jpeg",
+    "https://i.imgur.com/TAUXKtX.jpeg",
+    "https://i.imgur.com/ipOh27y.jpeg",
+    "https://i.imgur.com/S5Aj7OJ.jpeg",
+];
+
+const writtenTestimonials = [
+    { name: 'Maria', imageUrl: 'https://i.imgur.com/Sza1ZfT.png', comment: 'Estou amando os resultados! Em poucas semanas já sinto uma diferença enorme na minha energia e na balança. Super recomendo!', likes: 128, hearts: 45 },
+    { name: 'Marta', imageUrl: 'https://i.imgur.com/NVXnmUf.jpg', comment: 'Nunca pensei que seria tão fácil seguir um plano. As receitas são deliciosas e o jejum é mais simples do que eu imaginava. Já perdi 6kg!', likes: 97, hearts: 32 },
+    { name: 'Joelma', imageUrl: 'https://i.imgur.com/SPsVs9s.jpg', comment: 'O melhor investimento que fiz pela minha saúde. O acompanhamento dos nutricionistas faz toda a diferença!', likes: 215, hearts: 88 },
+    { name: 'Geraldo', imageUrl: 'https://i.imgur.com/pN0xdAe.jpg', comment: 'Finalmente um plano que se encaixa na minha rotina corrida. Os resultados apareceram muito rápido, estou muito satisfeito.', likes: 76, hearts: 21 },
+    { name: 'Pedro', imageUrl: 'https://i.imgur.com/W0KgtQV.png', comment: 'Recomendo a todos! Além de perder peso, aprendi a me alimentar melhor e ter um estilo de vida mais saudável.', likes: 153, hearts: 64 },
+    { name: 'Junior', imageUrl: 'https://i.imgur.com/J4omSDG.jpg', comment: 'Funciona mesmo! Já tinha tentado de tudo, mas só com esse desafio consegui atingir meu objetivo.', likes: 112, hearts: 41 },
+];
 
 export function Step35_FinalOffer({ data }: Props) {
   const { currentWeight, targetWeight, height, goal, age } = data;
   
   const [timeLeft, setTimeLeft] = useState(10 * 60);
 
-  const plugin = useRef(
+  const imageCarouselPlugin = useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
+  const commentCarouselPlugin = useRef(
+    Autoplay({ delay: 3500, stopOnInteraction: true })
   );
 
   useEffect(() => {
@@ -151,10 +162,10 @@ export function Step35_FinalOffer({ data }: Props) {
             </CardHeader>
             <CardContent>
                 <Carousel 
-                  plugins={[plugin.current]}
+                  plugins={[imageCarouselPlugin.current]}
                   className="w-full"
-                  onMouseEnter={plugin.current.stop}
-                  onMouseLeave={plugin.current.reset}>
+                  onMouseEnter={imageCarouselPlugin.current.stop}
+                  onMouseLeave={imageCarouselPlugin.current.reset}>
                     <CarouselContent>
                         {testimonialsImages.map((src, index) => (
                              <CarouselItem key={index}>
@@ -164,6 +175,53 @@ export function Step35_FinalOffer({ data }: Props) {
                     </CarouselContent>
                     <CarouselPrevious />
                     <CarouselNext />
+                </Carousel>
+            </CardContent>
+        </Card>
+
+        <Card className="w-full max-w-4xl mx-auto">
+            <CardHeader>
+                <CardTitle className="text-center">Mais pessoas que alcançaram seus objetivos</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Carousel
+                    opts={{ loop: true, align: "start" }}
+                    plugins={[commentCarouselPlugin.current]}
+                    className="w-full"
+                    onMouseEnter={commentCarouselPlugin.current.stop}
+                    onMouseLeave={commentCarouselPlugin.current.reset}
+                >
+                    <CarouselContent className="-ml-4">
+                        {writtenTestimonials.map((testimonial, index) => (
+                            <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                                <div className="p-1">
+                                    <div className="bg-white p-4 rounded-lg shadow-sm border space-y-3 h-full">
+                                        <div className="flex items-center gap-3">
+                                            <Image src={testimonial.imageUrl} alt={testimonial.name} width={40} height={40} className="rounded-full" />
+                                            <p className="font-bold">{testimonial.name}</p>
+                                        </div>
+                                        <p className="text-foreground/90 text-sm">{testimonial.comment}</p>
+                                        <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2">
+                                            <div className="flex items-center gap-1">
+                                                <div className="p-1 rounded-full bg-blue-500 text-white flex items-center justify-center w-5 h-5">
+                                                    <ThumbsUp size={12} />
+                                                </div>
+                                                <span>{testimonial.likes}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <div className="p-1 rounded-full bg-red-500 text-white flex items-center justify-center w-5 h-5">
+                                                    <Heart size={12} />
+                                                </div>
+                                                <span>{testimonial.hearts}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
                 </Carousel>
             </CardContent>
         </Card>
