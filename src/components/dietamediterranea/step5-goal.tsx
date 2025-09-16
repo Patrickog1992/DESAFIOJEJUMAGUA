@@ -3,11 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 
 type Props = {
-  onContinue: (data: { goal: string }) => void;
+  onContinue: (data: { goals: string[] }) => void;
 };
 
 const options = [
@@ -22,15 +22,19 @@ const options = [
 ];
 
 export function Step5_Goal({ onContinue }: Props) {
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState<string[]>([]);
 
   const handleSelect = (option: string) => {
-    setSelected(option);
+    setSelected(prev =>
+      prev.includes(option)
+        ? prev.filter(item => item !== option)
+        : [...prev, option]
+    );
   };
   
   const handleContinue = () => {
-    if (selected) {
-      onContinue({ goal: selected });
+    if (selected.length > 0) {
+      onContinue({ goals: selected });
     }
   }
 
@@ -38,20 +42,20 @@ export function Step5_Goal({ onContinue }: Props) {
     <Card className="w-full max-w-2xl mx-auto text-center">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Qual o seu principal objetivo com a dieta mediterrânea</CardTitle>
-        <p className="text-muted-foreground">Selecione o que melhor te descreve:</p>
+        <p className="text-muted-foreground">Selecione o que melhor te descreve (pode escolher mais de um):</p>
       </CardHeader>
       <CardContent>
-        <RadioGroup value={selected} onValueChange={handleSelect} className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {options.map((option) => (
             <Label key={option} htmlFor={option} className={cn('flex items-center space-x-2 rounded-lg border p-4 cursor-pointer', 'has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary')}>
-              <RadioGroupItem value={option} id={option} />
+              <Checkbox id={option} onCheckedChange={() => handleSelect(option)} checked={selected.includes(option)} />
               <span>{option}</span>
             </Label>
           ))}
-        </RadioGroup>
+        </div>
       </CardContent>
        <CardFooter className="justify-center">
-        <Button onClick={handleContinue} size="lg" disabled={!selected}>Continuar</Button>
+        <Button onClick={handleContinue} size="lg" disabled={selected.length === 0}>Continuar</Button>
       </CardFooter>
     </Card>
   );
