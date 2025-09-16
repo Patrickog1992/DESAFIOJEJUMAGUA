@@ -23,10 +23,10 @@ export function Step1_GenderSelection({ onContinue }: Props) {
         />
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-4">
-        <p>Selecione o tipo de dieta mediterrânica:</p>
-        <div className="flex gap-4">
-          <Button onClick={() => onContinue({ gender: 'male' })} size="lg">Dieta para homens</Button>
+        <p className="text-center">Selecione o tipo de dieta mediterrânica:</p>
+        <div className="flex flex-col gap-4">
           <Button onClick={() => onContinue({ gender: 'female' })} size="lg">Dieta para mulheres</Button>
+          <Button onClick={() => onContinue({ gender: 'male' })} size="lg">Dieta para homens</Button>
         </div>
       </CardContent>
     </Card>
