@@ -2,13 +2,12 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useState, useMemo } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 type Props = {
   currentWeight?: number;
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { targetWeight: number }) => void;
 };
 
 export function Step20_TargetWeight({ currentWeight, onContinue }: Props) {

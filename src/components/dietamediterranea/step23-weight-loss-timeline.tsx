@@ -1,14 +1,18 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useMemo } from 'react';
 import { format, addDays } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+type QuizData = {
+  currentWeight?: number;
+  targetWeight?: number;
+};
+
 type Props = {
-  data: QuizData;
+  data: Partial<QuizData>;
   onContinue: () => void;
 };
 
@@ -16,6 +20,7 @@ export function Step23_WeightLossTimeline({ data, onContinue }: Props) {
   const { currentWeight, targetWeight } = data;
 
   const chartData = useMemo(() => {
+      if (!currentWeight || !targetWeight) return [];
       const today = new Date();
       const endDate = addDays(today, 60);
 

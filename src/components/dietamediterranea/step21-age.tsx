@@ -2,12 +2,11 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 type Props = {
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { age: number }) => void;
 };
 
 export function Step21_Age({ onContinue }: Props) {

@@ -1,11 +1,18 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useMemo } from 'react';
 
+type QuizData = {
+  gender?: 'male' | 'female';
+  currentWeight?: number;
+  height?: number;
+  age?: number;
+};
+
+
 type Props = {
-  data: QuizData;
+  data: Partial<QuizData>;
   onContinue: () => void;
 };
 
@@ -53,7 +60,7 @@ export function Step30_Summary2({ data, onContinue }: Props) {
     return { imc: imcValue, imcStatus: status };
   }, [height, currentWeight]);
 
-  const metabolicAge = (age || 0) + 5; // Simplified calculation
+  const metabolicAge = (age || 0) + 5;
 
   return (
     <Card className="w-full max-w-2xl mx-auto text-center">

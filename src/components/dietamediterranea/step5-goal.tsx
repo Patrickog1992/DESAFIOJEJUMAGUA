@@ -1,14 +1,13 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
 type Props = {
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { goal: string }) => void;
 };
 
 const options = [
@@ -44,7 +43,7 @@ export function Step5_Goal({ onContinue }: Props) {
       <CardContent>
         <RadioGroup value={selected} onValueChange={handleSelect} className="grid grid-cols-2 gap-4">
           {options.map((option) => (
-            <Label key={option} htmlFor={option} className={cn('flex items-center space-x-2 rounded-lg border p-4 cursor-pointer', selected === option && 'border-primary ring-2 ring-primary')}>
+            <Label key={option} htmlFor={option} className={cn('flex items-center space-x-2 rounded-lg border p-4 cursor-pointer', 'has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary')}>
               <RadioGroupItem value={option} id={option} />
               <span>{option}</span>
             </Label>

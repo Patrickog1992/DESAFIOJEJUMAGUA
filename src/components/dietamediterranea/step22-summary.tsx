@@ -2,11 +2,34 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useMemo } from 'react';
 
+type QuizData = {
+  gender?: 'male' | 'female';
+  knowledge?: string;
+  goal?: string;
+  bodyType?: string;
+  desiredBody?: string;
+  problemAreas?: string[];
+  dailyActivity?: string;
+  energyLevels?: string;
+  exerciseFrequency?: string;
+  weightFluctuation?: string;
+  lastTimeAtGoalWeight?: string;
+  pastDiets?: string[];
+  mainReason?: string;
+  height?: number;
+  currentWeight?: number;
+  targetWeight?: number;
+  age?: number;
+  mealsPerDay?: string;
+  excludedProteins?: string[];
+  excludedVeggies?: string[];
+  excludedGrains?: string[];
+};
+
 type Props = {
-  data: QuizData;
+  data: Partial<QuizData>;
   onContinue: () => void;
 };
 
@@ -52,8 +75,7 @@ export function Step22_Summary({ data, onContinue }: Props) {
     else if (imcValue < 30) status = 'excesso de peso';
     else status = 'obesidade';
     
-    // Simple body fat estimation
-    const age = data.age || 30; // default age if not provided
+    const age = data.age || 30;
     const genderFactor = data.gender === 'male' ? 1 : 0;
     const fat = (1.20 * imcValue) + (0.23 * age) - (10.8 * genderFactor) - 5.4;
 

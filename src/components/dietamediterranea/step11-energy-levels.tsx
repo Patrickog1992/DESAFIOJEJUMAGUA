@@ -1,13 +1,11 @@
 'use client';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
 type Props = {
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { energyLevels: string }) => void;
 };
 
 const options = [

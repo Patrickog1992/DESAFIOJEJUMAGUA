@@ -1,12 +1,11 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 type Props = {
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { knowledge: string }) => void;
 };
 
 export function Step3_KnowledgeLevel({ onContinue }: Props) {
@@ -27,10 +26,11 @@ export function Step3_KnowledgeLevel({ onContinue }: Props) {
         {options.map((option) => (
           <Button
             key={option}
-            variant={selected === option ? 'default' : 'outline'}
+            variant={'outline'}
             onClick={() => handleSelect(option)}
             size="lg"
-            className={cn("w-full justify-start p-6 text-lg", selected === option && "ring-2 ring-primary")}
+            className={cn("w-full justify-start p-6 text-lg", "data-[selected=true]:ring-2 data-[selected=true]:ring-primary")}
+            data-selected={selected === option}
           >
             {option}
           </Button>

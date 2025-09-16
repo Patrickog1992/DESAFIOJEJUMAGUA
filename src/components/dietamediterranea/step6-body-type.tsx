@@ -1,15 +1,13 @@
 'use client';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 
 type Props = {
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { bodyType: string }) => void;
 };
 
 const options = [
@@ -35,7 +33,7 @@ export function Step6_BodyType({ onContinue }: Props) {
       <CardContent>
         <RadioGroup value={selected} onValueChange={handleSelect} className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {options.map((option) => (
-            <Label key={option.name} htmlFor={option.name} className={cn('flex flex-col items-center space-y-2 rounded-lg border p-4 cursor-pointer', selected === option.name && 'border-primary ring-2 ring-primary')}>
+            <Label key={option.name} htmlFor={option.name} className={cn('flex flex-col items-center space-y-2 rounded-lg border p-4 cursor-pointer', 'has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary')}>
               <Image src={option.img} alt={option.name} width={100} height={200} className="object-contain"/>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value={option.name} id={option.name} />

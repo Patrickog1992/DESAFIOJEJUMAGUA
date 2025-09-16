@@ -1,10 +1,9 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import type { QuizData } from '@/app/dietamediterranea/page';
 
 type Props = {
-  onContinue: (data: Partial<QuizData>) => void;
+  onContinue: (data: { gender: 'male' | 'female' }) => void;
 };
 
 export function Step1_GenderSelection({ onContinue }: Props) {

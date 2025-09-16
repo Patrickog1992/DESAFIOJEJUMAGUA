@@ -4,11 +4,19 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Check } from 'lucide-react';
-import type { QuizData } from '@/app/dietamediterranea/page';
 import { useMemo, useState, useEffect } from 'react';
 
+type QuizData = {
+  gender?: 'male' | 'female';
+  goal?: string;
+  height?: number;
+  currentWeight?: number;
+  targetWeight?: number;
+  age?: number;
+};
+
 type Props = {
-  data: QuizData;
+  data: Partial<QuizData>;
 };
 
 const features = [
@@ -31,7 +39,7 @@ const testimonialsImages = [
 export function Step35_FinalOffer({ data }: Props) {
   const { currentWeight, targetWeight, height, goal, age } = data;
   
-  const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(10 * 60);
 
   useEffect(() => {
     if (timeLeft === 0) return;
