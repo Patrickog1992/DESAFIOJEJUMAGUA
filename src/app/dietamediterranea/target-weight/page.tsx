@@ -29,6 +29,9 @@ function TargetWeightPageContent() {
             <Step20_TargetWeight onContinue={handleContinue} currentWeight={currentWeight ? parseInt(currentWeight) : undefined} />
         </div>
       </div>
+      <footer className="w-full text-center text-sm text-muted-foreground mt-8">
+        <p>Dieta mediterrânea todos os direitos reservados</p>
+      </footer>
     </main>
   );
 }

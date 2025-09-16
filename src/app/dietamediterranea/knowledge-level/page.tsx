@@ -28,6 +28,9 @@ function KnowledgeLevelPageContent() {
             <Step3_KnowledgeLevel onContinue={handleContinue} />
         </div>
       </div>
+      <footer className="w-full text-center text-sm text-muted-foreground mt-8">
+        <p>Dieta mediterrânea todos os direitos reservados</p>
+      </footer>
     </main>
   );
 }
