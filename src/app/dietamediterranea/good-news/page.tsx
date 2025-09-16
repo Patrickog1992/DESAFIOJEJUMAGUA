@@ -11,11 +11,16 @@ function GoodNewsPageContent() {
     router.push(`/dietamediterranea/summary2?${searchParams.toString()}`);
   };
 
+  const data = {
+    currentWeight: Number(searchParams.get('currentWeight')),
+    targetWeight: Number(searchParams.get('targetWeight')),
+  }
+
   return (
     <div className="dietamediterranea-bg min-h-screen w-full">
       <main className="flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-4xl">
-          <Step29_GoodNews onContinue={handleContinue} />
+          <Step29_GoodNews onContinue={handleContinue} data={data} />
         </div>
       </main>
     </div>

@@ -7,19 +7,31 @@ import { format, addDays } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 type Props = {
+  data: {
+    currentWeight?: number;
+    targetWeight?: number;
+  }
   onContinue: () => void;
 };
 
-export function Step29_GoodNews({ onContinue }: Props) {
+export function Step29_GoodNews({ data, onContinue }: Props) {
+  const { currentWeight, targetWeight } = data;
+
   const chartData = useMemo(() => {
+    if (!currentWeight || !targetWeight) {
+        return [
+          { date: 'Hoje', weight: 80 },
+          { date: '45 dias', weight: 70 },
+        ];
+    }
     const today = new Date();
     const endDate = addDays(today, 45);
 
     return [
-      { date: format(today, 'dd/MM'), weight: 80 }, // Example weights
-      { date: format(endDate, 'dd/MM'), weight: 70 },
+      { date: format(today, 'dd/MM'), weight: currentWeight },
+      { date: format(endDate, 'dd/MM'), weight: targetWeight },
     ];
-  }, []);
+  }, [currentWeight, targetWeight]);
 
   return (
     <Card className="w-full max-w-2xl mx-auto text-center">
@@ -28,9 +40,9 @@ export function Step29_GoodNews({ onContinue }: Props) {
         <CardDescription>COM BASE NA SUA RESPOSTA VOCÊ VAI CONSEGUIR CHEGAR AO SEU PESO IDEAL EM MENOS DIAS</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="h-64 mb-4">
+        <div className="h-48 mb-4">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 20, right: 40, left: 0, bottom: 5 }}>
+            <LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis domain={['dataMin - 5', 'dataMax + 5']} hide />
