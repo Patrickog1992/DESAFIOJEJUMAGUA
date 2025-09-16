@@ -165,7 +165,9 @@ export function Step35_FinalOffer({ data }: Props) {
                   plugins={[imageCarouselPlugin.current]}
                   className="w-full"
                   onMouseEnter={imageCarouselPlugin.current.stop}
-                  onMouseLeave={imageCarouselPlugin.current.reset}>
+                  onMouseLeave={imageCarouselPlugin.current.reset}
+                  opts={{ loop: true }}
+                  >
                     <CarouselContent>
                         {testimonialsImages.map((src, index) => (
                              <CarouselItem key={index}>
