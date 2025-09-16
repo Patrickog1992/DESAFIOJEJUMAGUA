@@ -6,15 +6,19 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 type Props = {
   onContinue: () => void;
   currentWeight?: number;
+  targetWeight?: number;
 };
 
-export function Step32_PlanReady({ onContinue, currentWeight }: Props) {
+export function Step32_PlanReady({ onContinue, currentWeight, targetWeight }: Props) {
+  const startWeight = currentWeight || 80;
+  const endWeight = targetWeight || startWeight - 10;
 
-  const weeklyLoss = (currentWeight || 80) > 80 ? 3 : 2;
-  const week2 = (currentWeight || 80) - weeklyLoss;
-  const week3 = week2 - weeklyLoss;
-  const week4 = week3 - weeklyLoss;
+  const totalLoss = startWeight - endWeight;
+  const weeklyLoss = totalLoss / 4;
 
+  const week1 = startWeight - weeklyLoss;
+  const week2 = startWeight - weeklyLoss * 2;
+  const week3 = startWeight - weeklyLoss * 3;
 
   return (
     <Card className="w-full max-w-2xl mx-auto text-center">
@@ -34,23 +38,23 @@ export function Step32_PlanReady({ onContinue, currentWeight }: Props) {
               <TableBody>
                   <TableRow>
                       <TableCell>Semana 1</TableCell>
-                      <TableCell>{currentWeight || 80} kg</TableCell>
-                      <TableCell>{(currentWeight || 80) - weeklyLoss} kg</TableCell>
+                      <TableCell>{startWeight.toFixed(1)} kg</TableCell>
+                      <TableCell>{week1.toFixed(1)} kg</TableCell>
                   </TableRow>
                    <TableRow>
                       <TableCell>Semana 2</TableCell>
                       <TableCell></TableCell>
-                      <TableCell>{week2 - weeklyLoss} kg</TableCell>
+                      <TableCell>{week2.toFixed(1)} kg</TableCell>
                   </TableRow>
                    <TableRow>
                       <TableCell>Semana 3</TableCell>
                        <TableCell></TableCell>
-                      <TableCell>{week3 - weeklyLoss} kg</TableCell>
+                      <TableCell>{week3.toFixed(1)} kg</TableCell>
                   </TableRow>
                    <TableRow>
                       <TableCell>Semana 4</TableCell>
                        <TableCell></TableCell>
-                      <TableCell>{week4 - weeklyLoss} kg</TableCell>
+                      <TableCell>{endWeight.toFixed(1)} kg</TableCell>
                   </TableRow>
               </TableBody>
           </Table>

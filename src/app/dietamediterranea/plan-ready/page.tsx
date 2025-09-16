@@ -12,6 +12,7 @@ function PlanReadyPageContent() {
   };
 
   const currentWeight = searchParams.get('currentWeight');
+  const targetWeight = searchParams.get('targetWeight');
 
   return (
     <div className="dietamediterranea-bg min-h-screen w-full">
@@ -20,6 +21,7 @@ function PlanReadyPageContent() {
           <Step32_PlanReady
             onContinue={handleContinue}
             currentWeight={currentWeight ? Number(currentWeight) : undefined}
+            targetWeight={targetWeight ? Number(targetWeight) : undefined}
           />
         </div>
       </main>
