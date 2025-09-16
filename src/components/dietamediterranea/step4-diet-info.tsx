@@ -45,7 +45,7 @@ export function Step4_DietInfo({ onContinue }: Props) {
         </div>
       </CardContent>
       <CardFooter className="justify-center">
-        <Button onClick={onContinue} size="lg">Continuar</Button>
+        <Button onClick={onContinue} size="lg">VEJA A REPORTAGEM</Button>
       </CardFooter>
     </Card>
   );
