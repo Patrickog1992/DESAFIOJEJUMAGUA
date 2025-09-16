@@ -30,7 +30,7 @@ export function Step29_GoodNews({ onContinue }: Props) {
       <CardContent>
         <div className="h-64 mb-4">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+            <LineChart data={chartData} margin={{ top: 20, right: 40, left: 0, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis domain={['dataMin - 5', 'dataMax + 5']} hide />
