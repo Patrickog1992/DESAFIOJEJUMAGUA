@@ -118,7 +118,7 @@ export function Step35_FinalOffer({ data }: Props) {
     <div className="space-y-6">
         <Card className="w-full max-w-4xl mx-auto text-center border-red-500 border-2">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-red-600">VOCÊ GANHOU 60% DE DESCONTO SOMENTE HOJE</CardTitle>
+            <CardTitle className="text-2xl font-bold text-green-600">VOCÊ GANHOU 60% DE DESCONTO SOMENTE HOJE</CardTitle>
             <p className="font-bold text-lg bg-red-600 text-white rounded-md p-2">
                 Oferta acaba em: <span className="text-yellow-300">{formatTime(timeLeft)}</span>
             </p>
@@ -127,16 +127,16 @@ export function Step35_FinalOffer({ data }: Props) {
             <div className="space-y-2 text-red-600">
                 <h3 className="font-bold text-lg">AGORA</h3>
                 <Image src="https://i.imgur.com/V6997ol.png" alt="Agora" width={200} height={300} className="mx-auto" />
-                <p>Gordura corporal: ~{currentBodyFat.toFixed(1)}%</p>
-                <p>IMC: {currentImc.toFixed(1)}</p>
-                <p>Metabolismo: Lento</p>
+                <p className="font-bold text-lg">Gordura corporal: ~{currentBodyFat.toFixed(1)}%</p>
+                <p className="font-bold text-lg">IMC: {currentImc.toFixed(1)}</p>
+                <p className="font-bold text-lg">Metabolismo: Lento</p>
             </div>
             <div className="space-y-2 text-green-600">
                 <h3 className="font-bold text-lg">COM A DIETA MEDITERRÂNEA</h3>
                  <Image src="https://i.imgur.com/kkc70lF.png" alt="Depois" width={200} height={300} className="mx-auto" />
-                 <p>Gordura corporal: ~{targetBodyFat.toFixed(1)}%</p>
-                 <p>IMC: {targetImc.toFixed(1)}</p>
-                 <p>Metabolismo: Acelerado</p>
+                 <p className="font-bold text-lg">Gordura corporal: ~{targetBodyFat.toFixed(1)}%</p>
+                 <p className="font-bold text-lg">IMC: {targetImc.toFixed(1)}</p>
+                 <p className="font-bold text-lg">Metabolismo: Acelerado</p>
             </div>
           </CardContent>
           <CardFooter className="flex-col gap-4">
