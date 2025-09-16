@@ -11,11 +11,16 @@ function PlanReadyPageContent() {
     router.push(`/dietamediterranea/what-you-get?${searchParams.toString()}`);
   };
 
+  const currentWeight = searchParams.get('currentWeight');
+
   return (
     <div className="dietamediterranea-bg min-h-screen w-full">
       <main className="flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-4xl">
-          <Step32_PlanReady onContinue={handleContinue} />
+          <Step32_PlanReady
+            onContinue={handleContinue}
+            currentWeight={currentWeight ? Number(currentWeight) : undefined}
+          />
         </div>
       </main>
     </div>
