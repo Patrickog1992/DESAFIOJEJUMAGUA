@@ -228,10 +228,20 @@ export function Step35_FinalOffer({ data }: Props) {
             </CardContent>
         </Card>
 
-        <div className="text-center">
-            {/* Garantia de 7 dias image should be here */}
-            <p className="font-bold">Garantia de 7 dias de devolução do dinheiro</p>
-        </div>
+        <Card className="w-full max-w-sm mx-auto text-center">
+          <CardContent className="p-4 space-y-2">
+            <Image
+              src="https://i.imgur.com/6OitfPt.png"
+              alt="Garantia de 7 dias"
+              width={500}
+              height={150}
+              className="mx-auto"
+            />
+            <p className="font-bold text-muted-foreground">
+              Garantia de 7 dias de devolução do dinheiro
+            </p>
+          </CardContent>
+        </Card>
     </div>
   );
 }
