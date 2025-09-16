@@ -1,24 +1,23 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
 
 type Props = {
   onContinue: () => void;
 };
 
-const otherDietsData = [
-  { name: 'Semana 1', peso: 0 },
-  { name: 'Semana 2', peso: -0.2 },
-  { name: 'Semana 3', peso: -0.3 },
-  { name: 'Semana 4', peso: -0.5 },
-];
-
-const ourPlanData = [
-  { name: 'Semana 1', peso: 0 },
-  { name: 'Semana 2', peso: -1.5 },
-  { name: 'Semana 3', peso: -2.5 },
-  { name: 'Semana 4', peso: -4 },
+const chartData = [
+  {
+    name: 'Outras Dietas',
+    perda: 1,
+    fill: 'hsl(var(--destructive))',
+  },
+  {
+    name: 'Dieta Mediterrânea',
+    perda: 3,
+    fill: 'hsl(var(--primary))',
+  },
 ];
 
 export function Step16_Comparison({ onContinue }: Props) {
@@ -32,14 +31,20 @@ export function Step16_Comparison({ onContinue }: Props) {
         <p className="font-bold text-lg mb-4">Taxa de perda de peso</p>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="peso" data={otherDietsData} stroke="#ef4444" name="Outras dietas" strokeWidth={2} />
-              <Line type="monotone" dataKey="peso" data={ourPlanData} stroke="#22c55e" name="Dieta Mediterrânea (3x 🎉)" strokeWidth={3} />
-            </LineChart>
+            <BarChart data={chartData} margin={{ top: 20, right: 0, left: 0, bottom: 5 }} barGap={50}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="name" tickLine={false} axisLine={false} />
+              <YAxis hide={true} domain={[0, 4]} />
+              <Tooltip cursor={{ fill: 'transparent' }} contentStyle={{ display: 'none' }} />
+              <Bar dataKey="perda" radius={[4, 4, 0, 0]}>
+                <LabelList 
+                  dataKey="perda" 
+                  position="top" 
+                  formatter={(value: number) => value > 1 ? '3x 🎉' : '1x'}
+                  className="font-bold fill-foreground"
+                />
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         </div>
         <p className="text-sm text-muted-foreground mt-2">Com base num estudo de 4 semanas com utilizadores da Dieta Mediterrânea</p>
