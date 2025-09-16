@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -9,10 +10,17 @@ type Props = {
 export function Step1_GenderSelection({ onContinue }: Props) {
   return (
     <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
+      <CardHeader className="items-center">
         <CardTitle className="text-center text-2xl font-bold">
           Perca peso e renova sua energia com a dieta mediterrânica personalizada
         </CardTitle>
+        <Image
+          src="https://i.imgur.com/gi1RhCn.png"
+          alt="Dieta Mediterrânica"
+          width={300}
+          height={300}
+          className="my-4 rounded-lg"
+        />
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-4">
         <p>Selecione o tipo de dieta mediterrânica:</p>
