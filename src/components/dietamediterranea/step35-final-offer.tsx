@@ -233,8 +233,8 @@ export function Step35_FinalOffer({ data }: Props) {
             <Image
               src="https://i.imgur.com/6OitfPt.png"
               alt="Garantia de 7 dias"
-              width={500}
-              height={150}
+              width={200}
+              height={200}
               className="mx-auto"
             />
             <p className="font-bold text-muted-foreground">
