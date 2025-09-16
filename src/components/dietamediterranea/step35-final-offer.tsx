@@ -228,20 +228,29 @@ export function Step35_FinalOffer({ data }: Props) {
             </CardContent>
         </Card>
 
-        <Card className="w-full max-w-sm mx-auto text-center">
-          <CardContent className="p-4 space-y-2">
+        <Card className="w-full max-w-2xl mx-auto text-center">
+          <CardContent className="p-6 space-y-4">
             <Image
-              src="https://i.imgur.com/6OitfPt.png"
-              alt="Garantia de 7 dias"
-              width={200}
-              height={200}
+              src="https://i.imgur.com/0XA7W5K.png"
+              alt="Garantia de Reembolso"
+              width={150}
+              height={150}
               className="mx-auto"
             />
-            <p className="font-bold text-muted-foreground">
-              Garantia de 7 dias de devolução do dinheiro
+            <h3 className="text-xl font-bold">Garantia de reembolso</h3>
+            <p className="text-muted-foreground">
+              A compra deste material é totalmente sem risco para você.
+            </p>
+            <p className="text-muted-foreground">
+              Se ele não atender às suas expectativas nos primeiros 30 dias após a compra, nós reembolsaremos todo o valor que você pagou, sem fazer perguntas.
+            </p>
+            <p className="text-muted-foreground">
+              Basta enviar um e-mail para o suporte em <span className="font-semibold text-primary">dietamediterranea@dieta.com.br</span>
             </p>
           </CardContent>
         </Card>
     </div>
   );
 }
+
+    
