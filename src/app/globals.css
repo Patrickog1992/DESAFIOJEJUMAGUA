@@ -74,25 +74,25 @@
   }
 
   .dietamediterranea-bg {
-    --background: 44 87% 95%;
-    --foreground: 39 80% 25%;
-    --card: 44 30% 98%;
-    --card-foreground: 39 80% 25%;
-    --popover: 44 30% 98%;
-    --popover-foreground: 39 80% 25%;
-    --primary: 41 94% 54%;
-    --primary-foreground: 44 100% 98%;
-    --secondary: 44 15% 95%;
-    --secondary-foreground: 39 80% 25%;
-    --muted: 44 15% 95%;
-    --muted-foreground: 44 9% 46%;
-    --accent: 44 10% 96%;
-    --accent-foreground: 39 80% 25%;
+    --background: 85 25% 95%;
+    --foreground: 85 20% 20%;
+    --card: 85 10% 99%;
+    --card-foreground: 85 20% 20%;
+    --popover: 85 10% 99%;
+    --popover-foreground: 85 20% 20%;
+    --primary: 95 45% 48%;
+    --primary-foreground: 95 30% 98%;
+    --secondary: 85 15% 95%;
+    --secondary-foreground: 85 20% 20%;
+    --muted: 85 15% 95%;
+    --muted-foreground: 85 9% 46%;
+    --accent: 85 18% 96%;
+    --accent-foreground: 85 20% 20%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 44 13% 90%;
-    --input: 44 13% 90%;
-    --ring: 41 94% 54%;
+    --border: 85 13% 90%;
+    --input: 85 13% 90%;
+    --ring: 95 45% 48%;
   }
 }
 
