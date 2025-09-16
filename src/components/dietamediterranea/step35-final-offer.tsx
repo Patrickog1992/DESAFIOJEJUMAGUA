@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Check } from 'lucide-react';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
+import Autoplay from "embla-carousel-autoplay";
 
 type QuizData = {
   gender?: 'male' | 'female';
@@ -40,6 +41,10 @@ export function Step35_FinalOffer({ data }: Props) {
   const { currentWeight, targetWeight, height, goal, age } = data;
   
   const [timeLeft, setTimeLeft] = useState(10 * 60);
+
+  const plugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 
   useEffect(() => {
     if (timeLeft === 0) return;
@@ -145,11 +150,15 @@ export function Step35_FinalOffer({ data }: Props) {
                 <CardTitle className="text-center">Veja o antes e depois dos nossos clientes</CardTitle>
             </CardHeader>
             <CardContent>
-                <Carousel>
+                <Carousel 
+                  plugins={[plugin.current]}
+                  className="w-full"
+                  onMouseEnter={plugin.current.stop}
+                  onMouseLeave={plugin.current.reset}>
                     <CarouselContent>
                         {testimonialsImages.map((src, index) => (
                              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                                <Image src={src} alt={`Depoimento ${index + 1}`} width={300} height={400} className="rounded-lg object-cover w-full h-80" />
+                                <Image src={src} alt={`Depoimento ${index + 1}`} width={300} height={400} className="rounded-lg object-contain w-full h-96" />
                             </CarouselItem>
                         ))}
                     </CarouselContent>
