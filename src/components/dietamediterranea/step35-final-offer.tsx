@@ -84,15 +84,15 @@ export function Step35_FinalOffer({ data }: Props) {
             </p>
           </CardHeader>
           <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div className="space-y-2">
+            <div className="space-y-2 text-red-600">
                 <h3 className="font-bold text-lg">AGORA</h3>
                 <Image src="https://i.imgur.com/V6997ol.png" alt="Agora" width={200} height={300} className="mx-auto" />
                 <p>Gordura corporal: ~{currentBodyFat.toFixed(1)}%</p>
                 <p>IMC: {currentImc.toFixed(1)}</p>
                 <p>Metabolismo: Lento</p>
             </div>
-            <div className="space-y-2">
-                <h3 className="font-bold text-lg text-green-600">COM A DIETA MEDITERRÂNEA</h3>
+            <div className="space-y-2 text-green-600">
+                <h3 className="font-bold text-lg">COM A DIETA MEDITERRÂNEA</h3>
                  <Image src="https://i.imgur.com/kkc70lF.png" alt="Depois" width={200} height={300} className="mx-auto" />
                  <p>Gordura corporal: ~{targetBodyFat.toFixed(1)}%</p>
                  <p>IMC: {targetImc.toFixed(1)}</p>
@@ -103,7 +103,7 @@ export function Step35_FinalOffer({ data }: Props) {
               <p className="text-lg font-semibold">O seu plano de perda de peso personalizado está pronto!</p>
               <div className="flex justify-around w-full">
                   <p><strong>Objetivo:</strong> {goal}</p>
-                  <p><strong>Peso alvo:</strong> {targetWeight} kg</p>
+                  <p><strong>Peso alvo:</strong> <span className="text-green-600 font-bold">{targetWeight} kg</span></p>
               </div>
               <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">Obter o meu plano</Button>
           </CardFooter>
