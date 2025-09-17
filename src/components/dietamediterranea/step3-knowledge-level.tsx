@@ -29,7 +29,7 @@ export function Step3_KnowledgeLevel({ onContinue }: Props) {
             variant={'outline'}
             onClick={() => handleSelect(option)}
             size="lg"
-            className={cn("w-full justify-start p-6 text-lg", "data-[selected=true]:ring-2 data-[selected=true]:ring-primary")}
+            className={cn("w-full justify-start p-6 text-lg", "data-[selected=true]:ring-2 data-[selected=true]:ring-primary data-[selected=true]:bg-primary/10")}
             data-selected={selected === option}
           >
             {option}

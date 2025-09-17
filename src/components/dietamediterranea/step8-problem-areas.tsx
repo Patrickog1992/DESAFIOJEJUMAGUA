@@ -46,7 +46,7 @@ export function Step8_ProblemAreas({ onContinue }: Props) {
         </div>
         <div className="w-1/2 flex flex-col gap-4">
           {options.map((option) => (
-            <Label key={option} htmlFor={option} className="flex items-center space-x-2 rounded-lg border p-4 cursor-pointer has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+            <Label key={option} htmlFor={option} className={cn("flex items-center space-x-2 rounded-lg border p-4 cursor-pointer", "has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary has-[:checked]:bg-primary/10")}>
               <Checkbox id={option} onCheckedChange={() => handleSelect(option)} checked={selected.includes(option)} />
               <span>{option}</span>
             </Label>

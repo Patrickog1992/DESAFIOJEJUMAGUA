@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 type Props = {
   onContinue: (data: { mealsPerDay: string }) => void;
@@ -32,7 +33,7 @@ export function Step24_MealsPerDay({ onContinue }: Props) {
       <CardContent className="flex flex-col gap-4">
         <RadioGroup value={selected} onValueChange={handleSelect}>
           {options.map((option) => (
-             <Label key={option.count} htmlFor={option.count} className="flex flex-col items-start space-y-1 rounded-lg border p-4 cursor-pointer has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary">
+             <Label key={option.count} htmlFor={option.count} className={cn("flex flex-col items-start space-y-1 rounded-lg border p-4 cursor-pointer", "has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary has-[:checked]:bg-primary/10")}>
                <div className="flex items-center space-x-2">
                  <RadioGroupItem value={option.count} id={option.count} />
                  <span className="font-bold">{option.count}</span>
