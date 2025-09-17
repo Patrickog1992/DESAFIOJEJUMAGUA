@@ -32,7 +32,9 @@ export function Step14_LastTimeAtGoalWeight({ onContinue }: Props) {
       <CardContent className="flex flex-col gap-4">
         <RadioGroup value={selected} onValueChange={handleSelect}>
           {options.map((option) => (
-             <Label key={option} htmlFor={option} className={cn("flex items-center space-x-2 rounded-lg border p-4 cursor-pointer", "has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary has-[:checked]:bg-primary/10")}>
+             <Label key={option} htmlFor={option} className={cn("flex items-center space-x-2 rounded-lg border p-4 cursor-pointer", {
+                "border-primary ring-2 ring-primary bg-primary/10": selected === option
+             })}>
                <RadioGroupItem value={option} id={option} />
                <span>{option}</span>
             </Label>

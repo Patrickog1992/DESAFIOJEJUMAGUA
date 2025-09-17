@@ -33,7 +33,9 @@ export function Step6_BodyType({ onContinue }: Props) {
       <CardContent>
         <RadioGroup value={selected} onValueChange={handleSelect} className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {options.map((option) => (
-            <Label key={option.name} htmlFor={option.name} className={cn('flex flex-col items-center space-y-2 rounded-lg border p-4 cursor-pointer', 'has-[:checked]:border-primary has-[:checked]:ring-2 has-[:checked]:ring-primary has-[:checked]:bg-primary/10')}>
+            <Label key={option.name} htmlFor={option.name} className={cn('flex flex-col items-center space-y-2 rounded-lg border p-4 cursor-pointer', {
+                "border-primary ring-2 ring-primary bg-primary/10": selected === option.name
+            })}>
               <Image src={option.img} alt={option.name} width={100} height={200} className="object-contain"/>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value={option.name} id={option.name} />
