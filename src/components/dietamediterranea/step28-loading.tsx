@@ -2,7 +2,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import { Check } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 const loadingSteps = [
   'Revendo suas respostas...',
@@ -11,9 +10,11 @@ const loadingSteps = [
   'Finalizando o seu plano personalizado...',
 ];
 
-export function Step28_Loading() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+type Props = {
+    onComplete: () => void;
+}
+
+export function Step28_Loading({ onComplete }: Props) {
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -27,9 +28,9 @@ export function Step28_Loading() {
 
   useEffect(() => {
     if (progress >= 100) {
-      router.push(`/dietamediterranea/good-news?${searchParams.toString()}`);
+        onComplete();
     }
-  }, [progress, router, searchParams]);
+  }, [progress, onComplete]);
 
   useEffect(() => {
     const stepIndex = Math.floor(progress / (100 / loadingSteps.length));
