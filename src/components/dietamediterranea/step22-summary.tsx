@@ -7,7 +7,7 @@ import { useMemo } from 'react';
 type QuizData = {
   gender?: 'male' | 'female';
   knowledge?: string;
-  goal?: string;
+  goals?: string[];
   bodyType?: string;
   desiredBody?: string;
   problemAreas?: string[];
@@ -63,7 +63,7 @@ const IMCBar = ({ imcValue }: { imcValue: number }) => {
 };
 
 export function Step22_Summary({ data, onContinue }: Props) {
-  const { currentWeight, height, goal, exerciseFrequency } = data;
+  const { currentWeight, height, goals, exerciseFrequency } = data;
 
   const { imc, imcStatus, bodyFat } = useMemo(() => {
     if (!height || !currentWeight) return { imc: 0, imcStatus: '', bodyFat: 0 };
@@ -92,6 +92,13 @@ export function Step22_Summary({ data, onContinue }: Props) {
     }
   }, [exerciseFrequency]);
 
+  const displayGoals = useMemo(() => {
+    if (goals && goals.length > 0) {
+      return goals.join(', ');
+    }
+    return 'Não informado';
+  }, [goals]);
+
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
@@ -109,7 +116,7 @@ export function Step22_Summary({ data, onContinue }: Props) {
              <p><strong>Gordura corporal:</strong> ~{bodyFat.toFixed(1)}%</p>
              <p><strong>Nível de atividade:</strong> {activityLevel}</p>
              <p><strong>Nível de energia:</strong> Baixo</p>
-             <p><strong>Objetivo:</strong> {goal || 'Não informado'}</p>
+             <p><strong>Objetivo:</strong> {displayGoals}</p>
           </div>
         </div>
         <div className="flex justify-center">
