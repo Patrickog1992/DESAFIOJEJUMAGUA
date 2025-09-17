@@ -39,7 +39,7 @@ import { Step32_PlanReady } from '@/components/dietamediterranea/step32-plan-rea
 import { Step33_WhatYouGet } from '@/components/dietamediterranea/step33-what-you-get';
 import { Step34_Testimonials } from '@/components/dietamediterranea/step34-testimonials';
 
-type QuizData = {
+export type QuizData = {
     gender?: 'male' | 'female';
     knowledge?: string;
     goals?: string[];
@@ -70,7 +70,7 @@ const steps = [
     'past-diets', 'comparison', 'main-reason', 'height', 'current-weight', 'target-weight', 'age',
     'summary', 'weight-loss-timeline', 'meals-per-day', 'exclude-protein', 'exclude-veggies',
     'exclude-grains', 'loading', 'good-news', 'summary2', 'fat-burning-rate', 'plan-ready',
-    'what-you-get', 'testimonials', 'final-offer'
+    'what-you-get', 'testimonials'
 ];
 
 function DietaMediterraneaPageContent() {
@@ -82,7 +82,12 @@ function DietaMediterraneaPageContent() {
     const updatedData = { ...quizData, ...data };
     setQuizData(updatedData);
 
-    if (currentStepIndex === steps.length - 1) {
+    const nextStepIndex = currentStepIndex + 1;
+
+    if (nextStepIndex < steps.length) {
+      setCurrentStepIndex(nextStepIndex);
+    } else {
+        // Last step was completed, navigate to final offer
         const params = new URLSearchParams();
         Object.entries(updatedData).forEach(([key, value]) => {
             if (Array.isArray(value)) {
@@ -92,8 +97,6 @@ function DietaMediterraneaPageContent() {
             }
         });
         router.push(`/dietamediterranea/final-offer?${params.toString()}`);
-    } else {
-        setCurrentStepIndex(prev => prev + 1);
     }
   };
 
@@ -171,17 +174,6 @@ function DietaMediterraneaPageContent() {
             return <Step33_WhatYouGet onContinue={() => handleNextStep({})} />;
         case 'testimonials':
             return <Step34_Testimonials onContinue={() => handleNextStep({})} />;
-        case 'final-offer':
-             const params = new URLSearchParams();
-             Object.entries(quizData).forEach(([key, value]) => {
-                if (Array.isArray(value)) {
-                    value.forEach(v => params.append(key, v.toString()));
-                } else if (value !== undefined) {
-                    params.set(key, value.toString());
-                }
-            });
-            router.push(`/dietamediterranea/final-offer?${params.toString()}`);
-            return <div>Redirecionando...</div>;
         default:
             return <Step1_GenderSelection onContinue={handleNextStep} />;
     }
