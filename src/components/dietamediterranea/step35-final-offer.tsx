@@ -117,7 +117,7 @@ export function Step35_FinalOffer({ data }: Props) {
   }, [height, currentWeight, targetWeight, age, data.gender]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-x-hidden">
         <Card className="w-full max-w-4xl mx-auto text-center border-red-500 border-2">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-green-600">VOCÊ GANHOU 60% DE DESCONTO SOMENTE HOJE</CardTitle>
@@ -205,8 +205,8 @@ export function Step35_FinalOffer({ data }: Props) {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
                 </Carousel>
             </CardContent>
         </Card>

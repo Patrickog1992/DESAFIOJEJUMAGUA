@@ -14,13 +14,13 @@ type Props = {
 const testimonials = [
   { name: 'Jenifer L.', text: '“Há 2 meses pesava 89 kg. Agora peso 64 Me sinto melhor, pareço melhor e finalmente sinto-me confiante no meu corpo.”', img: 'https://i.imgur.com/Kd5Dboy.jpg' },
   { name: 'Ana Paula.', text: '“Estou no dia 15. Perdi 12 kg. Adoro a forma como me vejo ao espelho. Durmo melhor e sinto-me com mais energia também!”', img: 'https://i.imgur.com/YOMEZLJ.jpg' },
-  { name: 'Bruna Alves.', text: '“O médico disse-me que eu era pré-diabético e que tinha de mudar alguma coisa. Este plano salvou-me literalmente a vida, perdi 34 kg em 6 semanas.”', img: 'https://i.imgur.com/fogjsiC.jpg' },
+  { name: 'Bruna Alves.', text: '“O médico disse-me que eu era pré-diabético e que tinha de mudar alguma coisa. Este plano salvou-me literally a vida, perdi 34 kg em 6 semanas.”', img: 'https://i.imgur.com/fogjsiC.jpg' },
   { name: 'Paula Nunes.', text: '“O plano é fantástico! Posso comer o que quiser e toda a comida é deliciosa. Perdi 24 kg em 7 semanas e a minha saúde intestinal melhorou!”', img: 'https://i.imgur.com/R6HKKtp.jpg' },
 ];
 
 export function Step34_Testimonials({ onContinue }: Props) {
     const plugin = React.useRef(
-        Autoplay({ delay: 3000, stopOnInteraction: true })
+        Autoplay({ delay: 3000, stopOnInteraction: false })
     );
 
   return (
@@ -33,8 +33,9 @@ export function Step34_Testimonials({ onContinue }: Props) {
         <Carousel
             plugins={[plugin.current]}
             className="w-full"
-            onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.reset}
+            opts={{
+              loop: true,
+            }}
         >
             <CarouselContent>
                 {testimonials.map((testimonial, index) => (
