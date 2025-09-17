@@ -77,10 +77,10 @@ export function Step35_FinalOffer({ data }: Props) {
   const [timeLeft, setTimeLeft] = useState(10 * 60);
 
   const imageCarouselPlugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 2000, stopOnInteraction: false })
   );
   const commentCarouselPlugin = useRef(
-    Autoplay({ delay: 3500, stopOnInteraction: true })
+    Autoplay({ delay: 3500, stopOnInteraction: false })
   );
 
   useEffect(() => {
@@ -194,8 +194,6 @@ export function Step35_FinalOffer({ data }: Props) {
                 <Carousel 
                   plugins={[imageCarouselPlugin.current]}
                   className="w-full"
-                  onMouseEnter={imageCarouselPlugin.current.stop}
-                  onMouseLeave={imageCarouselPlugin.current.reset}
                   opts={{ loop: true }}
                   >
                     <CarouselContent>
@@ -220,8 +218,6 @@ export function Step35_FinalOffer({ data }: Props) {
                     opts={{ loop: true, align: "start" }}
                     plugins={[commentCarouselPlugin.current]}
                     className="w-full"
-                    onMouseEnter={commentCarouselPlugin.current.stop}
-                    onMouseLeave={commentCarouselPlugin.current.reset}
                 >
                     <CarouselContent className="-ml-4">
                         {writtenTestimonials.map((testimonial, index) => (
