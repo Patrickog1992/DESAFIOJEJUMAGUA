@@ -21,6 +21,8 @@ type Props = {
   data: Partial<QuizData>;
 };
 
+const checkoutUrl = 'https://pay.kirvano.com/66b7ab2a-9fac-43a3-bdd7-c65522aa5a56';
+
 const features = [
     { title: 'Mais de 500 Receitas Mediterrânicas', description: 'Plano personalizado perfeito para si e que o ajudará a perder peso da forma mais agradável.' },
     { title: 'Mais de 100 Treinos e Exercícios', description: 'Treinos simples, exercícios de ioga, guias de meditação e muito mais para o ajudar a perder peso mais rapidamente e a ver resultados mais cedo.' },
@@ -145,7 +147,9 @@ export function Step35_FinalOffer({ data }: Props) {
                   <p><strong>Objetivo:</strong> {goal}</p>
                   <p><strong>Peso alvo:</strong> <span className="text-green-600 font-bold">{targetWeight} kg</span></p>
               </div>
-              <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">Obter o meu plano</Button>
+              <a href={checkoutUrl} className='w-full'>
+                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">Obter o meu plano</Button>
+              </a>
           </CardFooter>
         </Card>
 
@@ -176,7 +180,9 @@ export function Step35_FinalOffer({ data }: Props) {
                     </p>
                     <p className="font-semibold">Pagamento Único</p>
                 </div>
-                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">OBTER O MEU PLANO</Button>
+                <a href={checkoutUrl} className='w-full'>
+                    <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 animate-pulse">OBTER O MEU PLANO</Button>
+                </a>
             </CardFooter>
         </Card>
         
