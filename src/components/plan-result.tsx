@@ -333,7 +333,7 @@ export function PlanResult({
                       alt={`Depoimento ${index + 1}`}
                       width={600}
                       height={400}
-                      className="rounded-lg object-cover w-full h-64"
+                      className="rounded-lg object-contain w-full h-64"
                     />
                   </CarouselItem>
                 ))}
