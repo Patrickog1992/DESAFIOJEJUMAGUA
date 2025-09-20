@@ -74,7 +74,7 @@ export function TestimonialPage({ onContinue, gender }: TestimonialPageProps) {
       <CardContent className="space-y-4">
         <div className="flex justify-center items-center">
           <Image
-            src="https://i.imgur.com/SMrGKnM.png"
+            src="https://i.imgur.com/S5Aj7OJ.jpg"
             alt="Depoimento de Joana Sousa"
             width={400}
             height={300}
@@ -84,7 +84,7 @@ export function TestimonialPage({ onContinue, gender }: TestimonialPageProps) {
         </div>
         <div className="bg-accent/50 p-4 rounded-lg">
           <CardTitle className="text-xl mb-2">
-            Perdeu 12 kg em 2 meses
+            Perdeu 12 KG em 15 dias
           </CardTitle>
           <CardDescription className="text-base text-foreground">
             "Sempre lutei com o meu peso, mas este plano tornou tudo mais fácil.
