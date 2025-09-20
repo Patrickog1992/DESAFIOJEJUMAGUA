@@ -50,6 +50,10 @@ const maleImages = {
     'https://i.imgur.com/QWy9aD8.jpeg',
     'https://i.imgur.com/jJ7RuKK.jpeg',
     'https://i.imgur.com/thHqvuZ.jpeg',
+    'https://i.imgur.com/ipOh27y.jpg',
+    'https://i.imgur.com/AJCfcXk.jpg',
+    'https://i.imgur.com/BTYdqvQ.jpg',
+    'https://i.imgur.com/TAUXKtX.jpg',
   ],
   offer: 'https://i.imgur.com/KDJiZEj.jpeg',
 };
@@ -64,6 +68,10 @@ const femaleImages = {
     'https://i.imgur.com/Kd5Dboy.jpg',
     'https://i.imgur.com/YOMEZLJ.jpg',
     'https://i.imgur.com/fogjsiC.jpg',
+    'https://i.imgur.com/ipOh27y.jpg',
+    'https://i.imgur.com/AJCfcXk.jpg',
+    'https://i.imgur.com/BTYdqvQ.jpg',
+    'https://i.imgur.com/TAUXKtX.jpg',
   ],
   offer: 'https://i.imgur.com/RwRWGDz.jpeg',
 };
