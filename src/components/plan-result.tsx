@@ -55,16 +55,10 @@ const benefits = [
   'Aprende novos hábitos alimentares e vai controlar o desejo por comida gordurosa toda hora',
 ];
 
-const femaleTestimonialImages = [
-  'https://i.imgur.com/aY0P64q.jpg',
-  'https://i.imgur.com/Spft7CI.jpg',
-  'https://i.imgur.com/78J5bni.jpg',
-];
-
-const maleTestimonialImages = [
-  'https://i.imgur.com/PIEWVJJ.jpeg',
-  'https://i.imgur.com/e64XRjq.jpeg',
-  'https://i.imgur.com/xMHRSiO.jpg',
+const testimonialImages = [
+  'https://i.imgur.com/TAUXKtX.jpg',
+  'https://i.imgur.com/BTYdqvQ.jpg',
+  'https://i.imgur.com/AJCfcXk.jpg',
 ];
 
 export function PlanResult({
@@ -82,8 +76,6 @@ export function PlanResult({
   const [imc, setImc] = useState<number>(0);
   const [imcStatus, setImcStatus] = useState<string>('');
   const [imcPosition, setImcPosition] = useState(0);
-
-  const testimonialImages = gender === 'female' ? femaleTestimonialImages : maleTestimonialImages;
 
   useEffect(() => {
     setIsClient(true);
