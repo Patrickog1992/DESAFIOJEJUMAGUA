@@ -27,19 +27,15 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div
-          className="relative w-full"
-          style={{ paddingBottom: '177.78%' }}
-        >
+        <div style={{ margin: '0 auto', maxWidth: '400px' }}>
           <div
             id="vid_68d1a91313a017c11def1ee3"
-            className="absolute top-0 left-0 w-full h-full"
-          >
-            <Script
-              src="https://scripts.converteai.net/b45e4a12-72fd-43f2-a7e4-73d6b242d5d9/players/68d1a91313a017c11def1ee3/player.js"
-              strategy="afterInteractive"
-            />
-          </div>
+            style={{ display: 'block', width: '100%' }}
+          ></div>
+          <Script
+            src="https://scripts.converteai.net/b45e4a12-72fd-43f2-a7e4-73d6b242d5d9/players/68d1a91313a017c11def1ee3/player.js"
+            strategy="afterInteractive"
+          />
         </div>
       </CardContent>
       <CardFooter className="justify-center">
