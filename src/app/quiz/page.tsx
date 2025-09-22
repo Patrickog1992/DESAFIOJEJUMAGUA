@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -113,26 +113,41 @@ function QuizPageContent() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [quizData, setQuizData] = useState<QuizData>({});
 
-  const handleNextStep = (data: Partial<QuizData>) => {
-    const updatedData = { ...quizData, ...data };
-    setQuizData(updatedData);
+  const currentStep = steps[currentStepIndex];
 
-    const nextStepIndex = currentStepIndex + 1;
-
-    if (nextStepIndex < steps.length) {
-        setCurrentStepIndex(nextStepIndex);
-    } else {
+  useEffect(() => {
+    if (currentStep === 'resultado-plano') {
+      const params = new URLSearchParams();
+      Object.entries(quizData).forEach(([key, value]) => {
+        if (value !== undefined) {
+          params.set(key, value.toString());
+        }
+      });
+      router.push(`/resultado-plano?${params.toString()}`);
+    } else if (currentStep === 'oferta-unica') {
+      const offerParams = new URLSearchParams();
+      Object.entries(quizData).forEach(([key, value]) => {
+        if (value !== undefined) {
+          offerParams.set(key, value.toString());
+        }
+      });
+      router.push(`/oferta-unica?${offerParams.toString()}`);
+    } else if (currentStepIndex >= steps.length) {
         const params = new URLSearchParams();
-        Object.entries(updatedData).forEach(([key, value]) => {
+        Object.entries(quizData).forEach(([key, value]) => {
             if (value !== undefined) {
                 params.set(key, value.toString());
             }
         });
         router.push(`/oferta-unica?${params.toString()}`);
     }
-  };
+  }, [currentStepIndex, quizData, router, currentStep]);
 
-  const currentStep = steps[currentStepIndex];
+  const handleNextStep = (data: Partial<QuizData>) => {
+    const updatedData = { ...quizData, ...data };
+    setQuizData(updatedData);
+    setCurrentStepIndex(prevIndex => prevIndex + 1);
+  };
 
   const renderStep = () => {
     switch (currentStep) {
@@ -205,22 +220,8 @@ function QuizPageContent() {
       case 'plano-carregando':
         return <LoadingPlan onComplete={() => handleNextStep({})} />;
       case 'resultado-plano':
-         const params = new URLSearchParams();
-         Object.entries(quizData).forEach(([key, value]) => {
-            if (value !== undefined) {
-                params.set(key, value.toString());
-            }
-        });
-        router.push(`/resultado-plano?${params.toString()}`);
         return <div>Carregando resultado...</div>;
       case 'oferta-unica':
-         const offerParams = new URLSearchParams();
-         Object.entries(quizData).forEach(([key, value]) => {
-            if (value !== undefined) {
-                offerParams.set(key, value.toString());
-            }
-        });
-        router.push(`/oferta-unica?${offerParams.toString()}`);
         return <div>Carregando oferta...</div>;
       default:
         return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
