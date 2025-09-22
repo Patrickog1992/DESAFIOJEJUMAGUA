@@ -28,7 +28,7 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
       <CardContent>
         <div style={{position: 'relative', width: '100%', height: 0, paddingBottom: '177.78%'}}>
           <iframe
-            src="https://www.youtube.com/embed/KJjoEC6p0CQ?rel=0&controls=1&modestbranding=1"
+            src="https://www.youtube.com/embed/A7d-V2ohh2I?rel=0&controls=1&modestbranding=1"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
