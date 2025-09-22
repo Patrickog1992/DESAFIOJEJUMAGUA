@@ -9,6 +9,7 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Script from 'next/script';
 
 type NutritionistVideoProps = {
   onContinue: () => void;
@@ -26,15 +27,11 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div style={{position: 'relative', width: '100%', height: 0, paddingBottom: '177.78%'}}>
-          <iframe
-            src="https://www.youtube.com/embed/A7d-V2ohh2I?rel=0&controls=1&modestbranding=1"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}
-          ></iframe>
+        <div id="vid_68d1a91313a017c11def1ee3">
+          <Script
+            src="https://scripts.converteai.net/b45e4a12-72fd-43f2-a7e4-73d6b242d5d9/players/68d1a91313a017c11def1ee3/player.js"
+            strategy="afterInteractive"
+          />
         </div>
       </CardContent>
       <CardFooter className="justify-center">
