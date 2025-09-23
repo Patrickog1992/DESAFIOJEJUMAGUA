@@ -211,7 +211,7 @@ export function PlanResult({
         <div className="text-center">
           <Button
             size="lg"
-            className="w-full max-w-md mx-auto text-lg h-12"
+            className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
             onClick={handleContinue}
           >
             QUERO MEU PLANO PERSONALIZADO
@@ -308,7 +308,7 @@ export function PlanResult({
         <div className="text-center">
           <Button
             size="lg"
-            className="w-full max-w-md mx-auto text-lg h-12"
+            className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
             onClick={handleContinue}
           >
             OBTER O DESAFIO DO JEJUM DE ÁGUA
@@ -393,7 +393,7 @@ export function PlanResult({
           <div className="text-center">
             <Button
               size="lg"
-              className="w-full max-w-md mx-auto text-lg h-12"
+              className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
               onClick={handleContinue}
             >
               QUERO O MEU JEJUM DE ÁGUA
