@@ -131,11 +131,7 @@ export function Step30_FinalOffer({ data }: Props) {
             </div>
              <Card className="shadow-lg border-none bg-transparent text-center">
                 <CardContent className="p-0">
-                    <p className="text-lg text-gray-700">Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso.
-                    Este método exclusivo oferece sessões de hipnoterapia cientificamente comprovadas, que atuam diretamente nos seus gatilhos de alimentação emocional e barreiras subconscientes que dificultam o emagrecimento.
-                    Nossas pesquisas mostram que quem segue o Método HipnoFit alcança resultados mais rápidos e consistentes do que com métodos tradicionais e 94% conseguem manter os resultados a longo prazo.
-                    O melhor de tudo é que o plano é pra sempre, garantindo que você tenha suporte contínuo na sua transformação e manutenção dos resultados.
-                    </p>
+                <p className="text-lg text-gray-700">Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso. Este método exclusivo oferece sessões de hipnoterapia cientificamente comprovadas, que atuam diretamente nos seus gatilhos de alimentação emocional e barreiras subconscientes que dificultam o emagrecimento. Nossas pesquisas mostram que quem segue o Método HipnoFit alcança resultados mais rápidos e consistentes do que com métodos tradicionais e 94% conseguem manter os resultados a longo prazo. O melhor de tudo é que o plano é pra sempre, garantindo que você tenha suporte contínuo na sua transformação e manutenção dos resultados.</p>
                 </CardContent>
             </Card>
 
