@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
         hostname: 'no.diet',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hypnozio.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
