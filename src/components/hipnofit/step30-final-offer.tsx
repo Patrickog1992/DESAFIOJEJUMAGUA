@@ -44,13 +44,18 @@ export function Step30_FinalOffer({ data }: Props) {
 
     return (
         <div className="space-y-8 font-body">
-            <Card className="shadow-2xl border-4 border-green-500">
-                <CardHeader className="text-center bg-gray-50">
-                    <CardDescription>Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso.
+             <Card className="shadow-lg border-none bg-transparent text-center">
+                <CardContent className="p-0">
+                    <p className="text-lg text-gray-700">Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso.
                     Este método exclusivo oferece sessões de hipnoterapia cientificamente comprovadas, que atuam diretamente nos seus gatilhos de alimentação emocional e barreiras subconscientes que dificultam o emagrecimento.
                     Nossas pesquisas mostram que quem segue o Método HipnoFit alcança resultados mais rápidos e consistentes do que com métodos tradicionais e 94% conseguem manter os resultados a longo prazo.
                     O melhor de tudo é que o plano é pra sempre, garantindo que você tenha suporte contínuo na sua transformação e manutenção dos resultados.
-                    </CardDescription>
+                    </p>
+                </CardContent>
+            </Card>
+
+            <Card className="shadow-2xl border-4 border-green-500">
+                <CardHeader className="text-center bg-gray-50">
                     <CardTitle className="text-2xl font-bold font-headline">O QUE VOCÊ VAI RECEBER</CardTitle>
                     <CardDescription className="text-lg text-green-600 font-semibold">Oferta especial personalizada</CardDescription>
                 </CardHeader>
@@ -146,8 +151,8 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="text-center font-headline">Ainda com dúvidas? Veja um exemplo!</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                    <div style={{ background: '#DCF8C6', padding: '10px 15px', borderRadius: '20px 20px 0 20px', maxWidth: '320px' }}>
-                        <iframe width="300" height="60" src="https://vocaroo.com/embed/1lJUNQ7OS18y?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
+                    <div className="bg-[#DCF8C6] p-2 rounded-lg w-full max-w-sm flex items-center gap-2" style={{ borderRadius: '20px 20px 0 20px' }}>
+                        <audio controls src="https://vocaroo.com/media_command.php?media=s1lJUNQ7OS18y&command=download_mp3" className="w-full"></audio>
                     </div>
                 </CardContent>
             </Card>
