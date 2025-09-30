@@ -79,7 +79,7 @@ const CustomAudioPlayer = ({ src }: { src: string }) => {
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
     return (
-        <div className="w-full max-w-sm p-4 bg-gray-100 rounded-lg flex items-center gap-4">
+        <div className="w-full max-w-sm p-6 bg-blue-100 rounded-lg flex items-center gap-4">
             <audio 
                 ref={audioRef} 
                 src={src} 
