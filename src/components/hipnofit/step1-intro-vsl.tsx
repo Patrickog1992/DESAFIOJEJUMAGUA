@@ -27,7 +27,7 @@ export function Step1_IntroVSL({ onContinue }: Props) {
         <CardDescription className="text-lg mt-2">(Veja o vídeo abaixo com o som ligado)</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="w-full mx-auto aspect-video relative">
+        <div className="w-full mx-auto aspect-[4/3] relative">
              <vturb-smartplayer
                 id="vid-68dbf93c2980edbc297eb86d"
                 class="absolute top-0 left-0 w-full h-full"
