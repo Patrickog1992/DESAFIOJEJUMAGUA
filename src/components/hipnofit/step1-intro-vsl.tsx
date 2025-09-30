@@ -27,7 +27,7 @@ export function Step1_IntroVSL({ onContinue }: Props) {
         <CardDescription className="text-lg mt-2">(Veja o vídeo abaixo com o som ligado)</CardDescription>
       </CardHeader>
       <CardContent>
-        <div id="vid-68dbe28e1f6255275d07b122" style={{ display: 'block', margin: '0 auto', width: '100%' }}></div>
+        <div id="vid-68dbe28e1f6255275d07b122" className="w-full mx-auto"></div>
         <Script
           src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68dbe28e1f6255275d07b122/v4/player.js"
           strategy="afterInteractive"
