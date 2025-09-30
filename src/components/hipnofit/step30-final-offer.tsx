@@ -60,7 +60,7 @@ export function Step30_FinalOffer({ data }: Props) {
       };
 
     return (
-        <div className="space-y-8 font-body">
+        <div className="space-y-8 font-body overflow-x-hidden">
             <div className="bg-red-600 text-white text-center p-3 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold">VOCÊ ACABA DE GANHAR 60% DE DESCONTO VÁLIDO SOMENTE EM: <span className="text-yellow-300">{formatTime(timeLeft)}</span></h2>
             </div>
@@ -101,6 +101,7 @@ export function Step30_FinalOffer({ data }: Props) {
                             de <span className="line-through">R$ 197,00</span> por apenas
                         </p>
                         <p className="text-5xl font-extrabold text-green-600 my-2">R$ 47,00</p>
+                         <p className="font-semibold">Pagamento Único</p>
                          <a href={checkoutUrl} className="block w-full mt-4">
                             <Button size="lg" className="w-full text-lg h-14 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong">
                                 QUERO MEU PLANO AGORA
@@ -206,5 +207,3 @@ export function Step30_FinalOffer({ data }: Props) {
         </div>
     );
 }
-
-    
