@@ -3,12 +3,14 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Check, Lock } from 'lucide-react';
+import { Check, Lock, Play, Pause } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Autoplay from "embla-carousel-autoplay";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
+import { Progress } from '@/components/ui/progress';
+
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -37,6 +39,71 @@ const faqItems = [
     { question: "Quanto tempo até ver os resultados?", answer: "Muitos usuários relatam sentir uma mudança em sua mentalidade e hábitos após as primeiras sessões. Resultados visíveis na balança geralmente aparecem nos primeiros 7 dias e se intensificam nas semanas seguintes." },
     { question: "E se não funcionar para mim?", answer: "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito com o programa por qualquer motivo, basta nos contatar para um reembolso total." },
 ];
+
+const CustomAudioPlayer = ({ src }: { src: string }) => {
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [duration, setDuration] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+
+    const togglePlayPause = () => {
+        const audio = audioRef.current;
+        if (!audio) return;
+        if (isPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
+
+    const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        const setAudioData = () => {
+            setDuration(audio.duration);
+            setCurrentTime(audio.currentTime);
+        };
+
+        const setAudioTime = () => setCurrentTime(audio.currentTime);
+
+        audio.addEventListener('loadeddata', setAudioData);
+        audio.addEventListener('timeupdate', setAudioTime);
+        audio.addEventListener('ended', () => setIsPlaying(false));
+
+        return () => {
+            audio.removeEventListener('loadeddata', setAudioData);
+            audio.removeEventListener('timeupdate', setAudioTime);
+            audio.removeEventListener('ended', () => setIsPlaying(false));
+        };
+    }, []);
+
+    const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+
+    return (
+        <div className="w-full max-w-sm p-4 bg-gray-100 rounded-lg flex items-center gap-4">
+            <audio ref={audioRef} src={src} preload="metadata"></audio>
+            <Button onClick={togglePlayPause} size="icon" variant="ghost" className="rounded-full">
+                {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
+            </Button>
+            <div className="flex-grow space-y-1">
+                <Progress value={progress} />
+                <div className="flex justify-between text-xs text-gray-500">
+                    <span>{formatTime(currentTime)}</span>
+                    <span>{formatTime(duration)}</span>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 
 export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
@@ -172,10 +239,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="text-center font-headline">Ainda com dúvidas? Escute um exemplo!</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                   <audio controls className="w-full max-w-sm">
-                        <source src="https://media.vocaroo.com/mp3/1lJUNQ7OS18y" type="audio/mpeg" />
-                        Seu navegador não suporta o elemento de áudio.
-                    </audio>
+                    <CustomAudioPlayer src="https://media.vocaroo.com/mp3/1lJUNQ7OS18y" />
                 </CardContent>
             </Card>
 
