@@ -148,7 +148,7 @@ export function Step30_FinalOffer({ data }: Props) {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-center font-headline">Ainda com dúvidas? Veja um exemplo!</CardTitle>
+                    <CardTitle className="text-center font-headline">Ainda com dúvidas? Escute um exemplo!</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center">
                    <audio controls className="w-full max-w-sm">
