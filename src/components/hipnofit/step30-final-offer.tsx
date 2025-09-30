@@ -57,39 +57,37 @@ const CustomAudioPlayer = ({ src }: { src: string }) => {
         setIsPlaying(!isPlaying);
     };
 
+    const handleTimeUpdate = () => {
+        if (audioRef.current) {
+            setCurrentTime(audioRef.current.currentTime);
+        }
+    };
+    
+    const handleLoadedMetadata = () => {
+        if (audioRef.current) {
+            setDuration(audioRef.current.duration);
+        }
+    };
+
     const formatTime = (time: number) => {
+        if (isNaN(time) || time === 0) return '0:00';
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
-
-        const setAudioData = () => {
-            setDuration(audio.duration);
-            setCurrentTime(audio.currentTime);
-        };
-
-        const setAudioTime = () => setCurrentTime(audio.currentTime);
-
-        audio.addEventListener('loadeddata', setAudioData);
-        audio.addEventListener('timeupdate', setAudioTime);
-        audio.addEventListener('ended', () => setIsPlaying(false));
-
-        return () => {
-            audio.removeEventListener('loadeddata', setAudioData);
-            audio.removeEventListener('timeupdate', setAudioTime);
-            audio.removeEventListener('ended', () => setIsPlaying(false));
-        };
-    }, []);
-
     const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
     return (
         <div className="w-full max-w-sm p-4 bg-gray-100 rounded-lg flex items-center gap-4">
-            <audio ref={audioRef} src={src} preload="metadata"></audio>
+            <audio 
+                ref={audioRef} 
+                src={src} 
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedMetadata={handleLoadedMetadata}
+                onEnded={() => setIsPlaying(false)}
+                preload="metadata"
+            ></audio>
             <Button onClick={togglePlayPause} size="icon" variant="ghost" className="rounded-full">
                 {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
             </Button>
