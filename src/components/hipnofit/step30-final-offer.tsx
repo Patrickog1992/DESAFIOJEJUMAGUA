@@ -151,7 +151,10 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="text-center font-headline">Ainda com dúvidas? Veja um exemplo!</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                    <iframe width="300" height="60" src="https://vocaroo.com/embed/1lJUNQ7OS18y?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
+                   <audio controls className="w-full max-w-sm">
+                        <source src="https://media.vocaroo.com/mp3/1lJUNQ7OS18y" type="audio/mpeg" />
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
                 </CardContent>
             </Card>
 
