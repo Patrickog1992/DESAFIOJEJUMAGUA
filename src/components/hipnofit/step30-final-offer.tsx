@@ -7,7 +7,7 @@ import { Check, Lock } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Autoplay from "embla-carousel-autoplay";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
 
 type Props = {
@@ -41,9 +41,29 @@ const faqItems = [
 export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
     const commentCarouselPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+    const [timeLeft, setTimeLeft] = useState(15 * 60);
+
+    useEffect(() => {
+        if (timeLeft === 0) return;
+    
+        const timerId = setInterval(() => {
+          setTimeLeft(timeLeft - 1);
+        }, 1000);
+    
+        return () => clearInterval(timerId);
+      }, [timeLeft]);
+    
+      const formatTime = (seconds: number) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+      };
 
     return (
         <div className="space-y-8 font-body">
+            <div className="bg-red-600 text-white text-center p-3 rounded-lg shadow-lg">
+                <h2 className="text-xl font-bold">VOCÊ ACABA DE GANHAR 60% DE DESCONTO VÁLIDO SOMENTE EM: <span className="text-yellow-300">{formatTime(timeLeft)}</span></h2>
+            </div>
              <Card className="shadow-lg border-none bg-transparent text-center">
                 <CardContent className="p-0">
                     <p className="text-lg text-gray-700">Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso.
