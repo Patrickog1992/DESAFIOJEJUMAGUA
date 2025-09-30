@@ -14,7 +14,7 @@ type Props = {
   data: Partial<HipnoFitQuizData>;
 };
 
-const checkoutUrl = 'https://pay.kirvano.com/CHECKOUT_URL_HERE'; 
+const checkoutUrl = 'https://pay.kirvano.com/15697d4d-6002-4797-a350-f70c9f4cdf91'; 
 
 const testimonialsImages = [
     "https://i.imgur.com/ipOh27y.jpg",
@@ -102,7 +102,7 @@ export function Step30_FinalOffer({ data }: Props) {
                         </p>
                         <p className="text-5xl font-extrabold text-green-600 my-2">R$ 47,00</p>
                          <a href={checkoutUrl} className="block w-full mt-4">
-                            <Button size="lg" className="w-full text-lg h-14 bg-green-600 hover:bg-green-700 text-white animate-pulse">
+                            <Button size="lg" className="w-full text-lg h-14 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong">
                                 QUERO MEU PLANO AGORA
                             </Button>
                         </a>
@@ -161,7 +161,7 @@ export function Step30_FinalOffer({ data }: Props) {
                 </CardContent>
                 <div className="flex justify-center p-6">
                     <a href={checkoutUrl} className="block w-full max-w-md">
-                        <Button size="lg" className="w-full text-lg h-12 bg-blue-600 hover:bg-blue-700 text-white">QUERO O HIPNOFIT</Button>
+                        <Button size="lg" className="w-full text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong">QUERO O HIPNOFIT</Button>
                     </a>
                 </div>
             </Card>
@@ -206,3 +206,5 @@ export function Step30_FinalOffer({ data }: Props) {
         </div>
     );
 }
+
+    
