@@ -151,9 +151,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="text-center font-headline">Ainda com dúvidas? Veja um exemplo!</CardTitle>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                    <div className="bg-[#DCF8C6] p-2 rounded-lg w-full max-w-sm flex items-center gap-2" style={{ borderRadius: '20px 20px 0 20px' }}>
-                        <audio controls src="https://vocaroo.com/media_command.php?media=s1lJUNQ7OS18y&command=download_mp3" className="w-full"></audio>
-                    </div>
+                    <iframe width="300" height="60" src="https://vocaroo.com/embed/1lJUNQ7OS18y?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
                 </CardContent>
             </Card>
 
