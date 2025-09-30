@@ -155,7 +155,13 @@ function HipnoFitPageContent() {
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-50 font-body">
        <div className={`flex flex-col items-center justify-center flex-grow w-full ${isFinalPage ? 'max-w-7xl' : 'mb-8'}`}>
         {!isFinalPage && (
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-2 font-headline">HipnoFit</h1>
+            <Image
+                src="https://i.imgur.com/6BKJL8c.png"
+                alt="HipnoFit Logo"
+                width={100}
+                height={100}
+                className="mb-4"
+            />
         )}
         <div className={isFinalPage ? "w-full" : "w-full max-w-2xl"}>
             {renderStep()}
