@@ -23,14 +23,14 @@ export function Step1_IntroVSL({ onContinue }: Props) {
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg border-none bg-transparent">
       <CardHeader className="text-center">
-        <CardTitle className="text-3xl font-bold font-headline">Descubra quanto peso você pode perder com auto-hipnose</CardTitle>
+        <CardTitle className="text-3xl font-bold font-headline">Descubra quanto peso você pode perder com auto-hipnose em casa!</CardTitle>
         <CardDescription className="text-lg mt-2">(Veja o vídeo abaixo com o som ligado)</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="w-full mx-auto aspect-[4/3] relative">
+        <div className="w-full mx-auto aspect-[4/3]">
              <vturb-smartplayer
                 id="vid-68dbf93c2980edbc297eb86d"
-                class="absolute top-0 left-0 w-full h-full"
+                class="w-full h-full"
             ></vturb-smartplayer>
         </div>
         <Script
