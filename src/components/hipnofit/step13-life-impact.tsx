@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
@@ -37,6 +37,7 @@ export function Step13_LifeImpact({ onContinue }: Props) {
     <Card className="w-full max-w-lg mx-auto text-center shadow-lg border-none bg-transparent">
       <CardHeader>
         <CardTitle className="text-2xl font-bold font-headline">Como esses sintomas impactam sua vida?</CardTitle>
+        <CardDescription>Escolha quantas opções quiser</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         {options.map((option) => (

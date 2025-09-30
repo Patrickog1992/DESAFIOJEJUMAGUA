@@ -37,6 +37,7 @@ export function Step9_PersonalStruggles({ onContinue }: Props) {
     <Card className="w-full max-w-lg mx-auto text-center shadow-lg border-none bg-transparent">
       <CardHeader>
         <CardTitle className="text-2xl font-bold font-headline">Sabemos que as razões do excesso de peso são únicas para cada pessoa. Quais são as suas?</CardTitle>
+        <CardDescription>Escolha quantas opções quiser</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
         {options.map((option) => (

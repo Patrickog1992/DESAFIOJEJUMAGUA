@@ -28,14 +28,14 @@ export function Step1_IntroVSL({ onContinue }: Props) {
       </CardHeader>
       <CardContent>
         <div className="w-full mx-auto aspect-video relative">
-            <vturb-smartplayer
-              id="vid-68dbe28e1f6255275d07b122"
-              class="absolute top-0 left-0 w-full h-full"
+             <vturb-smartplayer
+                id="vid-68dbf93c2980edbc297eb86d"
+                class="absolute top-0 left-0 w-full h-full"
             ></vturb-smartplayer>
         </div>
         <Script
-          src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68dbe28e1f6255275d07b122/v4/player.js"
-          strategy="afterInteractive"
+            src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68dbf93c2980edbc297eb86d/v4/player.js"
+            strategy="afterInteractive"
         />
       </CardContent>
       <CardFooter className="justify-center mt-4">
