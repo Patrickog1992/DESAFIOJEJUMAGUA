@@ -1,24 +1,20 @@
 'use client';
 
-import type { HipnoFitQuizData } from '@/app/hipnofit/page';
-import { useMemo } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Check, Lock } from 'lucide-react';
-import { format, addDays, addMonths } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Autoplay from "embla-carousel-autoplay";
 import React from 'react';
+import type { HipnoFitQuizData } from '@/app/hipnofit/page';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
 };
 
-const checkoutUrl = 'https://pay.kirvano.com/CHECKOUT_URL_HERE'; // Replace with actual checkout URL
+const checkoutUrl = 'https://pay.kirvano.com/CHECKOUT_URL_HERE'; 
 
 const testimonialsImages = [
     "https://i.imgur.com/ipOh27y.jpg",
@@ -42,146 +38,19 @@ const faqItems = [
     { question: "E se não funcionar para mim?", answer: "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito com o programa por qualquer motivo, basta nos contatar para um reembolso total." },
 ];
 
-export function Step26_FinalPage({ data }: Props) {
-    const { age, height, weight, targetWeight } = data;
-
-    const { metabolicAge, imc } = useMemo(() => {
-        const ageNum = age ? parseInt(age.split('-')[0]) : 30;
-        const metaAge = ageNum + 10;
-
-        let imcValue = 0;
-        if (height && weight) {
-            const heightInMeters = height / 100;
-            imcValue = weight / (heightInMeters * heightInMeters);
-        }
-        return { metabolicAge: metaAge, imc: imcValue };
-    }, [age, height, weight]);
-
-    const chartData = useMemo(() => {
-        const today = new Date();
-        const endDate = addDays(today, 45);
-        return [
-            { date: format(today, 'dd/MM'), weight: weight || 0 },
-            { date: format(endDate, 'dd/MM'), weight: targetWeight || 0 }
-        ];
-    }, [weight, targetWeight]);
-
-    const targetDate = useMemo(() => {
-        return format(addMonths(new Date(), 2), 'dd/MM/yyyy', { locale: ptBR });
-    }, []);
-
+export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
     const commentCarouselPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
     return (
         <div className="space-y-8 font-body">
-            {/* Section 1: Result & Vitals */}
-            <Card className="shadow-lg border-blue-200">
-                <CardHeader className="text-center">
-                    <CardTitle className="text-3xl font-bold text-blue-600 font-headline">O Método HipnoFit provavelmente vai funcionar para você!</CardTitle>
-                    <CardDescription className="text-lg">A hipnoterapia é segura para você?</CardDescription>
-                </CardHeader>
-                <CardContent className="text-center space-y-4">
-                    <div className="bg-green-100 text-green-800 p-3 rounded-lg flex items-center justify-center gap-2">
-                        <Check className="h-5 w-5" />
-                        <span className="font-semibold">Você é um ótimo candidato para hipnoterapia voltada ao controle de peso.</span>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
-                        <div className="bg-red-100 text-red-800 p-4 rounded-lg">
-                            <p className="font-semibold">Sua idade metabólica:</p>
-                            <p className="font-bold text-2xl">{metabolicAge} anos</p>
-                            <p className="text-sm">Seu corpo está envelhecendo mais rápido do que deveria.</p>
-                        </div>
-                        <div className="bg-yellow-100 text-yellow-800 p-4 rounded-lg">
-                            <p className="font-semibold">Índice de Massa Corporal (IMC):</p>
-                            <p className="font-bold text-2xl">{imc.toFixed(1)}</p>
-                        </div>
-                    </div>
-                </CardContent>
-                <CardFooter className="justify-center">
-                    <Button size="lg">Continuar</Button>
-                </CardFooter>
-            </Card>
-
-            {/* Section 2: Weight Loss Projection */}
-            <Card className="shadow-lg border-green-200">
-                <CardHeader className="text-center">
-                    <CardTitle className="text-3xl font-bold text-green-600 font-headline">Você vai perder {((weight || 0) - (targetWeight || 0))} kg em até 45 dias!</CardTitle>
-                    <CardDescription className="text-lg">Comece a ver resultados nos primeiros 7 dias!</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <p className="font-semibold text-center text-xl">Gráfico de perda de peso:</p>
-                    <div className="h-64 w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="date" />
-                                <YAxis domain={['dataMin - 5', 'dataMax + 5']} />
-                                <Tooltip />
-                                <Line type="monotone" dataKey="weight" stroke="#22c55e" strokeWidth={3}>
-                                    <LabelList dataKey="weight" position="top" formatter={(value: number) => `${value}kg`} />
-                                </Line>
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <p className="text-center text-lg">Com base em suas respostas, prevemos que você atingirá sua meta antes de <span className="font-bold">{targetDate}</span></p>
-                </CardContent>
-                <CardFooter className="justify-center">
-                    <Button size="lg">Continuar</Button>
-                </CardFooter>
-            </Card>
-
-            {/* Section 3: Beyond Weight Loss */}
-            <Card className="shadow-lg">
-                <CardHeader className="text-center">
-                    <CardTitle className="text-2xl font-bold font-headline">Além da perda de peso</CardTitle>
-                    <CardDescription>Você verá melhorias nestas áreas:</CardDescription>
-                </CardHeader>
-                <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                    <div className="p-4 bg-gray-100 rounded-lg">
-                        <h3 className="font-bold">Comer por emoção</h3>
-                        <p>9 em cada 10 usuários reduziram a alimentação emocional após as 5 primeiras sessões de hipnoterapia.</p>
-                    </div>
-                    <div className="p-4 bg-gray-100 rounded-lg">
-                        <h3 className="font-bold">Má digestão</h3>
-                        <p>8 em cada 10 usuários relataram menos estresse e melhor digestão após tratar fatores emocionais com hipnoterapia.</p>
-                    </div>
-                    <div className="p-4 bg-gray-100 rounded-lg">
-                        <h3 className="font-bold">Força de vontade</h3>
-                        <p>9 em cada 10 usuários dizem que reduziram desejos e formaram hábitos saudáveis com hipnoterapia.</p>
-                    </div>
-                </CardContent>
-                 <CardFooter className="justify-center">
-                    <Button size="lg">Continuar</Button>
-                </CardFooter>
-            </Card>
-
-             {/* Section 4: Success Rate & Final Offer */}
-            <div className="bg-white p-6 rounded-lg shadow-xl space-y-8">
-                <div className="text-center">
-                    <h2 className="text-3xl font-bold text-blue-600 font-headline">Taxa de sucesso de 93%</h2>
-                    <p className="text-lg">Baseado em ciência, verificado por usuários</p>
-                </div>
-
-                <p>O HipnoFit foi desenvolvido com os melhores especialistas em hipnoterapia, cada um trazendo sua própria expertise para garantir a eficácia de cada sessão.</p>
-                <p>Pesquisas indicam que a hipnose apresenta uma taxa de sucesso notável de 93%, superando tanto a abordagem comportamental quanto a psicoterapêutica.</p>
-                <p>Descubra o poder transformador da hipnoterapia sem restrições ou riscos. Incontáveis pessoas já atingiram seus objetivos com a hipnoterapia - convidamos você a ser uma delas!</p>
-                
-                <div className="flex flex-col items-center text-center p-4 bg-gray-100 rounded-lg">
-                    <Image src="https://i.imgur.com/52gwXD4.png" alt="Suelen Costa" width={200} height={200} className="rounded-full w-32 h-32 border-4 border-blue-300" />
-                    <h4 className="font-bold text-lg mt-2">Suelen Costa</h4>
-                    <p className="text-sm text-gray-600">Chefe do Programa</p>
-                    <p className="text-sm font-semibold text-green-600">Aprovado</p>
-                    <p className="text-xs text-gray-500 mt-2">Desenvolvido com especialistas de hipnoterapia de alto nível</p>
-                </div>
-                 <div className="flex justify-center">
-                    <Button size="lg">Continuar</Button>
-                </div>
-            </div>
-
-            {/* Offer Section */}
             <Card className="shadow-2xl border-4 border-green-500">
                 <CardHeader className="text-center bg-gray-50">
+                    <CardDescription>Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso.
+                    Este método exclusivo oferece sessões de hipnoterapia cientificamente comprovadas, que atuam diretamente nos seus gatilhos de alimentação emocional e barreiras subconscientes que dificultam o emagrecimento.
+                    Nossas pesquisas mostram que quem segue o Método HipnoFit alcança resultados mais rápidos e consistentes do que com métodos tradicionais e 94% conseguem manter os resultados a longo prazo.
+                    O melhor de tudo é que o plano é pra sempre, garantindo que você tenha suporte contínuo na sua transformação e manutenção dos resultados.
+                    </CardDescription>
                     <CardTitle className="text-2xl font-bold font-headline">O QUE VOCÊ VAI RECEBER</CardTitle>
                     <CardDescription className="text-lg text-green-600 font-semibold">Oferta especial personalizada</CardDescription>
                 </CardHeader>
@@ -216,7 +85,6 @@ export function Step26_FinalPage({ data }: Props) {
                 </CardContent>
             </Card>
 
-            {/* Transformations Carousel */}
             <Card>
                 <CardHeader>
                     <CardTitle className="text-center font-headline">ALGUMAS TRANSFORMAÇÕES COM A HIPNOFIT</CardTitle>
@@ -236,7 +104,6 @@ export function Step26_FinalPage({ data }: Props) {
                 </CardContent>
             </Card>
             
-            {/* Written Comments Carousel */}
              <Card>
                 <CardHeader>
                     <CardTitle className="text-center font-headline">E mais alguns comentários...</CardTitle>
@@ -257,7 +124,6 @@ export function Step26_FinalPage({ data }: Props) {
                 </CardContent>
             </Card>
 
-            {/* How it works */}
             <Card>
                  <CardHeader>
                     <CardTitle className="text-center font-headline">Como funciona?</CardTitle>
@@ -268,14 +134,13 @@ export function Step26_FinalPage({ data }: Props) {
                     <p>3. Ouça uma sessão de 20 minutos por dia</p>
                     <p>4. Comece a aproveitar os primeiros resultados em apenas uma semana</p>
                 </CardContent>
-                 <CardFooter className="justify-center">
+                <div className="flex justify-center p-6">
                     <a href={checkoutUrl} className="block w-full max-w-md">
                         <Button size="lg" className="w-full text-lg h-12 bg-blue-600 hover:bg-blue-700 text-white">QUERO O HIPNOFIT</Button>
                     </a>
-                </CardFooter>
+                </div>
             </Card>
 
-            {/* Example Audio */}
             <Card>
                 <CardHeader>
                     <CardTitle className="text-center font-headline">Ainda com dúvidas? Veja um exemplo!</CardTitle>
@@ -287,7 +152,6 @@ export function Step26_FinalPage({ data }: Props) {
                 </CardContent>
             </Card>
 
-            {/* Guarantee and FAQ */}
             <Card>
                 <CardContent className="p-6 text-center space-y-4">
                     <div className="flex justify-center items-center gap-2">

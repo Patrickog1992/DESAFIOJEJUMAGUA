@@ -27,7 +27,12 @@ import { Step22_DesiredActivity } from '@/components/hipnofit/step22-desired-act
 import { Step23_TimeDedication } from '@/components/hipnofit/step23-time-dedication';
 import { Step24_ProgramIntro } from '@/components/hipnofit/step24-program-intro';
 import { Step25_Loading } from '@/components/hipnofit/step25-loading';
-import { Step26_FinalPage } from '@/components/hipnofit/step26-final-page';
+import { Step26_VitalsResult } from '@/components/hipnofit/step26-vitals-result';
+import { Step27_WeightLossProjection } from '@/components/hipnofit/step27-weightloss-projection';
+import { Step28_BeyondWeightLoss } from '@/components/hipnofit/step28-beyond-weightloss';
+import { Step29_SuccessRate } from '@/components/hipnofit/step29-success-rate';
+import { Step30_FinalOffer } from '@/components/hipnofit/step30-final-offer';
+
 
 export type HipnoFitQuizData = {
     gender?: 'male' | 'female';
@@ -56,7 +61,8 @@ const steps = [
     'testimonial', 'time-with-problem', 'physical-difficulties', 'life-impact',
     'brain-stomach-info', 'eating-habits', 'cravings', 'brain-body-disconnect-info',
     'activity-level', 'future-self', 'measurements', 'program-timeline', 'desired-activity',
-    'time-dedication', 'program-intro', 'loading', 'final-page'
+    'time-dedication', 'program-intro', 'loading', 
+    'vitals-result', 'weightloss-projection', 'beyond-weightloss', 'success-rate', 'final-offer'
 ];
 
 function HipnoFitPageContent() {
@@ -128,14 +134,22 @@ function HipnoFitPageContent() {
             return <Step24_ProgramIntro onContinue={() => handleNextStep({})} />;
         case 'loading':
             return <Step25_Loading onComplete={() => handleNextStep({})} />;
-        case 'final-page':
-            return <Step26_FinalPage data={quizData} />;
+        case 'vitals-result':
+            return <Step26_VitalsResult data={quizData} onContinue={() => handleNextStep({})} />;
+        case 'weightloss-projection':
+            return <Step27_WeightLossProjection data={quizData} onContinue={() => handleNextStep({})} />;
+        case 'beyond-weightloss':
+            return <Step28_BeyondWeightLoss onContinue={() => handleNextStep({})} />;
+        case 'success-rate':
+            return <Step29_SuccessRate onContinue={() => handleNextStep({})} />;
+        case 'final-offer':
+            return <Step30_FinalOffer data={quizData} />;
         default:
             return <Step1_IntroVSL onContinue={() => handleNextStep({})} />;
     }
   };
   
-  const isFinalPage = currentStep === 'final-page';
+  const isFinalPage = currentStep === 'final-offer';
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-50 font-body">
