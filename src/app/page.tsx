@@ -147,6 +147,7 @@ function HomePageContent() {
     const updatedData = { ...quizData, ...data };
     setQuizData(updatedData);
     setCurrentStepIndex(prevIndex => prevIndex + 1);
+    window.scrollTo(0, 0);
   };
 
   const renderStep = () => {

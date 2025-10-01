@@ -77,6 +77,7 @@ function HipnoFitPageContent() {
 
     if (nextStepIndex < steps.length) {
       setCurrentStepIndex(nextStepIndex);
+      window.scrollTo(0, 0);
     }
   };
 

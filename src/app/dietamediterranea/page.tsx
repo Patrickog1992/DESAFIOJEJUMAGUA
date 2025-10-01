@@ -86,6 +86,7 @@ function DietaMediterraneaPageContent() {
 
     if (nextStepIndex < steps.length) {
       setCurrentStepIndex(nextStepIndex);
+      window.scrollTo(0, 0);
     } else {
         // Last step was completed, navigate to final offer
         const params = new URLSearchParams();
