@@ -110,7 +110,7 @@ const writtenTestimonials = [
   },
 ];
 
-const checkoutUrl = 'https://pay.kirvano.com/c88b0cec-6218-4328-8321-f28e03f4f1d7';
+const checkoutUrl = 'https://pay.kirvano.com/2d175ad5-fb2b-4da3-92f2-21ac781ca8be';
 
 export function UniqueOffer({
   currentWeight,
@@ -280,7 +280,7 @@ export function UniqueOffer({
                 por apenas:
               </p>
               <p className="text-6xl font-extrabold text-green-600 my-2">
-                R$27,00
+                R$37,00
               </p>
               <p className="text-lg font-semibold">Pagamento Único</p>
               <p className="text-sm text-muted-foreground mt-1">
