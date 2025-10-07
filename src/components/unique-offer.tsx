@@ -41,27 +41,10 @@ const benefits = [
   'Orientação exclusiva e apoio ao longo da tua jornada de perda de peso pelos nossos nutricionistas certificados para garantir os melhores resultados',
 ];
 
-const maleImages = {
-  today: 'https://i.imgur.com/xOmKpfH.jpg',
-  after: 'https://i.imgur.com/TggWJmh.jpg',
-  testimonials: [
-    'https://i.imgur.com/4fc5yDb.jpeg',
-    'https://i.imgur.com/WJJuAy9.jpeg',
-    'https://i.imgur.com/QWy9aD8.jpeg',
-    'https://i.imgur.com/jJ7RuKK.jpeg',
-    'https://i.imgur.com/thHqvuZ.jpeg',
-    'https://i.imgur.com/ipOh27y.jpg',
-    'https://i.imgur.com/AJCfcXk.jpg',
-    'https://i.imgur.com/BTYdqvQ.jpg',
-    'https://i.imgur.com/TAUXKtX.jpg',
-  ],
-  offer: 'https://i.imgur.com/KDJiZEj.jpeg',
-};
-
-const femaleImages = {
-  today: 'https://i.imgur.com/V6997ol.png',
-  after: 'https://i.imgur.com/kkc70lF.png',
-  testimonials: [
+const sharedImages = {
+   today: 'https://i.imgur.com/V6997ol.png',
+   after: 'https://i.imgur.com/kkc70lF.png',
+   testimonials: [
     'https://i.imgur.com/Yd4f0L0.jpg',
     'https://i.imgur.com/3FMNC9a.jpg',
     'https://i.imgur.com/noSDgeA.jpg',
@@ -143,8 +126,6 @@ export function UniqueOffer({
   const [targetImc, setTargetImc] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState(10 * 60);
 
-  const images = gender === 'female' ? femaleImages : maleImages;
-
   useEffect(() => {
     setIsClient(true);
     const now = new Date();
@@ -209,7 +190,7 @@ export function UniqueOffer({
             </CardHeader>
             <CardContent className="space-y-4">
               <Image
-                src={images.today}
+                src={sharedImages.today}
                 alt="Você hoje"
                 width={300}
                 height={300}
@@ -246,7 +227,7 @@ export function UniqueOffer({
             </CardHeader>
             <CardContent className="space-y-4">
               <Image
-                src={images.after}
+                src={sharedImages.after}
                 alt="Você em um mês"
                 width={300}
                 height={300}
@@ -272,7 +253,7 @@ export function UniqueOffer({
 
         <div className="text-center my-6">
           <Image
-            src={images.offer}
+            src={sharedImages.offer}
             alt="Oferta Especial"
             width={800}
             height={150}
@@ -396,7 +377,7 @@ export function UniqueOffer({
               className="w-full"
             >
               <CarouselContent>
-                {images.testimonials.map((src, index) => (
+                {sharedImages.testimonials.map((src, index) => (
                   <CarouselItem
                     key={index}
                     className="md:basis-1/2 lg:basis-1/2"
