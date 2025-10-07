@@ -3,6 +3,7 @@ import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { VslIntro } from '@/components/vsl-intro';
 import { QuizStart } from '@/components/quiz-start';
 import { NutritionistVideo } from '@/components/nutritionist-video';
 import { AgeRangeSelection } from '@/components/age-range-selection';
@@ -70,6 +71,7 @@ export type QuizData = {
 };
 
 const steps = [
+  'vsl-intro',
   'gender',
   'video-nutricionista',
   'age-range',
@@ -152,6 +154,8 @@ function HomePageContent() {
 
   const renderStep = () => {
     switch (currentStep) {
+      case 'vsl-intro':
+        return <VslIntro onContinue={() => handleNextStep({})} />;
       case 'gender':
         return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
       case 'video-nutricionista':
@@ -225,20 +229,24 @@ function HomePageContent() {
       case 'oferta-unica':
         return <div>Carregando oferta...</div>;
       default:
-        return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
+        return <VslIntro onContinue={() => handleNextStep({})} />;
     }
   };
+
+  const shouldShowLogo = currentStep !== 'vsl-intro';
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="flex flex-col items-center justify-center flex-grow w-full mb-8">
-        <Image
-          src="https://i.imgur.com/OIEU6Mk.png"
-          alt="Logo"
-          width={100}
-          height={100}
-          className="mb-8"
-        />
+        {shouldShowLogo && (
+            <Image
+            src="https://i.imgur.com/OIEU6Mk.png"
+            alt="Logo"
+            width={100}
+            height={100}
+            className="mb-8"
+            />
+        )}
         <div className="w-full max-w-5xl">
             {renderStep()}
         </div>
