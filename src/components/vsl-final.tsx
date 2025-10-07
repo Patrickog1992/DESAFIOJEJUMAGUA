@@ -27,7 +27,7 @@ export function VslFinal() {
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-none border-none bg-transparent">
-      <CardContent>
+      <CardContent className="p-0">
         <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
           <iframe
             src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68e45a03f2f5978b2e24eebe/embed.html"
