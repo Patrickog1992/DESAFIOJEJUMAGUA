@@ -102,7 +102,7 @@ export function PlanResult({
 
   const handleContinue = () => {
     const params = new URLSearchParams(searchParams.toString());
-    router.push(`/oferta-unica?${params.toString()}`);
+    router.push(`/vsl-final?${params.toString()}`);
   };
 
   const chartData = [
@@ -404,5 +404,3 @@ export function PlanResult({
     </div>
   );
 }
-
-    
