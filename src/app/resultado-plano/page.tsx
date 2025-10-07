@@ -2,11 +2,12 @@
 'use client';
 
 import { PlanResult } from '@/components/plan-result';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
 function PlanResultPageContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const name = searchParams.get('name') || '';
   const currentWeight = Number(searchParams.get('weight'));
