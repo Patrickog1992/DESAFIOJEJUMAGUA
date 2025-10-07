@@ -1,3 +1,4 @@
+
 'use client';
 
 import { PlanResult } from '@/components/plan-result';
@@ -37,3 +38,5 @@ export default function PlanResultPage() {
     </Suspense>
   );
 }
+
+    

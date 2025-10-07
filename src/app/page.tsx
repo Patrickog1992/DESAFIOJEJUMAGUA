@@ -1,3 +1,4 @@
+
 'use client';
 import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -73,7 +74,6 @@ export type QuizData = {
 const steps = [
   'vsl-intro',
   'gender',
-  'video-nutricionista',
   'age-range',
   'objetivo',
   'formato-corpo',
@@ -158,8 +158,6 @@ function HomePageContent() {
         return <VslIntro onContinue={() => handleNextStep({})} />;
       case 'gender':
         return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
-      case 'video-nutricionista':
-        return <NutritionistVideo onContinue={() => handleNextStep({})} />;
       case 'age-range':
         return <AgeRangeSelection onContinue={(ageRange) => handleNextStep({ ageRange })} gender={quizData.gender} />;
       case 'objetivo':
