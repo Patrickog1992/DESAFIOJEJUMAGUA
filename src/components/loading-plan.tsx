@@ -25,27 +25,28 @@ export function LoadingPlan({ onComplete }: LoadingPlanProps) {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
   useEffect(() => {
-    if (progress >= 100) {
-      // Chama onComplete quando o progresso atinge 100
-      const timer = setTimeout(() => {
-        onComplete();
-      }, 500); // Adiciona um pequeno atraso para o usuário ver 100%
-      return () => clearTimeout(timer);
-    }
-
     const progressInterval = setInterval(() => {
-      setProgress(prev => Math.min(prev + 1, 100));
-    }, 50); // Ajustado para ser mais rápido e garantir que chegue a 100
+      setProgress(prevProgress => {
+        if (prevProgress >= 100) {
+          clearInterval(progressInterval);
+          // Atraso para garantir que o usuário veja 100% antes da transição
+          setTimeout(onComplete, 500); 
+          return 100;
+        }
+        return prevProgress + 1;
+      });
+    }, 50); // 5 segundos para completar
 
     const messageInterval = setInterval(() => {
-      setCurrentMessageIndex(prev => (prev + 1) % messages.length);
+      setCurrentMessageIndex(prevIndex => (prevIndex + 1) % messages.length);
     }, 2000);
 
+    // Função de limpeza para garantir que os intervalos sejam removidos
     return () => {
       clearInterval(progressInterval);
       clearInterval(messageInterval);
     };
-  }, [progress, onComplete]);
+  }, [onComplete]);
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg text-center">
