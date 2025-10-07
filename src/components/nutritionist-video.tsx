@@ -46,3 +46,5 @@ export function NutritionistVideo({ onContinue }: NutritionistVideoProps) {
     </Card>
   );
 }
+
+    
