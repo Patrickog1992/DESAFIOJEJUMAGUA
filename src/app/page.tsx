@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 
 import { VslIntro } from '@/components/vsl-intro';
 import { QuizStart } from '@/components/quiz-start';
-import { NutritionistVideo } from '@/components/nutritionist-video';
 import { AgeRangeSelection } from '@/components/age-range-selection';
 import { GoalSelection } from '@/components/goal-selection';
 import { BodyShapeSelection } from '@/components/body-shape-selection';
@@ -39,7 +38,7 @@ import { MedicationSelection } from '@/components/medication-selection';
 import { HealthProblemsSelection } from '@/components/health-problems-selection';
 import { AcceleratedTimeline } from '@/components/accelerated-timeline';
 import { LoadingPlan } from '@/components/loading-plan';
-import { PlanResult } from '@/components/plan-result';
+import { VslFinal } from '@/components/vsl-final';
 import { UniqueOffer } from '@/components/unique-offer';
 
 export type QuizData = {
@@ -106,7 +105,7 @@ const steps = [
   'problemas-saude',
   'progresso-acelerado',
   'plano-carregando',
-  'resultado-plano',
+  'vsl-final',
   'oferta-unica',
 ];
 
@@ -118,30 +117,19 @@ function HomePageContent() {
   const currentStep = steps[currentStepIndex];
 
   useEffect(() => {
-    if (currentStep === 'resultado-plano') {
-      const params = new URLSearchParams();
+    const params = new URLSearchParams();
       Object.entries(quizData).forEach(([key, value]) => {
         if (value !== undefined) {
           params.set(key, value.toString());
         }
       });
-      router.push(`/resultado-plano?${params.toString()}`);
+
+    if (currentStep === 'plano-carregando') {
+      router.push(`/plano-carregando?${params.toString()}`);
+    } else if (currentStep === 'vsl-final') {
+      router.push(`/vsl-final?${params.toString()}`);
     } else if (currentStep === 'oferta-unica') {
-      const offerParams = new URLSearchParams();
-      Object.entries(quizData).forEach(([key, value]) => {
-        if (value !== undefined) {
-          offerParams.set(key, value.toString());
-        }
-      });
-      router.push(`/oferta-unica?${offerParams.toString()}`);
-    } else if (currentStepIndex >= steps.length) {
-        const params = new URLSearchParams();
-        Object.entries(quizData).forEach(([key, value]) => {
-            if (value !== undefined) {
-                params.set(key, value.toString());
-            }
-        });
-        router.push(`/oferta-unica?${params.toString()}`);
+      router.push(`/oferta-unica?${params.toString()}`);
     }
   }, [currentStepIndex, quizData, router, currentStep]);
 
@@ -222,16 +210,16 @@ function HomePageContent() {
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
       case 'plano-carregando':
         return <LoadingPlan onComplete={() => handleNextStep({})} />;
-      case 'resultado-plano':
-        return <div>Carregando resultado...</div>;
+      case 'vsl-final':
+         return <VslFinal />;
       case 'oferta-unica':
-        return <div>Carregando oferta...</div>;
+        return <UniqueOffer onContinue={() => {}} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} height={Number(quizData.height)} gender={quizData.gender}/>;
       default:
         return <VslIntro onContinue={() => handleNextStep({})} />;
     }
   };
 
-  const shouldShowLogo = currentStep !== 'vsl-intro';
+  const shouldShowLogo = currentStep !== 'vsl-intro' && currentStep !== 'oferta-unica' && currentStep !== 'vsl-final' && currentStep !== 'plano-carregando';
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -263,5 +251,3 @@ export default function HomePage() {
         </Suspense>
     )
 }
-
-    

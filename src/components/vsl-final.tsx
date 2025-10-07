@@ -28,16 +28,25 @@ export function VslFinal() {
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-none border-none bg-transparent">
       <CardContent>
-        <div style={{ margin: '0 auto', maxWidth: '400px' }}>
-          <vturb-smartplayer
-            id="vid-68e45a03f2f5978b2e24eebe"
-            style={{ display: 'block', width: '100%' }}
-          ></vturb-smartplayer>
-          <Script
-            src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68e45a03f2f5978b2e24eebe/v4/player.js"
-            strategy="afterInteractive"
-          />
+        <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+          <iframe
+            src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68e45a03f2f5978b2e24eebe/embed.html"
+            style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+            }}
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
+        <Script
+          src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68e45a03f2f5978b2e24eebe/player.js"
+          strategy="afterInteractive"
+        />
       </CardContent>
       <CardFooter className="justify-center mt-4">
         {showButton && (
