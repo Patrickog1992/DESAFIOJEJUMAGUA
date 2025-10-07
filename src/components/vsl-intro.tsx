@@ -24,10 +24,10 @@ export function VslIntro({ onContinue }: VslIntroProps) {
     <Card className="w-full max-w-2xl mx-auto shadow-none border-none bg-transparent">
       <CardContent>
         <div style={{ margin: '0 auto', maxWidth: '400px' }}>
-          <div
+          <vturb-smartplayer
             id="vid-68e46b579fccd82203a33a37"
             style={{ display: 'block', width: '100%' }}
-          ></div>
+          ></vturb-smartplayer>
           <Script
             src="https://scripts.converteai.net/db159b27-2739-477e-a1ae-6458da34c980/players/68e46b579fccd82203a33a37/v4/player.js"
             strategy="afterInteractive"
