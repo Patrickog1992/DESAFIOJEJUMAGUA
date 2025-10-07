@@ -26,25 +26,25 @@ export function LoadingPlan({ onComplete }: LoadingPlanProps) {
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
-      setProgress(prev => (prev >= 100 ? 100 : prev + 1));
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          onComplete();
+          return 100;
+        }
+        return prev + 1;
+      });
     }, 50); // 5 seconds total for 100%
 
-    return () => clearInterval(progressInterval);
-  }, []);
-
-  useEffect(() => {
-    if (progress >= 100) {
-      onComplete();
-    }
-  }, [progress, onComplete]);
-
-  useEffect(() => {
     const messageInterval = setInterval(() => {
       setCurrentMessageIndex(prev => (prev + 1) % messages.length);
     }, 2000); // Change message every 2 seconds
 
-    return () => clearInterval(messageInterval);
-  }, []);
+    return () => {
+      clearInterval(progressInterval);
+      clearInterval(messageInterval);
+    };
+  }, [onComplete]);
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg text-center">
