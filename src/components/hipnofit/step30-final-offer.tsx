@@ -40,69 +40,6 @@ const faqItems = [
     { question: "E se não funcionar para mim?", answer: "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito com o programa por qualquer motivo, basta nos contatar para um reembolso total." },
 ];
 
-const CustomAudioPlayer = ({ src }: { src: string }) => {
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [duration, setDuration] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0);
-
-    const togglePlayPause = () => {
-        const audio = audioRef.current;
-        if (!audio) return;
-        if (isPlaying) {
-            audio.pause();
-        } else {
-            audio.play();
-        }
-        setIsPlaying(!isPlaying);
-    };
-
-    const handleTimeUpdate = () => {
-        if (audioRef.current) {
-            setCurrentTime(audioRef.current.currentTime);
-        }
-    };
-    
-    const handleLoadedMetadata = () => {
-        if (audioRef.current) {
-            setDuration(audioRef.current.duration);
-        }
-    };
-
-    const formatTime = (time: number) => {
-        if (isNaN(time) || time === 0) return '0:00';
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    };
-
-    const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
-
-    return (
-        <div className="w-full max-w-sm p-6 bg-blue-100 rounded-lg flex items-center gap-4">
-            <audio 
-                ref={audioRef} 
-                src={src} 
-                onTimeUpdate={handleTimeUpdate}
-                onLoadedMetadata={handleLoadedMetadata}
-                onEnded={() => setIsPlaying(false)}
-                preload="metadata"
-            ></audio>
-            <Button onClick={togglePlayPause} size="icon" variant="ghost" className="rounded-full">
-                {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
-            </Button>
-            <div className="flex-grow space-y-1">
-                <Progress value={progress} />
-                <div className="flex justify-between text-xs text-gray-500">
-                    <span>{formatTime(currentTime)}</span>
-                    <span>{formatTime(duration)}</span>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-
 export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
     const commentCarouselPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
@@ -153,6 +90,16 @@ export function Step30_FinalOffer({ data }: Props) {
                             </ul>
                         </div>
                     </div>
+                </CardContent>
+            </Card>
+
+             <Card>
+                <CardHeader className="text-center">
+                    <CardTitle className="font-headline">Você ainda tem dúvidas ?<br/>Escute um pequeno exemplo !</CardTitle>
+                    <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
+                </CardHeader>
+                <CardContent className="flex justify-center">
+                     <div><iframe width="300" height="60" src="https://vocaroo.com/embed/1kwNNqi9QCAp?autoplay=0" frameBorder="0" allow="autoplay"></iframe><br/><a href="https://voca.ro/1kwNNqi9QCAp" title="Gravador de Voz do Vocaroo" target="_blank">Ver no Vocaroo &gt;&gt;</a></div>
                 </CardContent>
             </Card>
 
@@ -247,15 +194,6 @@ export function Step30_FinalOffer({ data }: Props) {
                         <Button size="lg" className="w-full text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong">QUERO O HIPNOFIT</Button>
                     </a>
                 </div>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle className="text-center font-headline">Ainda com dúvidas? Escute um exemplo!</CardTitle>
-                </CardHeader>
-                <CardContent className="flex justify-center">
-                    <CustomAudioPlayer src="https://media.vocaroo.com/mp3/1lJUNQ7OS18y" />
-                </CardContent>
             </Card>
 
             <Card>
