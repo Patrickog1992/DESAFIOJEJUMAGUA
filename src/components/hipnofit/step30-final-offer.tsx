@@ -99,7 +99,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                     <div><iframe width="300" height="60" src="https://vocaroo.com/embed/1kwNNqi9QCAp?autoplay=0" frameBorder="0" allow="autoplay"></iframe><br/><a href="https://voca.ro/1kwNNqi9QCAp" title="Gravador de Voz do Vocaroo" target="_blank">Ver no Vocaroo &gt;&gt;</a></div>
+                    <div dangerouslySetInnerHTML={{ __html: `<iframe width="300" height="60" src="https://vocaroo.com/embed/1kwNNqi9QCAp?autoplay=0" frameborder="0" allow="autoplay"></iframe><br><a href="https://voca.ro/1kwNNqi9QCAp" title="Gravador de Voz do Vocaroo" target="_blank">Ver no Vocaroo &gt;&gt;</a>` }} />
                 </CardContent>
             </Card>
 
