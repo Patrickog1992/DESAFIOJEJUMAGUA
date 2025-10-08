@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
+import { WhatsAppAudioPlayer } from './whatsapp-audio-player';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -37,6 +38,8 @@ const faqItems = [
     { question: "Quanto tempo até ver os resultados?", answer: "Muitos usuários relatam sentir uma mudança em sua mentalidade e hábitos após as primeiras sessões. Resultados visíveis na balança geralmente aparecem nos primeiros 7 dias e se intensificam nas semanas seguintes." },
     { question: "E se não funcionar para mim?", answer: "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito com o programa por qualquer motivo, basta nos contatar para um reembolso total." },
 ];
+
+const audioSrc = "https://storage.googleapis.com/studioprototype.appspot.com/hipnofit-audio.mp3";
 
 export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
@@ -97,8 +100,11 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="font-headline">Você ainda tem dúvidas ?<br/>Escute um pequeno exemplo !</CardTitle>
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
-                <CardContent className="flex justify-center">
-                   <iframe src="https://whyp.it/embeds/track/315732?token=BS023" width="100%" height="80" scrolling="no" frameBorder="0" loading="lazy"></iframe>
+                <CardContent className="flex justify-center p-6">
+                   <WhatsAppAudioPlayer 
+                      audioSrc={audioSrc}
+                      avatarSrc="https://i.imgur.com/52gwXD4.png"
+                   />
                 </CardContent>
             </Card>
 
