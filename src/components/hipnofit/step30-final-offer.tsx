@@ -67,7 +67,7 @@ export function Step30_FinalOffer({ data }: Props) {
             
             <Card className="shadow-lg border-none bg-transparent text-center">
                 <CardContent className="p-0 space-y-4">
-                    <div className="grid grid-cols-2 gap-4 items-center">
+                    <div className="grid grid-cols-2 gap-4 items-start">
                         <div>
                             <h3 className="font-bold text-lg mb-2">Antes do HIPNOFIT</h3>
                             <Image src="https://i.imgur.com/2vjQaB0.jpeg" alt="Antes do HipnoFit" width={300} height={300} className="mx-auto rounded-lg" />
@@ -97,7 +97,8 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="font-headline">Você ainda tem dúvidas ?<br/>Escute um pequeno exemplo !</CardTitle>
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
-                <CardContent className="flex justify-center" dangerouslySetInnerHTML={{ __html: `<iframe width="300" height="60" src="https://vocaroo.com/embed/1kclvc7i2OuT?autoplay=0" frameborder="0" allow="autoplay"></iframe>` }}>
+                <CardContent className="flex justify-center">
+                  <iframe width="300" height="60" src="https://vocaroo.com/embed/1kclvc7i2OuT?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
                 </CardContent>
             </Card>
 
