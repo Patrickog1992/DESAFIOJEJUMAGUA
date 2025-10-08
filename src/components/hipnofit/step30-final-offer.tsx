@@ -64,7 +64,8 @@ export function Step30_FinalOffer({ data }: Props) {
             <div className="bg-red-600 text-white text-center p-3 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold">VOCÊ ACABA DE GANHAR 60% DE DESCONTO VÁLIDO SOMENTE EM: <span className="text-yellow-300">{formatTime(timeLeft)}</span></h2>
             </div>
-             <Card className="shadow-lg border-none bg-transparent text-center">
+            
+            <Card className="shadow-lg border-none bg-transparent text-center">
                 <CardContent className="p-0 space-y-4">
                     <div className="grid grid-cols-2 gap-4 items-center">
                         <div>
@@ -97,7 +98,10 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                   <div dangerouslySetInnerHTML={{ __html: `<iframe width="300" height="60" src="https://vocaroo.com/embed/1kwNNqi9QCAp?autoplay=0" frameborder="0" allow="autoplay"></iframe>` }} />
+                   <audio controls>
+                        <source src="https://vocaroo.com/1kclvc7i2OuT" type="audio/mpeg" />
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
                 </CardContent>
             </Card>
 
