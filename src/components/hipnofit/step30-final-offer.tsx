@@ -9,8 +9,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
-import { Progress } from '@/components/ui/progress';
-
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -93,15 +91,16 @@ export function Step30_FinalOffer({ data }: Props) {
                 </CardContent>
             </Card>
 
-             <Card>
+            <Card>
                 <CardHeader className="text-center">
                     <CardTitle className="font-headline">Você ainda tem dúvidas ?<br/>Escute um pequeno exemplo !</CardTitle>
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                    <div dangerouslySetInnerHTML={{ __html: `<iframe width="300" height="60" src="https://vocaroo.com/embed/1kwNNqi9QCAp?autoplay=0" frameborder="0" allow="autoplay"></iframe><br><a href="https://voca.ro/1kwNNqi9QCAp" title="Gravador de Voz do Vocaroo" target="_blank">Ver no Vocaroo &gt;&gt;</a>` }} />
+                   <div dangerouslySetInnerHTML={{ __html: `<iframe width="300" height="60" src="https://vocaroo.com/embed/1kwNNqi9QCAp?autoplay=0" frameborder="0" allow="autoplay"></iframe>` }} />
                 </CardContent>
             </Card>
+
 
             <Card className="shadow-2xl border-4 border-green-500">
                 <CardHeader className="text-center bg-gray-50">
@@ -214,6 +213,7 @@ export function Step30_FinalOffer({ data }: Props) {
                         {faqItems.map((item, index) => (
                             <AccordionItem value={`item-${index}`} key={index}>
                                 <AccordionTrigger>{item.question}</AccordionTrigger>
+
                                 <AccordionContent>{item.answer}</AccordionContent>
                             </AccordionItem>
                         ))}
