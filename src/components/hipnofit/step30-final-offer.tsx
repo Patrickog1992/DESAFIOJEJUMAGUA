@@ -98,10 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                   <audio controls>
-                        <source src="https://vocaroo.com/1kclvc7i2OuT" type="audio/mpeg" />
-                        Seu navegador não suporta o elemento de áudio.
-                    </audio>
+                    <iframe width="300" height="60" src="https://vocaroo.com/embed/1kclvc7i2OuT?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
                 </CardContent>
             </Card>
 
