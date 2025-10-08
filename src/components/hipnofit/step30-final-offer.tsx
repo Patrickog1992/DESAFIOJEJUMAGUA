@@ -130,8 +130,29 @@ export function Step30_FinalOffer({ data }: Props) {
                 <h2 className="text-xl font-bold">VOCÊ ACABA DE GANHAR 60% DE DESCONTO VÁLIDO SOMENTE EM: <span className="text-yellow-300">{formatTime(timeLeft)}</span></h2>
             </div>
              <Card className="shadow-lg border-none bg-transparent text-center">
-                <CardContent className="p-0">
-                <p className="text-lg text-gray-700">Com base nas suas respostas ao questionário, recomendamos o Método HipnoFit para a sua jornada de perda de peso. Este método exclusivo oferece sessões de hipnoterapia cientificamente comprovadas, que atuam diretamente nos seus gatilhos de alimentação emocional e barreiras subconscientes que dificultam o emagrecimento. Nossas pesquisas mostram que quem segue o Método HipnoFit alcança resultados mais rápidos e consistentes do que com métodos tradicionais e 94% conseguem manter os resultados a longo prazo. O melhor de tudo é que o plano é pra sempre, garantindo que você tenha suporte contínuo na sua transformação e manutenção dos resultados.</p>
+                <CardContent className="p-0 space-y-4">
+                    <div className="grid grid-cols-2 gap-4 items-center">
+                        <div>
+                            <h3 className="font-bold text-lg mb-2">Antes do HIPNOFIT</h3>
+                            <Image src="https://i.imgur.com/2vjQaB0.jpeg" alt="Antes do HipnoFit" width={300} height={300} className="mx-auto rounded-lg" />
+                            <ul className="text-sm text-left mt-2 space-y-1 list-disc list-inside">
+                                <li>Ela vivia no efeito sanfona e sem motivação</li>
+                                <li>Ansiedade e compulsão atrapalhavam todo o processo</li>
+                                <li>Mente confusa, corpo fora de controle</li>
+                                <li>Comia por emoção, não por fome</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-lg mb-2">Depois do HIPNOFIT</h3>
+                            <Image src="https://i.imgur.com/TYvuBmJ.jpeg" alt="Depois do HipnoFit" width={300} height={300} className="mx-auto rounded-lg" />
+                            <ul className="text-sm text-left mt-2 space-y-1 list-disc list-inside">
+                                <li>Peso se mantém estável sinta-se no controle</li>
+                                <li>Reprograme a mente e o corpo acompanha</li>
+                                <li>Coma com consciência, não com ansiedade</li>
+                                <li>A mente não tem mais compulsão por doce</li>
+                            </ul>
+                        </div>
+                    </div>
                 </CardContent>
             </Card>
 

@@ -29,7 +29,7 @@ export function Step26_VitalsResult({ data, onContinue }: Props) {
     return (
         <Card className="shadow-lg border-blue-200">
             <CardHeader className="text-center">
-                <CardTitle className="text-3xl font-bold text-blue-600 font-headline">O Método HipnoFit provavelmente vai funcionar para você!</CardTitle>
+                <CardTitle className="text-3xl font-bold text-blue-600 font-headline">SUCESSO ! O Método HipnoFIT vai funcionar para você !</CardTitle>
                 <CardDescription className="text-lg">A hipnoterapia é segura para você?</CardDescription>
             </CardHeader>
             <CardContent className="text-center space-y-4">
