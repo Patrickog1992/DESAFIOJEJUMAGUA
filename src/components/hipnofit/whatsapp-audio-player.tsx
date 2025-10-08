@@ -20,29 +20,34 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
     const audio = audioRef.current;
     if (audio) {
       const setAudioData = () => {
-        setDuration(audio.duration);
+        if (audio.duration !== Infinity) {
+          setDuration(audio.duration);
+        }
         setCurrentTime(audio.currentTime);
       };
 
       const setAudioTime = () => setCurrentTime(audio.currentTime);
 
-      audio.addEventListener('loadeddata', setAudioData);
+      audio.addEventListener('loadedmetadata', setAudioData);
       audio.addEventListener('timeupdate', setAudioTime);
       
-      // When audio finishes, reset state
       const handleEnded = () => {
         setIsPlaying(false);
         setCurrentTime(0);
       };
       audio.addEventListener('ended', handleEnded);
+      
+      if (audio.readyState > 0) {
+        setAudioData();
+      }
 
       return () => {
-        audio.removeEventListener('loadeddata', setAudioData);
+        audio.removeEventListener('loadedmetadata', setAudioData);
         audio.removeEventListener('timeupdate', setAudioTime);
         audio.removeEventListener('ended', handleEnded);
       };
     }
-  }, []);
+  }, [audioSrc]);
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
@@ -50,7 +55,7 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
       if (isPlaying) {
         audio.pause();
       } else {
-        audio.play();
+        audio.play().catch(e => console.error("Error playing audio:", e));
       }
       setIsPlaying(!isPlaying);
     }
@@ -58,7 +63,7 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const audio = audioRef.current;
-    if (audio) {
+    if (audio && duration > 0) {
       const progressContainer = e.currentTarget;
       const clickPosition = e.clientX - progressContainer.getBoundingClientRect().left;
       const newTime = (clickPosition / progressContainer.offsetWidth) * duration;
@@ -68,7 +73,7 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
   };
 
   const formatTime = (time: number) => {
-    if (isNaN(time) || time === 0) return '0:00';
+    if (isNaN(time) || time === Infinity || time === 0) return '0:00';
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
@@ -95,7 +100,7 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
           ></div>
            <div 
             className="absolute top-1/2 h-3.5 w-3.5 bg-green-600 rounded-full border-2 border-white -translate-y-1/2"
-            style={{ left: `${progressPercentage}%` }}
+            style={{ left: `${progressPercentage}%`, transition: 'left 0.1s linear' }}
           ></div>
         </div>
         <div className="flex justify-between text-xs text-green-800 mt-1">
