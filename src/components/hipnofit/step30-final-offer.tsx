@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
+import { MinimalistAudioPlayer } from './minimalist-audio-player';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -42,6 +43,7 @@ export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
     const commentCarouselPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
     const [timeLeft, setTimeLeft] = useState(15 * 60);
+    const audioUrl = "https://archive.org/download/audio-1kUBATBZafXS/audio.mp3";
 
     useEffect(() => {
         if (timeLeft === 0) return;
@@ -98,7 +100,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <audio controls src="https://archive.org/download/audio-hipnofit-2/audio-hipnofit.mp3" className="w-full max-w-sm"></audio>
+                    <MinimalistAudioPlayer audioSrc={audioUrl} />
                 </CardContent>
             </Card>
 
