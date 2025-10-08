@@ -2,32 +2,53 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import Script from 'next/script';
 
 type Props = {
   onContinue: () => void;
 };
 
 export function Step1_IntroVSL({ onContinue }: Props) {
+  const [showButton, setShowButton] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    // O vídeo tem aproximadamente 4min 47s, então vamos usar esse tempo
+    const timer = setTimeout(() => {
+      setShowButton(true);
+    }, 287000); // 287 segundos
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg border-none bg-transparent">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold font-headline">Descubra quanto peso você pode perder com auto-hipnose em casa!</CardTitle>
+        <CardDescription>(Veja o vídeo abaixo com o som ligado e depois clique em QUERO SABER MAIS)</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="w-full mx-auto aspect-video relative">
-            <Image
-                src="https://i.imgur.com/SL6CGop.jpeg"
-                alt="HipnoFit"
-                fill
-                className="object-contain rounded-lg"
-            />
-        </div>
+        {isClient && (
+            <div className="w-full mx-auto aspect-video relative">
+                <vturb-smartplayer
+                    id="vid-68d1a91313a017c11def1ee3"
+                    style={{ display: 'block', width: '100%' }}
+                ></vturb-smartplayer>
+                <Script
+                    src="https://scripts.converteai.net/b45e4a12-72fd-43f2-a7e4-73d6b242d5d9/players/68d1a91313a017c11def1ee3/player.js"
+                    strategy="afterInteractive"
+                />
+            </div>
+        )}
       </CardContent>
       <CardFooter className="justify-center mt-4">
-          <Button onClick={onContinue} size="lg" className="bg-green-600 hover:bg-green-700 animate-pulse">
-            QUERO SABER MAIS
-          </Button>
+          {showButton && (
+            <Button onClick={onContinue} size="lg" className="bg-green-600 hover:bg-green-700 animate-pulse">
+              QUERO SABER MAIS
+            </Button>
+          )}
       </CardFooter>
     </Card>
   );
