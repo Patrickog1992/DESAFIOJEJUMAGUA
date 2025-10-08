@@ -41,13 +41,13 @@ export function MinimalistAudioPlayer({ audioSrc }: Props) {
     
     const handleEnd = () => {
         setIsPlaying(false);
-        setCurrentTime(0);
     }
 
     audio.addEventListener('loadedmetadata', setAudioData);
     audio.addEventListener('timeupdate', setAudioTime);
     audio.addEventListener('ended', handleEnd);
 
+    // cleanup
     return () => {
       audio.removeEventListener('loadedmetadata', setAudioData);
       audio.removeEventListener('timeupdate', setAudioTime);
@@ -87,12 +87,14 @@ export function MinimalistAudioPlayer({ audioSrc }: Props) {
           onChange={(e) => onScrub(e.target.value)}
           style={{
             background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${
-              (currentTime / duration) * 100
-            }%, #d1d5db ${(currentTime / duration) * 100}%, #d1d5db 100%)`,
+              duration > 0 ? (currentTime / duration) * 100 : 0
+            }%, #d1d5db ${
+              duration > 0 ? (currentTime / duration) * 100 : 0
+            }%, #d1d5db 100%)`,
           }}
         />
         <div className="text-xs text-gray-500 text-right">
-          <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
+          <span>{duration > 0 ? formatTime(currentTime) : '0:00'}</span> / <span>{duration > 0 ? formatTime(duration) : '0:00'}</span>
         </div>
       </div>
     </div>

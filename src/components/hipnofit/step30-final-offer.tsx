@@ -17,6 +17,8 @@ type Props = {
 
 const checkoutUrl = 'https://pay.kirvano.com/15697d4d-6002-4797-a350-f70c9f4cdf91'; 
 
+const audioUrl = "https://archive.org/download/hipnofit-audio-01/hipnofit-audio-01.mp3";
+
 const testimonialsImages = [
     "https://i.imgur.com/ipOh27y.jpg",
     "https://i.imgur.com/AJCfcXk.jpg",
@@ -99,7 +101,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <MinimalistAudioPlayer audioSrc="/audio/audio-hipnofit.mp3" />
+                    <MinimalistAudioPlayer audioSrc={audioUrl} />
                 </CardContent>
             </Card>
 
