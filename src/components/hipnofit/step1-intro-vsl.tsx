@@ -29,7 +29,6 @@ export function Step1_IntroVSL({ onContinue }: Props) {
     <Card className="w-full max-w-2xl mx-auto shadow-lg border-none bg-transparent">
       <CardHeader className="text-center">
         <CardTitle className="text-3xl font-bold font-headline">Descubra quanto peso você pode perder com auto-hipnose em casa!</CardTitle>
-        <CardDescription>(Veja o vídeo abaixo com o som ligado e depois clique em QUERO SABER MAIS)</CardDescription>
       </CardHeader>
       <CardContent>
         {isClient && (
