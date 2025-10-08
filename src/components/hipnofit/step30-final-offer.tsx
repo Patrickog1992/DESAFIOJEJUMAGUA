@@ -98,7 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <iframe width="300" height="60" src="https://vocaroo.com/embed/1kUBATBZafXS?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
+                    <audio controls src="https://archive.org/download/a-chave-do-milagre_202407/audio-hipnofit.mp3" className="w-full max-w-sm"></audio>
                 </CardContent>
             </Card>
 
