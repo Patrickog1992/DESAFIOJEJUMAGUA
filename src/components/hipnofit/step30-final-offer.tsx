@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Check, Lock, Play, Pause } from 'lucide-react';
+import { Check, Lock } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Autoplay from "embla-carousel-autoplay";
@@ -98,7 +98,9 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                    <iframe width="300" height="60" src="https://vocaroo.com/embed/1kclvc7i2OuT?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
+                    <audio controls src="https://storage.googleapis.com/studioprototype.appspot.com/hipnofit-audio.mp3">
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
                 </CardContent>
             </Card>
 
