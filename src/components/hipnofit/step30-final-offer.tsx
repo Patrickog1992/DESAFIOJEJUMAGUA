@@ -98,7 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
-                  <iframe width="300" height="60" src="https://vocaroo.com/embed/1kclvc7i2OuT?autoplay=0" frameBorder="0" allow="autoplay"></iframe>
+                  <iframe src="https://whyp.it/embeds/track/315732?token=uBW8u" width="100%" height="200" scrolling="no" frameBorder="0" loading="lazy"></iframe>
                 </CardContent>
             </Card>
 
