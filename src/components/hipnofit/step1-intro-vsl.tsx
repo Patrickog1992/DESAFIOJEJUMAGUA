@@ -14,11 +14,13 @@ export function Step1_IntroVSL({ onContinue }: Props) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // This ensures the component only renders on the client side, avoiding hydration errors.
     setIsClient(true);
-    // O vídeo tem aproximadamente 4min 47s, então vamos usar esse tempo
+    
+    // The video is approximately 4min 47s, so we'll use that time.
     const timer = setTimeout(() => {
       setShowButton(true);
-    }, 287000); // 287 segundos
+    }, 287000); // 287 seconds
 
     return () => clearTimeout(timer);
   }, []);
