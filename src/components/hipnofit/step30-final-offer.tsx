@@ -98,7 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <audio controls src="https://archive.org/download/a-chave-do-milagre_202407/audio-hipnofit.mp3" className="w-full max-w-sm"></audio>
+                    <audio controls src="https://archive.org/download/audio-hipnofit-2/audio-hipnofit.mp3" className="w-full max-w-sm"></audio>
                 </CardContent>
             </Card>
 
