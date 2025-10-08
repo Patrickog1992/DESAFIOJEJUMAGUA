@@ -33,7 +33,7 @@ export function Step1_IntroVSL({ onContinue }: Props) {
       </CardHeader>
       <CardContent>
         {isClient && (
-            <div className="w-full mx-auto aspect-video relative">
+            <div style={{ margin: '0 auto', maxWidth: '400px' }}>
                 <vturb-smartplayer
                     id="vid-68d1a91313a017c11def1ee3"
                     style={{ display: 'block', width: '100%' }}
@@ -41,6 +41,7 @@ export function Step1_IntroVSL({ onContinue }: Props) {
                 <Script
                     src="https://scripts.converteai.net/b45e4a12-72fd-43f2-a7e4-73d6b242d5d9/players/68d1a91313a017c11def1ee3/player.js"
                     strategy="afterInteractive"
+                    id="vsl-script"
                 />
             </div>
         )}
