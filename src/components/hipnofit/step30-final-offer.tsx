@@ -9,15 +9,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
-import { MinimalistAudioPlayer } from './minimalist-audio-player';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
 };
 
 const checkoutUrl = 'https://pay.kirvano.com/15697d4d-6002-4797-a350-f70c9f4cdf91'; 
-
-const audioUrl = "https://archive.org/download/hipnofit-audio-01/hipnofit-audio-01.mp3";
 
 const testimonialsImages = [
     "https://i.imgur.com/ipOh27y.jpg",
@@ -101,7 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <MinimalistAudioPlayer audioSrc={audioUrl} />
+                    <iframe src="https://archive.org/embed/1759931593750263612-321039481872506" width="500" height="30" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen></iframe>
                 </CardContent>
             </Card>
 
