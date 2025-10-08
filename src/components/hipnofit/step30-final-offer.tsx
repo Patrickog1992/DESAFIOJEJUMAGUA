@@ -97,10 +97,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardTitle className="font-headline">Você ainda tem dúvidas ?<br/>Escute um pequeno exemplo !</CardTitle>
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
-                <CardContent className="flex justify-center">
-                    <audio controls src="https://storage.googleapis.com/studioprototype.appspot.com/hipnofit-audio.mp3">
-                        Seu navegador não suporta o elemento de áudio.
-                    </audio>
+                <CardContent className="flex justify-center" dangerouslySetInnerHTML={{ __html: `<iframe width="300" height="60" src="https://vocaroo.com/embed/1kclvc7i2OuT?autoplay=0" frameborder="0" allow="autoplay"></iframe>` }}>
                 </CardContent>
             </Card>
 
