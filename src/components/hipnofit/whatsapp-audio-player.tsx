@@ -28,22 +28,21 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
 
       audio.addEventListener('loadeddata', setAudioData);
       audio.addEventListener('timeupdate', setAudioTime);
+      
+      // When audio finishes, reset state
+      const handleEnded = () => {
+        setIsPlaying(false);
+        setCurrentTime(0);
+      };
+      audio.addEventListener('ended', handleEnded);
 
       return () => {
         audio.removeEventListener('loadeddata', setAudioData);
         audio.removeEventListener('timeupdate', setAudioTime);
+        audio.removeEventListener('ended', handleEnded);
       };
     }
   }, []);
-  
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio && audio.ended) {
-      setIsPlaying(false);
-      setCurrentTime(0);
-    }
-  }, [currentTime])
-
 
   const togglePlayPause = () => {
     const audio = audioRef.current;
@@ -57,11 +56,14 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
     }
   };
 
-  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const audio = audioRef.current;
     if (audio) {
-      audio.currentTime = Number(e.target.value);
-      setCurrentTime(audio.currentTime);
+      const progressContainer = e.currentTarget;
+      const clickPosition = e.clientX - progressContainer.getBoundingClientRect().left;
+      const newTime = (clickPosition / progressContainer.offsetWidth) * duration;
+      audio.currentTime = newTime;
+      setCurrentTime(newTime);
     }
   };
 
@@ -71,34 +73,38 @@ export function WhatsAppAudioPlayer({ audioSrc, avatarSrc }: WhatsAppAudioPlayer
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
+  
+  const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
     <div className="w-full max-w-sm bg-green-50 p-3 rounded-lg flex items-center gap-3 shadow-sm border border-green-200">
       <audio ref={audioRef} src={audioSrc} preload="metadata"></audio>
       
-      <Button onClick={togglePlayPause} variant="ghost" size="icon" className="h-12 w-12 rounded-full bg-green-500 text-white hover:bg-green-600">
-        {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
+      <Button onClick={togglePlayPause} variant="ghost" size="icon" className="h-12 w-12 rounded-full bg-green-500 text-white hover:bg-green-600 flex-shrink-0">
+        {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 ml-1" />}
       </Button>
       
       <div className="flex-grow flex flex-col justify-center">
-        <input
-          type="range"
-          min="0"
-          max={duration}
-          value={currentTime}
-          onChange={handleProgressChange}
-          className="w-full h-1 bg-green-200 rounded-full appearance-none cursor-pointer"
-          style={{
-            background: `linear-gradient(to right, #22c55e ${ (currentTime / duration) * 100 }%, #dcfce7 ${ (currentTime / duration) * 100 }%)`
-          }}
-        />
+        <div 
+          className="w-full h-1.5 bg-green-200 rounded-full cursor-pointer relative"
+          onClick={handleSeek}
+        >
+          <div 
+            className="absolute top-0 left-0 h-full bg-green-600 rounded-full"
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+           <div 
+            className="absolute top-1/2 h-3.5 w-3.5 bg-green-600 rounded-full border-2 border-white -translate-y-1/2"
+            style={{ left: `${progressPercentage}%` }}
+          ></div>
+        </div>
         <div className="flex justify-between text-xs text-green-800 mt-1">
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
         </div>
       </div>
 
-      <Avatar className="h-12 w-12">
+      <Avatar className="h-12 w-12 flex-shrink-0">
         <AvatarImage src={avatarSrc} alt="Avatar" />
         <AvatarFallback>A</AvatarFallback>
       </Avatar>
