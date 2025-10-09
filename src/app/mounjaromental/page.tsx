@@ -32,6 +32,7 @@ import { Step26_VitalsResult } from '@/components/mounjaromental/step26-vitals-r
 import { Step27_WeightLossProjection } from '@/components/mounjaromental/step27-weightloss-projection';
 import { Step28_BeyondWeightLoss } from '@/components/mounjaromental/step28-beyond-weightloss';
 import { Step29_SuccessRate } from '@/components/mounjaromental/step29-success-rate';
+import { Step29b_VSLFinal } from '@/components/mounjaromental/step29b-vsl-final';
 import { Step30_FinalOffer } from '@/components/mounjaromental/step30-final-offer';
 
 
@@ -63,7 +64,8 @@ const steps = [
     'brain-stomach-info', 'eating-habits', 'cravings', 'brain-body-disconnect-info',
     'activity-level', 'future-self', 'measurements', 'program-timeline', 'desired-activity',
     'time-dedication', 'program-intro', 'loading', 
-    'vitals-result', 'weightloss-projection', 'beyond-weightloss', 'success-rate', 'final-offer'
+    'vitals-result', 'weightloss-projection', 'beyond-weightloss', 'success-rate', 
+    'vsl-final', 'final-offer'
 ];
 
 function MounjaroMentalPageContent() {
@@ -146,6 +148,8 @@ function MounjaroMentalPageContent() {
             return <Step28_BeyondWeightLoss onContinue={() => handleNextStep({})} />;
         case 'success-rate':
             return <Step29_SuccessRate onContinue={() => handleNextStep({})} />;
+        case 'vsl-final':
+            return <Step29b_VSLFinal onContinue={() => handleNextStep({})} />;
         case 'final-offer':
             return <Step30_FinalOffer data={quizData} />;
         default:
@@ -158,7 +162,7 @@ function MounjaroMentalPageContent() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-50 font-body">
        <div className={`flex flex-col items-center justify-center flex-grow w-full ${isFinalPage ? 'max-w-7xl' : 'mb-8'}`}>
-        {!isFinalPage && currentStep !== 'vsl' && (
+        {!isFinalPage && currentStep !== 'vsl' && currentStep !== 'vsl-final' && (
             <Image
                 src="https://i.imgur.com/Rjgrgd1.png"
                 alt="MounjaroMental Logo"
