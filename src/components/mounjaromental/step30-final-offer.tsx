@@ -98,9 +98,8 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <div style={{height: '228px', width: '204px'}}>
-                        <iframe src="https://audio.com/embed/audio/1845438443241021?theme=image" style={{display:'block', borderRadius: '1px', border: 'none', height: '204px', width: '204px'}}></iframe>
-                        <a href='https://audio.com/hipno-1' style={{textAlign: 'center', display: 'block', color: '#A4ABB6', fontSize: '12px', fontFamily: 'sans-serif', lineHeight: '16px', marginTop: '8px', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}}>@mounjaro-mental</a>
+                    <div style={{height: '204px', width: '204px'}}>
+                        <iframe src="https://audio.com/embed/audio/1845527045072244?theme=image" style={{display:'block', borderRadius: '1px', border: 'none', height: '204px', width: '204px'}}></iframe>
                     </div>
                 </CardContent>
             </Card>
