@@ -157,7 +157,7 @@ function MounjaroMentalPageContent() {
        <div className={`flex flex-col items-center justify-center flex-grow w-full ${isFinalPage ? 'max-w-7xl' : 'mb-8'}`}>
         {!isFinalPage && (
             <Image
-                src="https://i.imgur.com/i9a6B8R.png"
+                src="https://i.imgur.com/Rjgrgd1.png"
                 alt="MounjaroMental Logo"
                 width={100}
                 height={100}
