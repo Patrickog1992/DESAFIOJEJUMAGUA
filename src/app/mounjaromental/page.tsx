@@ -2,6 +2,7 @@
 import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Step0_VSL } from '@/components/mounjaromental/step0-vsl';
 import { Step1_IntroVSL } from '@/components/mounjaromental/step1-intro-vsl';
 import { Step2_GenderSelection } from '@/components/mounjaromental/step2-gender-selection';
 import { Step3_AgeSelection } from '@/components/mounjaromental/step3-age-selection';
@@ -56,7 +57,7 @@ export type MounjaroMentalQuizData = {
 };
 
 const steps = [
-    'intro-vsl', 'gender-selection', 'age-selection', 'social-proof', 'weight-loss-reason',
+    'vsl', 'intro-vsl', 'gender-selection', 'age-selection', 'social-proof', 'weight-loss-reason',
     'knowledge-check', 'mind-body-info', 'nutritionist-recommendation', 'personal-struggles',
     'testimonial', 'time-with-problem', 'physical-difficulties', 'life-impact',
     'brain-stomach-info', 'eating-habits', 'cravings', 'brain-body-disconnect-info',
@@ -85,6 +86,8 @@ function MounjaroMentalPageContent() {
 
   const renderStep = () => {
     switch (currentStep) {
+        case 'vsl':
+            return <Step0_VSL onContinue={() => handleNextStep({})} />;
         case 'intro-vsl':
             return <Step1_IntroVSL onContinue={() => handleNextStep({})} />;
         case 'gender-selection':
@@ -146,7 +149,7 @@ function MounjaroMentalPageContent() {
         case 'final-offer':
             return <Step30_FinalOffer data={quizData} />;
         default:
-            return <Step1_IntroVSL onContinue={() => handleNextStep({})} />;
+            return <Step0_VSL onContinue={() => handleNextStep({})} />;
     }
   };
   
@@ -155,7 +158,7 @@ function MounjaroMentalPageContent() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-gray-50 font-body">
        <div className={`flex flex-col items-center justify-center flex-grow w-full ${isFinalPage ? 'max-w-7xl' : 'mb-8'}`}>
-        {!isFinalPage && (
+        {!isFinalPage && currentStep !== 'vsl' && (
             <Image
                 src="https://i.imgur.com/Rjgrgd1.png"
                 alt="MounjaroMental Logo"
