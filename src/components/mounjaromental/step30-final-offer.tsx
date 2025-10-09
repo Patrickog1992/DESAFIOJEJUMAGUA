@@ -14,7 +14,7 @@ type Props = {
   data: Partial<MounjaroMentalQuizData>;
 };
 
-const checkoutUrl = 'https://pay.kirvano.com/15697d4d-6002-4797-a350-f70c9f4cdf91'; 
+const checkoutUrl = 'https://pay.kirvano.com/d59b11d4-900d-4e01-b65f-40508daa08c1'; 
 
 const testimonialsImages = [
     "https://i.imgur.com/ipOh27y.jpg",
@@ -98,7 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <div style={{height: '204px', width: '204px'}}>
+                    <div style={{height: '228px', width: '204px'}}>
                         <iframe src="https://audio.com/embed/audio/1845527045072244?theme=image" style={{display:'block', borderRadius: '1px', border: 'none', height: '204px', width: '204px'}}></iframe>
                     </div>
                 </CardContent>
