@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Mic } from 'lucide-react';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 type Props = {
   audioSrc: string;
@@ -24,12 +23,21 @@ export function WhatsAppAudioPlayer({ audioSrc }: Props) {
   };
 
   const handleTimeUpdate = () => {
-    setCurrentTime(audioRef.current?.currentTime || 0);
+    if (audioRef.current) {
+        setCurrentTime(audioRef.current.currentTime);
+    }
   };
 
   const handleLoadedMetadata = () => {
-    setDuration(audioRef.current?.duration || 0);
+    if (audioRef.current) {
+        setDuration(audioRef.current.duration);
+    }
   };
+  
+  const handleEnded = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+  }
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
@@ -48,27 +56,31 @@ export function WhatsAppAudioPlayer({ audioSrc }: Props) {
     if (audio) {
       audio.addEventListener('timeupdate', handleTimeUpdate);
       audio.addEventListener('loadedmetadata', handleLoadedMetadata);
-      audio.addEventListener('ended', () => setIsPlaying(false));
+      audio.addEventListener('ended', handleEnded);
 
       return () => {
         audio.removeEventListener('timeupdate', handleTimeUpdate);
         audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        audio.removeEventListener('ended', () => setIsPlaying(false));
+        audio.removeEventListener('ended', handleEnded);
       };
     }
   }, []);
 
   return (
-    <div className="flex items-center w-full max-w-sm p-2 bg-green-100 rounded-lg shadow-sm">
+    <div className="flex items-center w-full max-w-sm p-2 bg-[#dcf8c6] rounded-lg shadow-sm">
       <audio ref={audioRef} src={audioSrc} preload="metadata" />
       <button onClick={handlePlayPause} className="flex-shrink-0">
-        {isPlaying ? <Pause className="w-8 h-8 text-green-700" /> : <Play className="w-8 h-8 text-green-700" />}
+        {isPlaying ? <Pause className="w-8 h-8 text-[#54b3c1]" /> : <Play className="w-8 h-8 text-[#54b3c1]" />}
       </button>
       <div className="flex-grow mx-3">
-        <div className="w-full h-1 bg-gray-300 rounded-full relative">
+        <div className="w-full h-1 bg-gray-400 rounded-full relative">
           <div 
-            className="h-1 bg-green-500 rounded-full"
+            className="h-1 bg-[#34b7f1] rounded-full"
             style={{ width: `${(currentTime / duration) * 100}%` }}
+          ></div>
+          <div 
+             className="w-3 h-3 bg-[#34b7f1] rounded-full absolute top-1/2 -translate-y-1/2"
+             style={{ left: `calc(${(currentTime / duration) * 100}% - 6px)`}}
           ></div>
           <input
             type="range"
@@ -79,8 +91,8 @@ export function WhatsAppAudioPlayer({ audioSrc }: Props) {
             className="absolute w-full h-full opacity-0 cursor-pointer top-0 left-0"
           />
         </div>
-        <div className="text-xs text-gray-500 mt-1 text-right">
-          {formatTime(currentTime)} / {formatTime(duration)}
+        <div className="text-xs text-gray-500 mt-1 flex justify-between">
+            <span>{formatTime(currentTime)}</span>
         </div>
       </div>
       <div className="flex-shrink-0">
