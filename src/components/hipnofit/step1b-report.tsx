@@ -26,7 +26,6 @@ export function Step1b_Report({ onContinue }: Props) {
           src="https://i.imgur.com/R4qyStp.mp4"
           controls
           autoPlay
-          muted
           playsInline
           className="w-full rounded-lg"
         ></video>
