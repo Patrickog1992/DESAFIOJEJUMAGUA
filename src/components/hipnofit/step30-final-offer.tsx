@@ -9,7 +9,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
-import { WhatsAppAudioPlayer } from './whatsapp-audio-player';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -99,7 +98,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <WhatsAppAudioPlayer audioSrc="https://audio.com/hipno-1/1845438443241021/download/Mounjaro%20Mental%20Exemplo.mp3" />
+                    <div style={{height: '228px', width: '204px'}}><iframe src="https://audio.com/embed/audio/1845986029455015?theme=image" style={{display:'block', borderRadius: '1px', border: 'none', height: '204px', width: '204px'}}></iframe></div>
                 </CardContent>
             </Card>
 
@@ -112,7 +111,7 @@ export function Step30_FinalOffer({ data }: Props) {
                 <CardContent className="p-6 space-y-4">
                     <div>
                         <h3 className="font-bold text-lg">Método HipnoFit – Acesso Vitalício</h3>
-                        <ul className="list-none space-y-3 mt-2">
+                         <ul className="list-none space-y-3 mt-2">
                             <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /> <div><span className="font-semibold">Sessões de hipnoterapia transformadora:</span> Áudios guiados para reprogramar sua mente e corpo para uma perda de peso natural.</div></li>
                             <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /> <div><span className="font-semibold">Reprogramação dos gatilhos emocionais:</span> Aprenda a identificar e controlar a alimentação por ansiedade, estresse ou tédio.</div></li>
                             <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /> <div><span className="font-semibold">Resultados duradouros e sustentáveis:</span> Crie hábitos saudáveis que permanecem, sem efeito sanfona.</div></li>
