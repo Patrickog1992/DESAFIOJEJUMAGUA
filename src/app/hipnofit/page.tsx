@@ -3,6 +3,7 @@ import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Step1_IntroVSL } from '@/components/hipnofit/step1-intro-vsl';
+import { Step1b_Report } from '@/components/hipnofit/step1b-report';
 import { Step2_GenderSelection } from '@/components/hipnofit/step2-gender-selection';
 import { Step3_AgeSelection } from '@/components/hipnofit/step3-age-selection';
 import { Step4_SocialProof } from '@/components/hipnofit/step4-social-proof';
@@ -56,7 +57,7 @@ export type HipnoFitQuizData = {
 };
 
 const steps = [
-    'intro-vsl', 'gender-selection', 'age-selection', 'social-proof', 'weight-loss-reason',
+    'intro-vsl', 'report', 'gender-selection', 'age-selection', 'social-proof', 'weight-loss-reason',
     'knowledge-check', 'mind-body-info', 'nutritionist-recommendation', 'personal-struggles',
     'testimonial', 'time-with-problem', 'physical-difficulties', 'life-impact',
     'brain-stomach-info', 'eating-habits', 'cravings', 'brain-body-disconnect-info',
@@ -87,6 +88,8 @@ function HipnoFitPageContent() {
     switch (currentStep) {
         case 'intro-vsl':
             return <Step1_IntroVSL onContinue={() => handleNextStep({})} />;
+        case 'report':
+            return <Step1b_Report onContinue={() => handleNextStep({})} />;
         case 'gender-selection':
             return <Step2_GenderSelection onContinue={handleNextStep} />;
         case 'age-selection':
