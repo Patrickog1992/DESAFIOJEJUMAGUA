@@ -113,18 +113,18 @@ export function Step30_FinalOffer({ data }: Props) {
                 <CardContent className="p-6 space-y-4">
                     <div>
                         <h3 className="font-bold text-lg">Método MounjaroMental – Acesso Vitalício</h3>
-                        <ul className="list-none space-y-2 mt-2">
-                            <li className="flex items-center gap-2"><Check className="h-5 w-5 text-green-500" /> Sessões de áudio transformadoras</li>
-                            <li className="flex items-center gap-2"><Check className="h-5 w-5 text-green-500" /> Reprogramação dos gatilhos emocionais</li>
-                            <li className="flex items-center gap-2"><Check className="h-5 w-5 text-green-500" /> Resultados duradouros e sustentáveis</li>
+                        <ul className="list-none space-y-3 mt-2">
+                            <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /> <div><span className="font-semibold">Sessões de áudio transformadoras:</span> Áudios guiados para reprogramar sua mente e corpo para uma perda de peso natural.</div></li>
+                            <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /> <div><span className="font-semibold">Reprogramação dos gatilhos emocionais:</span> Aprenda a identificar e controlar a alimentação por ansiedade, estresse ou tédio.</div></li>
+                            <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /> <div><span className="font-semibold">Resultados duradouros e sustentáveis:</span> Crie hábitos saudáveis que permanecem, sem efeito sanfona.</div></li>
                         </ul>
                     </div>
                      <div>
                         <h3 className="font-bold text-lg">Bônus Exclusivos (por tempo limitado):</h3>
-                        <ul className="list-none space-y-2 mt-2">
-                            <li className="flex items-center gap-2">🎁 E-book “Alimentação Consciente”</li>
-                            <li className="flex items-center gap-2">🎁 Áudio Extra</li>
-                            <li className="flex items-center gap-2">🎁 Suporte em Grupo VIP</li>
+                        <ul className="list-none space-y-3 mt-2">
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">E-book “Alimentação Consciente”:</span> Um guia prático para transformar sua relação com a comida.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Áudio Extra "Sono Reparador":</span> Um áudio bônus para melhorar a qualidade do seu sono e acelerar a recuperação.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Suporte em Grupo VIP:</span> Junte-se à nossa comunidade exclusiva para trocar experiências e receber apoio.</div></li>
                         </ul>
                     </div>
                     <div className="text-center pt-4">
@@ -140,6 +140,23 @@ export function Step30_FinalOffer({ data }: Props) {
                         </a>
                     </div>
                 </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-center text-xl font-bold">📊 Compare os Custos para Emagrecer:</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center space-y-4">
+                <ul className="list-none space-y-1 text-gray-700">
+                  <li>•  <span className="font-semibold">Ozempic (1 mês):</span> R$ 3.000</li>
+                  <li>• <span className="font-semibold">Nutricionista particular:</span> R$ 500 por consulta</li>
+                  <li>•  <span className="font-semibold">Academia + Personal:</span> R$ 600 por mês</li>
+                  <li>•  <span className="font-semibold">Cirurgia bariátrica:</span> R$ 20.000 – R$ 50.000</li>
+                </ul>
+                <p className="font-semibold text-gray-800"> O mesmo controle mental, sem riscos, sem agulhas e sem gastar uma fortuna.</p>
+                <p className="text-blue-600 font-bold">🎧 Reprograme sua mente. Emagreça naturalmente. E sinta os resultados desde a primeira sessão.</p>
+                <p className="text-xl font-bold text-green-600 mt-4">• 🧠 Hipnoterapia para Emagrecimento (MÉTODO COMPLETO): R$ 47,00</p>
+              </CardContent>
             </Card>
 
             <Card>
