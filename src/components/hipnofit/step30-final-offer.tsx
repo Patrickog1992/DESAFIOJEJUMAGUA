@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
+import { WhatsAppAudioPlayer } from './whatsapp-audio-player';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -37,6 +38,9 @@ const faqItems = [
     { question: "Quanto tempo até ver os resultados?", answer: "Muitos usuários relatam sentir uma mudança em sua mentalidade e hábitos após as primeiras sessões. Resultados visíveis na balança geralmente aparecem nos primeiros 7 dias e se intensificam nas semanas seguintes." },
     { question: "E se não funcionar para mim?", answer: "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito com o programa por qualquer motivo, basta nos contatar para um reembolso total." },
 ];
+
+const audioUrl = "https://ia801002.us.archive.org/18/items/1759931593750263612-321039481872506_202510/1759931593750263612-321039481872506.mp3";
+
 
 export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
@@ -98,7 +102,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                    <div style={{height: '228px', width: '204px'}}><iframe src="https://audio.com/embed/audio/1845986029455015?theme=image" style={{display:'block', borderRadius: '1px', border: 'none', height: '204px', width: '204px'}}></iframe></div>
+                   <WhatsAppAudioPlayer audioSrc={audioUrl} />
                 </CardContent>
             </Card>
 

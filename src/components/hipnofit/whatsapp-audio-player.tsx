@@ -46,6 +46,7 @@ export function WhatsAppAudioPlayer({ audioSrc }: Props) {
   };
 
   const formatTime = (time: number) => {
+    if (isNaN(time) || time === 0) return '0:00';
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
@@ -76,11 +77,11 @@ export function WhatsAppAudioPlayer({ audioSrc }: Props) {
         <div className="w-full h-1 bg-gray-400 rounded-full relative">
           <div 
             className="h-1 bg-[#34b7f1] rounded-full"
-            style={{ width: `${(currentTime / duration) * 100}%` }}
+            style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
           ></div>
           <div 
              className="w-3 h-3 bg-[#34b7f1] rounded-full absolute top-1/2 -translate-y-1/2"
-             style={{ left: `calc(${(currentTime / duration) * 100}% - 6px)`}}
+             style={{ left: `calc(${duration > 0 ? (currentTime / duration) * 100 : 0}% - 6px)`}}
           ></div>
           <input
             type="range"
@@ -93,6 +94,7 @@ export function WhatsAppAudioPlayer({ audioSrc }: Props) {
         </div>
         <div className="text-xs text-gray-500 mt-1 flex justify-between">
             <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
         </div>
       </div>
       <div className="flex-shrink-0">
