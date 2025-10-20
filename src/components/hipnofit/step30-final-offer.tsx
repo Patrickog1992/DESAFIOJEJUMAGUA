@@ -9,7 +9,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import Autoplay from "embla-carousel-autoplay";
 import React, { useState, useEffect, useRef } from 'react';
 import type { HipnoFitQuizData } from '@/app/hipnofit/page';
-import { WhatsAppAudioPlayer } from './whatsapp-audio-player';
 
 type Props = {
   data: Partial<HipnoFitQuizData>;
@@ -102,7 +101,7 @@ export function Step30_FinalOffer({ data }: Props) {
                     <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center p-6">
-                   <WhatsAppAudioPlayer audioSrc={audioUrl} />
+                   <audio controls src={audioUrl}></audio>
                 </CardContent>
             </Card>
 
@@ -207,7 +206,7 @@ export function Step30_FinalOffer({ data }: Props) {
                 </CardHeader>
                 <CardContent className="space-y-2">
                     <p>1. Encontre um lugar tranquilo onde você possa relaxar</p>
-                    <p>2. Acesse a gravação de hipnoterapia na nossa área de membros</p>
+                    <p>2. Acesse a gravação na nossa área de membros</p>
                     <p>3. Ouça uma sessão de 20 minutos por dia</p>
                     <p>4. Comece a aproveitar os primeiros resultados em apenas uma semana</p>
                 </CardContent>
