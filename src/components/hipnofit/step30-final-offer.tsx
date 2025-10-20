@@ -232,7 +232,7 @@ export function Step30_FinalOffer({ data }: Props) {
                 </CardHeader>
                 <CardContent>
                      <Accordion type="single" collapsible className="w-full">
-                        {(faqItems || []).map((item, index) => (
+                        {faqItems.map((item, index) => (
                             <AccordionItem value={`item-${index}`} key={index}>
                                 <AccordionTrigger>{item.question}</AccordionTrigger>
 
