@@ -34,6 +34,7 @@ export type GerarPlanoAmostraOutput = z.infer<typeof GerarPlanoAmostraOutputSche
 
 const prompt = ai.definePrompt({
   name: 'gerarPlanoAmostraPrompt',
+  model: 'googleai/gemini-1.5-flash-latest',
   input: { schema: GerarPlanoAmostraInputSchema },
   output: { schema: GerarPlanoAmostraOutputSchema },
   prompt: `Você é um especialista em jejum de água e nutricionista motivacional.
