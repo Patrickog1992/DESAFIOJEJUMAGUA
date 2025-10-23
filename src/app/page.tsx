@@ -102,6 +102,7 @@ const steps = [
   'medicacao',
   'problemas-saude',
   'progresso-acelerado',
+  'plano-carregando',
   'resultado-plano',
   'oferta-unica',
 ];
@@ -120,19 +121,16 @@ function HomePageContent() {
           params.set(key, value.toString());
         }
       });
-
-    if (currentStep === 'plano-carregando') {
-      router.push(`/plano-carregando?${params.toString()}`);
-    } else if (currentStep === 'resultado-plano') {
-        router.push(`/resultado-plano?${params.toString()}`);
-    } else if (currentStep === 'oferta-unica') {
-      router.push(`/oferta-unica?${params.toString()}`);
-    }
   }, [currentStepIndex, quizData, router, currentStep]);
 
   const handleNextStep = (data: Partial<QuizData>) => {
     const updatedData = { ...quizData, ...data };
     setQuizData(updatedData);
+    setCurrentStepIndex(prevIndex => prevIndex + 1);
+    window.scrollTo(0, 0);
+  };
+  
+  const handleLoadingComplete = () => {
     setCurrentStepIndex(prevIndex => prevIndex + 1);
     window.scrollTo(0, 0);
   };
@@ -203,6 +201,8 @@ function HomePageContent() {
         return <HealthProblemsSelection onContinue={(healthProblems) => handleNextStep({ healthProblems })} />;
       case 'progresso-acelerado':
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
+      case 'plano-carregando':
+        return <LoadingPlan onComplete={handleLoadingComplete} />;
       case 'resultado-plano':
         return <PlanResult 
             name={quizData.name || ''}
