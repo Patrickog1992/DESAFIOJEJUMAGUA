@@ -12,7 +12,7 @@ function AcceleratedTimelinePageContent() {
 
   const handleContinue = () => {
     const params = new URLSearchParams(searchParams.toString());
-    router.push(`/plano-carregando?${params.toString()}`);
+    router.push(`/?${params.toString()}&step=plano-carregando`);
   };
 
   const name = searchParams.get('name') || '';
@@ -50,3 +50,5 @@ export default function AcceleratedTimelinePage() {
     </Suspense>
   );
 }
+
+    
