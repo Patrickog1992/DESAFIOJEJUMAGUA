@@ -1,6 +1,6 @@
 'use server';
 /**
- * @fileOverview Fluxo de IA para gerar um plano de jejum de amostra.
+ * @fileOverview Fluxo de IA para gerar um plano de jejum de amostra de 1 dia.
  *
  * - gerarPlanoAmostra: Função que lida com a geração do plano.
  * - GerarPlanoAmostraInput: O tipo de entrada para a função.
@@ -10,23 +10,22 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-const PlanoDiarioSchema = z.object({
-  horario: z.string().describe('O horário sugerido para a ação. Ex: "08:00 - 12:00"'),
-  acao: z.string().describe('A ação específica que o usuário deve tomar.'),
-  dica: z.string().describe('Uma dica curta para ajudar o usuário com a ação.'),
+const RefeicaoSchema = z.object({
+  prato: z.string().describe('O nome do prato para a refeição. Ex: "Salada de Quinoa com Frango Grelhado"'),
+  descricao: z.string().describe('Uma breve descrição do prato e por que ele é uma boa escolha.'),
 });
 
 const GerarPlanoAmostraInputSchema = z.object({
-  gender: z.string().describe('O gênero do usuário (male, female, não informado).'),
-  currentWeight: z.number().describe('O peso atual do usuário em kg.'),
-  targetWeight: z.number().describe('O peso desejado do usuário em kg.'),
+  preferencias: z.string().describe('As preferências alimentares do usuário. Ex: "Gosto de frango e saladas, mas não como peixe."'),
+  restricoes: z.string().describe('Qualquer restrição alimentar do usuário. Ex: "Intolerância à lactose."'),
+  tempoJejum: z.string().describe('O período de jejum que o usuário deseja incluir. Ex: "2 horas"'),
 });
 
 const GerarPlanoAmostraOutputSchema = z.object({
-  manha: PlanoDiarioSchema.describe('Plano para o período da manhã.'),
-  tarde: PlanoDiarioSchema.describe('Plano para o período da tarde.'),
-  noite: PlanoDiarioSchema.describe('Plano para o período da noite.'),
-  motivacao_final: z.string().describe('Uma frase motivacional curta e impactante para o final do dia.'),
+  cafeDaManha: RefeicaoSchema.describe('Sugestão para o café da manhã.'),
+  almoco: RefeicaoSchema.describe('Sugestão para o almoço.'),
+  jantar: RefeicaoSchema.describe('Sugestão para o jantar.'),
+  observacao: z.string().describe('Uma observação curta e motivacional sobre o plano do dia.'),
 });
 
 export type GerarPlanoAmostraInput = z.infer<typeof GerarPlanoAmostraInputSchema>;
@@ -37,22 +36,20 @@ const prompt = ai.definePrompt({
   model: 'googleai/gemini-1.5-flash-latest',
   input: { schema: GerarPlanoAmostraInputSchema },
   output: { schema: GerarPlanoAmostraOutputSchema },
-  prompt: `Você é um especialista em jejum de água e nutricionista motivacional.
-  Sua tarefa é criar um plano de amostra SIMPLES e FÁCIL de seguir para UM DIA de jejum de água,
-  com base nos dados do usuário.
+  prompt: `Você é um nutricionista especialista em jejum intermitente e um chef de cozinha.
+  Sua tarefa é criar um cardápio SIMPLES, GOSTOSO e FÁCIL de seguir para UM DIA de desafio de jejum de água.
 
-  O plano deve ser dividido em 3 períodos: Manhã, Tarde e Noite.
-  Para cada período, forneça um horário, uma ação clara e uma dica curta.
-  As ações devem focar na hidratação e no bem-estar, evitando jargões técnicos.
+  Leve em consideração as seguintes informações do usuário:
+  - Preferências Alimentares: {{{preferencias}}}
+  - Restrições: {{{restricoes}}}
+  - Tempo de Jejum Desejado: {{{tempoJejum}}}
+
+  Crie um cardápio com 3 refeições: Café da Manhã, Almoço e Jantar.
+  As refeições devem ser saudáveis, fáceis de preparar e alinhadas com um estilo de vida de jejum, focando em hidratação e nutrientes.
   A linguagem deve ser encorajadora e positiva.
-  Finalize com uma mensagem de motivação curta e poderosa.
+  Finalize com uma observação curta e motivacional sobre como este dia é o primeiro passo para uma grande mudança.
 
-  Dados do usuário:
-  - Gênero: {{{gender}}}
-  - Peso Atual: {{{currentWeight}}} kg
-  - Peso Desejado: {{{targetWeight}}} kg
-
-  Crie o plano de amostra agora.
+  Crie o cardápio agora.
   `,
 });
 
