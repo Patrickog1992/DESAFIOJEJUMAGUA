@@ -4,7 +4,6 @@
 import { PlanResult } from '@/components/plan-result';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-import Image from 'next/image';
 
 function PlanResultPageContent() {
   const router = useRouter();

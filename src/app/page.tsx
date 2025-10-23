@@ -104,10 +104,10 @@ const steps = [
   'progresso-acelerado',
   'plano-carregando',
   'resultado-plano',
-  'oferta-unica',
 ];
 
 function HomePageContent() {
+  const router = useRouter();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [quizData, setQuizData] = useState<QuizData>({});
 
@@ -116,8 +116,18 @@ function HomePageContent() {
   const handleNextStep = (data: Partial<QuizData>) => {
     const updatedData = { ...quizData, ...data };
     setQuizData(updatedData);
-    if (currentStepIndex < steps.length - 1) {
-      setCurrentStepIndex(prevIndex => prevIndex + 1);
+
+    const nextStepIndex = currentStepIndex + 1;
+    if (nextStepIndex < steps.length) {
+      setCurrentStepIndex(nextStepIndex);
+    } else {
+        const params = new URLSearchParams();
+        Object.entries(updatedData).forEach(([key, value]) => {
+            if(value) {
+                params.set(key, value.toString());
+            }
+        });
+        router.push(`/oferta-unica?${params.toString()}`);
     }
     window.scrollTo(0, 0);
   };
@@ -201,8 +211,6 @@ function HomePageContent() {
             gender={quizData.gender}
             onContinue={() => handleNextStep({})}
         />;
-      case 'oferta-unica':
-        return <UniqueOffer onContinue={() => {}} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} height={Number(quizData.height)} gender={quizData.gender}/>;
       default:
         return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
     }
