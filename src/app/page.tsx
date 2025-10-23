@@ -108,30 +108,24 @@ const steps = [
 ];
 
 function HomePageContent() {
-  const router = useRouter();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [quizData, setQuizData] = useState<QuizData>({});
 
   const currentStep = steps[currentStepIndex];
 
-  useEffect(() => {
-    const params = new URLSearchParams();
-      Object.entries(quizData).forEach(([key, value]) => {
-        if (value !== undefined) {
-          params.set(key, value.toString());
-        }
-      });
-  }, [currentStepIndex, quizData, router, currentStep]);
-
   const handleNextStep = (data: Partial<QuizData>) => {
     const updatedData = { ...quizData, ...data };
     setQuizData(updatedData);
-    setCurrentStepIndex(prevIndex => prevIndex + 1);
+    if (currentStepIndex < steps.length - 1) {
+      setCurrentStepIndex(prevIndex => prevIndex + 1);
+    }
     window.scrollTo(0, 0);
   };
   
   const handleLoadingComplete = () => {
-    setCurrentStepIndex(prevIndex => prevIndex + 1);
+    if (currentStep === 'plano-carregando') {
+      setCurrentStepIndex(prevIndex => prevIndex + 1);
+    }
     window.scrollTo(0, 0);
   };
 
@@ -221,7 +215,9 @@ function HomePageContent() {
     }
   };
 
-  const shouldShowLogo = currentStep !== 'vsl-intro' && currentStep !== 'oferta-unica' && currentStep !== 'plano-carregando' && currentStep !== 'resultado-plano';
+  const shouldShowLogo = currentStep !== 'oferta-unica' && currentStep !== 'plano-carregando' && currentStep !== 'resultado-plano';
+
+  const shouldShowFooter = currentStep !== 'oferta-unica' && currentStep !== 'resultado-plano';
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -239,9 +235,11 @@ function HomePageContent() {
             {renderStep()}
         </div>
       </div>
-      <footer className="w-full text-center text-sm text-muted-foreground mt-8">
-        <p>Desafio do Jejum de Água todos os direitos reservados</p>
-      </footer>
+      {shouldShowFooter && (
+        <footer className="w-full text-center text-sm text-muted-foreground mt-8">
+            <p>Desafio do Jejum de Água todos os direitos reservados</p>
+        </footer>
+      )}
     </main>
   );
 }

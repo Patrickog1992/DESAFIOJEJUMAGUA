@@ -29,19 +29,17 @@ export function LoadingPlan({ onComplete }: LoadingPlanProps) {
       setProgress(prevProgress => {
         if (prevProgress >= 100) {
           clearInterval(progressInterval);
-          // Atraso para garantir que o usuário veja 100% antes da transição
           setTimeout(onComplete, 500); 
           return 100;
         }
         return prevProgress + 1;
       });
-    }, 50); // 5 segundos para completar
+    }, 50);
 
     const messageInterval = setInterval(() => {
       setCurrentMessageIndex(prevIndex => (prevIndex + 1) % messages.length);
     }, 2000);
 
-    // Função de limpeza para garantir que os intervalos sejam removidos
     return () => {
       clearInterval(progressInterval);
       clearInterval(messageInterval);

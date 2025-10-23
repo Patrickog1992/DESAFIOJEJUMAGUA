@@ -2,20 +2,17 @@
 
 import { LoadingPlan } from '@/components/loading-plan';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import Image from 'next/image';
 
 function LoadingPlanPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isComplete, setIsComplete] = useState(false);
 
-  useEffect(() => {
-    if (isComplete) {
-      const params = new URLSearchParams(searchParams.toString());
-      router.push(`/resultado-plano?${params.toString()}`);
-    }
-  }, [isComplete, router, searchParams]);
+  const handleComplete = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    router.push(`/resultado-plano?${params.toString()}`);
+  };
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -27,7 +24,7 @@ function LoadingPlanPageContent() {
           height={100}
           className="mb-8"
         />
-        <LoadingPlan onComplete={() => setIsComplete(true)} />
+        <LoadingPlan onComplete={handleComplete} />
       </div>
       <footer className="w-full text-center text-sm text-muted-foreground mt-8">
         <p>Desafio do Jejum de Água todos os direitos reservados</p>
