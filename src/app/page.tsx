@@ -4,7 +4,6 @@ import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { VslIntro } from '@/components/vsl-intro';
 import { QuizStart } from '@/components/quiz-start';
 import { AgeRangeSelection } from '@/components/age-range-selection';
 import { GoalSelection } from '@/components/goal-selection';
@@ -104,7 +103,6 @@ const steps = [
   'problemas-saude',
   'progresso-acelerado',
   'plano-carregando',
-  'vsl-final',
   'oferta-unica',
 ];
 
@@ -125,8 +123,6 @@ function HomePageContent() {
 
     if (currentStep === 'plano-carregando') {
       router.push(`/plano-carregando?${params.toString()}`);
-    } else if (currentStep === 'vsl-final') {
-      router.push(`/vsl-final?${params.toString()}`);
     } else if (currentStep === 'oferta-unica') {
       router.push(`/oferta-unica?${params.toString()}`);
     }
@@ -207,8 +203,6 @@ function HomePageContent() {
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
       case 'plano-carregando':
         return <LoadingPlan onComplete={() => handleNextStep({})} />;
-      case 'vsl-final':
-         return <VslFinal />;
       case 'oferta-unica':
         return <UniqueOffer onContinue={() => {}} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} height={Number(quizData.height)} gender={quizData.gender}/>;
       default:
