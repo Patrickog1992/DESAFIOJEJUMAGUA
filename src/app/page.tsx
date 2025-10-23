@@ -71,7 +71,6 @@ export type QuizData = {
 };
 
 const steps = [
-  'vsl-intro',
   'gender',
   'age-range',
   'objetivo',
@@ -142,8 +141,6 @@ function HomePageContent() {
 
   const renderStep = () => {
     switch (currentStep) {
-      case 'vsl-intro':
-        return <VslIntro onContinue={() => handleNextStep({})} />;
       case 'gender':
         return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
       case 'age-range':
@@ -215,7 +212,7 @@ function HomePageContent() {
       case 'oferta-unica':
         return <UniqueOffer onContinue={() => {}} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} height={Number(quizData.height)} gender={quizData.gender}/>;
       default:
-        return <VslIntro onContinue={() => handleNextStep({})} />;
+        return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
     }
   };
 
