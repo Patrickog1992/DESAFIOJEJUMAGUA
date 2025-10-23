@@ -6,12 +6,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { QuizStart } from '@/components/quiz-start';
-import { AgeRangeSelection } from '@/components/age-range-selection';
-import { GoalSelection } from '@/components/goal-selection';
-import { BodyShapeSelection } from '@/components/body-shape-selection';
-import { IntermittentFastingExperience } from '@/components/intermittent-fasting-experience';
-import { ChallengeIntro } from '@/components/challenge-intro';
-import { ReportPage } from '@/components/report-page';
 import { HungerTimeSelection } from '@/components/hunger-time-selection';
 import { BreakfastTimeSelection } from '@/components/breakfast-time-selection';
 import { LunchTimeSelection } from '@/components/lunch-time-selection';
@@ -72,12 +66,6 @@ export type QuizData = {
 
 const steps = [
   'gender',
-  'age-range',
-  'objetivo',
-  'formato-corpo',
-  'jejum-intermitente',
-  'desafio',
-  'reportagem',
   'horario-fome',
   'cafe-da-manha',
   'almoco',
@@ -129,18 +117,6 @@ function HomePageContent() {
     switch (currentStep) {
       case 'gender':
         return <QuizStart onSelectGender={(gender) => handleNextStep({ gender })} />;
-      case 'age-range':
-        return <AgeRangeSelection onContinue={(ageRange) => handleNextStep({ ageRange })} gender={quizData.gender} />;
-      case 'objetivo':
-        return <GoalSelection onContinue={(goal) => handleNextStep({ goal })} gender={quizData.gender} />;
-      case 'formato-corpo':
-        return <BodyShapeSelection onContinue={(bodyShape) => handleNextStep({ bodyShape })} />;
-      case 'jejum-intermitente':
-        return <IntermittentFastingExperience onContinue={(fastingExperience) => handleNextStep({ fastingExperience })} />;
-      case 'desafio':
-        return <ChallengeIntro onContinue={() => handleNextStep({})} />;
-      case 'reportagem':
-        return <ReportPage onContinue={() => handleNextStep({})} />;
       case 'horario-fome':
         return <HungerTimeSelection onContinue={(hungerTimes) => handleNextStep({ hungerTimes })} />;
       case 'cafe-da-manha':
