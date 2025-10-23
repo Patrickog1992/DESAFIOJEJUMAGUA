@@ -37,8 +37,8 @@ import { MedicationSelection } from '@/components/medication-selection';
 import { HealthProblemsSelection } from '@/components/health-problems-selection';
 import { AcceleratedTimeline } from '@/components/accelerated-timeline';
 import { LoadingPlan } from '@/components/loading-plan';
-import { VslFinal } from '@/components/vsl-final';
 import { UniqueOffer } from '@/components/unique-offer';
+import { PlanResult } from '@/components/plan-result';
 
 export type QuizData = {
   gender?: 'male' | 'female';
@@ -103,6 +103,7 @@ const steps = [
   'problemas-saude',
   'progresso-acelerado',
   'plano-carregando',
+  'resultado-plano',
   'oferta-unica',
 ];
 
@@ -123,6 +124,8 @@ function HomePageContent() {
 
     if (currentStep === 'plano-carregando') {
       router.push(`/plano-carregando?${params.toString()}`);
+    } else if (currentStep === 'resultado-plano') {
+        router.push(`/resultado-plano?${params.toString()}`);
     } else if (currentStep === 'oferta-unica') {
       router.push(`/oferta-unica?${params.toString()}`);
     }
@@ -203,6 +206,16 @@ function HomePageContent() {
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
       case 'plano-carregando':
         return <LoadingPlan onComplete={() => handleNextStep({})} />;
+      case 'resultado-plano':
+        return <PlanResult 
+            name={quizData.name || ''}
+            currentWeight={Number(quizData.weight)}
+            targetWeight={Number(quizData.targetWeight)}
+            height={Number(quizData.height)}
+            walkingTime={quizData.walkingTime || '20 minutos'}
+            waterIntake={quizData.waterIntake || '1 copo ou menos'}
+            gender={quizData.gender}
+        />;
       case 'oferta-unica':
         return <UniqueOffer onContinue={() => {}} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} height={Number(quizData.height)} gender={quizData.gender}/>;
       default:
@@ -210,7 +223,7 @@ function HomePageContent() {
     }
   };
 
-  const shouldShowLogo = currentStep !== 'vsl-intro' && currentStep !== 'oferta-unica' && currentStep !== 'vsl-final' && currentStep !== 'plano-carregando';
+  const shouldShowLogo = currentStep !== 'vsl-intro' && currentStep !== 'oferta-unica' && currentStep !== 'plano-carregando' && currentStep !== 'resultado-plano';
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">

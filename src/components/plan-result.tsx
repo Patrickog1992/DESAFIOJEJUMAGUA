@@ -42,6 +42,7 @@ type PlanResultProps = {
   walkingTime: string;
   waterIntake: string;
   gender: 'male' | 'female' | null;
+  onContinue: () => void;
 };
 
 const benefits = [
@@ -69,9 +70,8 @@ export function PlanResult({
   walkingTime,
   waterIntake,
   gender,
+  onContinue
 }: PlanResultProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const [isClient, setIsClient] = useState(false);
   const [imc, setImc] = useState<number>(0);
   const [imcStatus, setImcStatus] = useState<string>('');
@@ -100,10 +100,6 @@ export function PlanResult({
     }
   }, [height, currentWeight]);
 
-  const handleContinue = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    router.push(`/vsl-final?${params.toString()}`);
-  };
 
   const chartData = [
     {
@@ -212,7 +208,7 @@ export function PlanResult({
           <Button
             size="lg"
             className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
-            onClick={handleContinue}
+            onClick={onContinue}
           >
             QUERO MEU PLANO PERSONALIZADO
           </Button>
@@ -309,7 +305,7 @@ export function PlanResult({
           <Button
             size="lg"
             className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
-            onClick={handleContinue}
+            onClick={onContinue}
           >
             OBTER O DESAFIO DO JEJUM DE ÁGUA
           </Button>
@@ -394,7 +390,7 @@ export function PlanResult({
             <Button
               size="lg"
               className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
-              onClick={handleContinue}
+              onClick={onContinue}
             >
               QUERO O MEU JEJUM DE ÁGUA
             </Button>

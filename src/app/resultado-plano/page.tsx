@@ -17,6 +17,11 @@ function PlanResultPageContent() {
   const waterIntake = searchParams.get('waterIntake') || '1 copo ou menos';
   const gender = searchParams.get('gender') as 'male' | 'female' | null;
 
+  const handleContinue = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    router.push(`/oferta-unica?${params.toString()}`);
+  }
+
   return (
     <main className="min-h-screen w-full bg-background">
       <PlanResult
@@ -27,6 +32,7 @@ function PlanResultPageContent() {
         walkingTime={walkingTime}
         waterIntake={waterIntake}
         gender={gender}
+        onContinue={handleContinue}
       />
     </main>
   );

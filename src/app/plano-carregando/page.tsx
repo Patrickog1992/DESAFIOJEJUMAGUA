@@ -13,7 +13,7 @@ function LoadingPlanPageContent() {
   useEffect(() => {
     if (isComplete) {
       const params = new URLSearchParams(searchParams.toString());
-      router.push(`/vsl-final?${params.toString()}`);
+      router.push(`/resultado-plano?${params.toString()}`);
     }
   }, [isComplete, router, searchParams]);
 
