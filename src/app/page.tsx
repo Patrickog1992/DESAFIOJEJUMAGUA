@@ -121,13 +121,6 @@ function HomePageContent() {
     }
     window.scrollTo(0, 0);
   };
-  
-  const handleLoadingComplete = () => {
-    if (currentStep === 'plano-carregando') {
-      setCurrentStepIndex(prevIndex => prevIndex + 1);
-    }
-    window.scrollTo(0, 0);
-  };
 
   const renderStep = () => {
     switch (currentStep) {
@@ -196,7 +189,7 @@ function HomePageContent() {
       case 'progresso-acelerado':
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
       case 'plano-carregando':
-        return <LoadingPlan onComplete={handleLoadingComplete} />;
+        return <LoadingPlan onComplete={() => handleNextStep({})} />;
       case 'resultado-plano':
         return <PlanResult 
             name={quizData.name || ''}
