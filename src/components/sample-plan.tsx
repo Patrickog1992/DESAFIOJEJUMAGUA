@@ -9,21 +9,18 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   gerarPlanoAmostra,
   type GerarPlanoAmostraOutput,
-  type GerarPlanoAmostraInput,
 } from '@/ai/flows/gerar-plano-amostra';
 import { Coffee, Salad, Soup, BrainCircuit, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 type SamplePlanProps = {
   onContinue: () => void;
+  quizData: any; // Mantido para compatibilidade com a página principal
 };
 
 export function SamplePlan({ onContinue }: SamplePlanProps) {
@@ -32,10 +29,6 @@ export function SamplePlan({ onContinue }: SamplePlanProps) {
   const [error, setError] = useState<string | null>(null);
   const [hasGenerated, setHasGenerated] = useState(false);
   const { toast } = useToast();
-
-  const [preferencias, setPreferencias] = useState('');
-  const [restricoes, setRestricoes] = useState('');
-  const [tempoJejum, setTempoJejum] = useState('');
 
   useEffect(() => {
     const generated = localStorage.getItem('planoAmostraGerado');
@@ -53,26 +46,13 @@ export function SamplePlan({ onContinue }: SamplePlanProps) {
       });
       return;
     }
-    if (!preferencias || !restricoes || !tempoJejum) {
-      toast({
-        title: 'Campos obrigatórios',
-        description: 'Por favor, preencha todos os campos para gerar seu plano.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
+    
     setLoading(true);
     setError(null);
     setPlan(null);
 
     try {
-      const input: GerarPlanoAmostraInput = {
-        preferencias,
-        restricoes,
-        tempoJejum,
-      };
-      const result = await gerarPlanoAmostra(input);
+      const result = await gerarPlanoAmostra();
       setPlan(result);
       setHasGenerated(true);
       localStorage.setItem('planoAmostraGerado', 'true');
@@ -83,8 +63,6 @@ export function SamplePlan({ onContinue }: SamplePlanProps) {
       setLoading(false);
     }
   };
-  
-  const jejumOptions = ['1 hora', '2 horas', '3 horas', 'Mais de 4 horas'];
 
   return (
     <Card className="w-full max-w-3xl mx-auto shadow-lg">
@@ -94,11 +72,11 @@ export function SamplePlan({ onContinue }: SamplePlanProps) {
           Gere 1 Dia de Desafio Grátis com nossa IA!
         </CardTitle>
         <CardDescription>
-          Conte-nos um pouco sobre você e nossa inteligência artificial criará um cardápio exclusivo para o seu primeiro dia.
+          Clique no botão abaixo e nossa inteligência artificial criará um cardápio exclusivo para o seu primeiro dia.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        {hasGenerated && !plan && (
+        {hasGenerated && !plan && !loading && (
             <Alert variant="destructive">
                 <AlertTitle>Amostra Já Utilizada</AlertTitle>
                 <AlertDescription>
@@ -108,27 +86,8 @@ export function SamplePlan({ onContinue }: SamplePlanProps) {
         )}
         
         {!plan && !loading && !hasGenerated && (
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="preferencias" className="font-semibold">Preferências alimentares</Label>
-              <Input id="preferencias" value={preferencias} onChange={(e) => setPreferencias(e.target.value)} placeholder="Ex: Gosto de frango, salada, frutas..." />
-            </div>
-            <div>
-              <Label htmlFor="restricoes" className="font-semibold">Restrições</Label>
-              <Input id="restricoes" value={restricoes} onChange={(e) => setRestricoes(e.target.value)} placeholder="Ex: Intolerância a lactose, não como peixe..." />
-            </div>
-            <div>
-                <Label className="font-semibold">Quanto tempo de jejum você queria incluir?</Label>
-                <RadioGroup value={tempoJejum} onValueChange={setTempoJejum} className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
-                    {jejumOptions.map(option => (
-                        <Label key={option} htmlFor={option} className="flex items-center space-x-2 rounded-lg border p-3 cursor-pointer has-[:checked]:bg-primary/10 has-[:checked]:border-primary">
-                            <RadioGroupItem value={option} id={option} />
-                            <span>{option}</span>
-                        </Label>
-                    ))}
-                </RadioGroup>
-            </div>
-            <Button onClick={handleGeneratePlan} className="w-full" size="lg" disabled={loading}>
+          <div className="text-center">
+            <Button onClick={handleGeneratePlan} className="w-full max-w-sm" size="lg">
               Gerar 1 Dia de Desafio Grátis
             </Button>
           </div>
