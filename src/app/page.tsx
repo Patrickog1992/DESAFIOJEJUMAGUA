@@ -29,7 +29,7 @@ import { SleepDurationSelection } from '@/components/sleep-duration-selection';
 import { CurrentDietSelection } from '@/components/current-diet-selection';
 import { WaterIntakeSelection } from '@/components/water-intake-selection';
 import { MedicationSelection } from '@/components/medication-selection';
-import { HealthProblemsSelection } from '@/components/health-problems-selection';
+import { SamplePlan } from '@/components/sample-plan';
 import { AcceleratedTimeline } from '@/components/accelerated-timeline';
 import { LoadingPlan } from '@/components/loading-plan';
 import { UniqueOffer } from '@/components/unique-offer';
@@ -89,7 +89,7 @@ const steps = [
   'dieta-atual',
   'consumo-agua',
   'medicacao',
-  'problemas-saude',
+  'plano-amostra',
   'progresso-acelerado',
   'plano-carregando',
   'resultado-plano',
@@ -163,8 +163,8 @@ function HomePageContent() {
         return <WaterIntakeSelection onContinue={(waterIntake) => handleNextStep({ waterIntake })} />;
       case 'medicacao':
         return <MedicationSelection onContinue={(medication) => handleNextStep({ medication })} />;
-      case 'problemas-saude':
-        return <HealthProblemsSelection onContinue={(healthProblems) => handleNextStep({ healthProblems })} />;
+      case 'plano-amostra':
+        return <SamplePlan quizData={quizData} onContinue={() => handleNextStep({})} />;
       case 'progresso-acelerado':
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
       case 'plano-carregando':

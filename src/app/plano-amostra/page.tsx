@@ -1,23 +1,28 @@
-
 'use client';
 
-import { AcceleratedTimeline } from '@/components/accelerated-timeline';
+import { SamplePlan } from '@/components/sample-plan';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import Image from 'next/image';
+import type { QuizData } from '../page';
 
-function AcceleratedTimelinePageContent() {
+function SamplePlanPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const handleContinue = () => {
     const params = new URLSearchParams(searchParams.toString());
-    router.push(`/plano-carregando?${params.toString()}`);
+    router.push(`/progresso-acelerado?${params.toString()}`);
   };
 
-  const name = searchParams.get('name') || '';
-  const currentWeight = Number(searchParams.get('weight'));
-  const targetWeight = Number(searchParams.get('targetWeight'));
+  const quizData: Partial<QuizData> = {
+    gender: searchParams.get('gender') as 'male' | 'female' | undefined,
+    weight: searchParams.get('weight') || undefined,
+    targetWeight: searchParams.get('targetWeight') || undefined,
+    name: searchParams.get('name') || undefined,
+    // Adicione outros dados do quiz que são necessários para o SamplePlan
+  };
+
 
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -29,12 +34,7 @@ function AcceleratedTimelinePageContent() {
           height={100}
           className="mb-8"
         />
-        <AcceleratedTimeline
-          name={name}
-          currentWeight={currentWeight}
-          targetWeight={targetWeight}
-          onContinue={handleContinue}
-        />
+        <SamplePlan quizData={quizData} onContinue={handleContinue} />
       </div>
       <footer className="w-full text-center text-sm text-muted-foreground mt-8">
         <p>Desafio do Jejum de Água todos os direitos reservados</p>
@@ -43,10 +43,10 @@ function AcceleratedTimelinePageContent() {
   );
 }
 
-export default function AcceleratedTimelinePage() {
+export default function SamplePlanPage() {
   return (
     <Suspense fallback={<div>Carregando...</div>}>
-      <AcceleratedTimelinePageContent />
+      <SamplePlanPageContent />
     </Suspense>
   );
 }

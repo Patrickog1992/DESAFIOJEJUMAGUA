@@ -12,7 +12,8 @@ function MedicationPageContent() {
   const handleContinue = (medication: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('medication', medication);
-    router.push(`/problemas-saude?${params.toString()}`);
+    // Redireciona para a nova página de plano de amostra
+    router.push(`/plano-amostra?${params.toString()}`);
   };
 
   return (
