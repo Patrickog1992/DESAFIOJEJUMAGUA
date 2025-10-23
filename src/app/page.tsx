@@ -1,4 +1,5 @@
 
+
 'use client';
 import { Suspense, useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -120,15 +121,7 @@ function HomePageContent() {
     const nextStepIndex = currentStepIndex + 1;
     if (nextStepIndex < steps.length) {
       setCurrentStepIndex(nextStepIndex);
-    } else {
-        const params = new URLSearchParams();
-        Object.entries(updatedData).forEach(([key, value]) => {
-            if(value) {
-                params.set(key, value.toString());
-            }
-        });
-        router.push(`/oferta-unica?${params.toString()}`);
-    }
+    } 
     window.scrollTo(0, 0);
   };
 

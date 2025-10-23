@@ -32,7 +32,7 @@ import { format, addMonths } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Clock, Scale, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 type PlanResultProps = {
   name: string;
@@ -70,12 +70,12 @@ export function PlanResult({
   walkingTime,
   waterIntake,
   gender,
-  onContinue
 }: PlanResultProps) {
   const [isClient, setIsClient] = useState(false);
   const [imc, setImc] = useState<number>(0);
   const [imcStatus, setImcStatus] = useState<string>('');
   const [imcPosition, setImcPosition] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -100,6 +100,15 @@ export function PlanResult({
     }
   }, [height, currentWeight]);
 
+  const handleContinue = () => {
+    const params = new URLSearchParams();
+    if(name) params.set('name', name);
+    if(currentWeight) params.set('weight', currentWeight.toString());
+    if(targetWeight) params.set('targetWeight', targetWeight.toString());
+    if(height) params.set('height', height.toString());
+    if(gender) params.set('gender', gender);
+    router.push(`/oferta-unica?${params.toString()}`);
+  }
 
   const chartData = [
     {
@@ -208,7 +217,7 @@ export function PlanResult({
           <Button
             size="lg"
             className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
-            onClick={onContinue}
+            onClick={handleContinue}
           >
             QUERO MEU PLANO PERSONALIZADO
           </Button>
@@ -305,7 +314,7 @@ export function PlanResult({
           <Button
             size="lg"
             className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
-            onClick={onContinue}
+            onClick={handleContinue}
           >
             OBTER O DESAFIO DO JEJUM DE ÁGUA
           </Button>
@@ -390,7 +399,7 @@ export function PlanResult({
             <Button
               size="lg"
               className="w-full max-w-md mx-auto text-lg h-12 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong"
-              onClick={onContinue}
+              onClick={handleContinue}
             >
               QUERO O MEU JEJUM DE ÁGUA
             </Button>
