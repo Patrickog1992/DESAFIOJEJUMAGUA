@@ -102,7 +102,6 @@ const steps = [
   'medicacao',
   'problemas-saude',
   'progresso-acelerado',
-  'plano-carregando',
   'resultado-plano',
   'oferta-unica',
 ];
@@ -204,8 +203,6 @@ function HomePageContent() {
         return <HealthProblemsSelection onContinue={(healthProblems) => handleNextStep({ healthProblems })} />;
       case 'progresso-acelerado':
         return <AcceleratedTimeline onContinue={() => handleNextStep({})} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} />;
-      case 'plano-carregando':
-        return <LoadingPlan onComplete={() => handleNextStep({})} />;
       case 'resultado-plano':
         return <PlanResult 
             name={quizData.name || ''}
@@ -215,6 +212,7 @@ function HomePageContent() {
             walkingTime={quizData.walkingTime || '20 minutos'}
             waterIntake={quizData.waterIntake || '1 copo ou menos'}
             gender={quizData.gender}
+            onContinue={() => handleNextStep({})}
         />;
       case 'oferta-unica':
         return <UniqueOffer onContinue={() => {}} name={quizData.name || ''} currentWeight={Number(quizData.weight)} targetWeight={Number(quizData.targetWeight)} height={Number(quizData.height)} gender={quizData.gender}/>;
