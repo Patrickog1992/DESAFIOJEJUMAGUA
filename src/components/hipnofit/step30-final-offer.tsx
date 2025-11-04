@@ -38,8 +38,6 @@ const faqItems = [
     { question: "E se não funcionar para mim?", answer: "Oferecemos uma garantia de satisfação de 7 dias. Se você não estiver satisfeito com o programa por qualquer motivo, basta nos contatar para um reembolso total." },
 ];
 
-const audioUrl = "https://ia801002.us.archive.org/18/items/1759931593750263612-321039481872506_202510/1759931593750263612-321039481872506.mp3";
-
 
 export function Step30_FinalOffer({ data }: Props) {
     const imageCarouselPlugin = React.useRef(Autoplay({ delay: 2500, stopOnInteraction: true }));
@@ -94,17 +92,6 @@ export function Step30_FinalOffer({ data }: Props) {
                     </div>
                 </CardContent>
             </Card>
-
-            <Card>
-                <CardHeader className="text-center">
-                    <CardTitle className="font-headline">Você ainda tem dúvidas ?<br/>Escute um pequeno exemplo !</CardTitle>
-                    <CardDescription>Aperte o play e escute esse aúdio em um lugar tranquilo</CardDescription>
-                </CardHeader>
-                <CardContent className="flex justify-center p-6">
-                   <audio controls src={audioUrl}></audio>
-                </CardContent>
-            </Card>
-
 
             <Card className="shadow-2xl border-4 border-green-500">
                 <CardHeader className="text-center bg-gray-50">

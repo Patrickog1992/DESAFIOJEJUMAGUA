@@ -32,6 +32,7 @@ import { Step26_VitalsResult } from '@/components/hipnofit/step26-vitals-result'
 import { Step27_WeightLossProjection } from '@/components/hipnofit/step27-weightloss-projection';
 import { Step28_BeyondWeightLoss } from '@/components/hipnofit/step28-beyond-weightloss';
 import { Step29_SuccessRate } from '@/components/hipnofit/step29-success-rate';
+import { Step29b_VSLFinal } from '@/components/hipnofit/step29b-vsl-final';
 import { Step30_FinalOffer } from '@/components/hipnofit/step30-final-offer';
 
 
@@ -63,7 +64,8 @@ const steps = [
     'brain-stomach-info', 'eating-habits', 'cravings', 'brain-body-disconnect-info',
     'activity-level', 'future-self', 'measurements', 'program-timeline', 'desired-activity',
     'time-dedication', 'program-intro', 'loading', 
-    'vitals-result', 'weightloss-projection', 'beyond-weightloss', 'success-rate', 'final-offer'
+    'vitals-result', 'weightloss-projection', 'beyond-weightloss', 'success-rate', 
+    'vsl-final', 'final-offer'
 ];
 
 function HipnoFitPageContent() {
@@ -146,6 +148,8 @@ function HipnoFitPageContent() {
             return <Step28_BeyondWeightLoss onContinue={() => handleNextStep({})} />;
         case 'success-rate':
             return <Step29_SuccessRate onContinue={() => handleNextStep({})} />;
+        case 'vsl-final':
+            return <Step29b_VSLFinal onContinue={() => handleNextStep({})} />;
         case 'final-offer':
             return <Step30_FinalOffer data={quizData} />;
         default:
