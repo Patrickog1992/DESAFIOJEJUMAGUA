@@ -14,7 +14,7 @@ type Props = {
   data: Partial<HipnoFitQuizData>;
 };
 
-const checkoutUrl = 'https://pay.kirvano.com/15697d4d-6002-4797-a350-f70c9f4cdf91'; 
+const checkoutUrl = 'https://pay.kirvano.com/d9421d9b-7fdd-4ab7-8615-2e3544197736'; 
 
 const testimonialsImages = [
     "https://i.imgur.com/ipOh27y.jpg",
@@ -119,7 +119,7 @@ export function Step30_FinalOffer({ data }: Props) {
                         <p className="text-xl text-gray-500">
                             de <span className="line-through">R$ 197,00</span> por apenas
                         </p>
-                        <p className="text-5xl font-extrabold text-green-600 my-2">R$ 47,00</p>
+                        <p className="text-5xl font-extrabold text-green-600 my-2">R$ 27,00</p>
                          <p className="font-semibold">Pagamento Único</p>
                          <a href={checkoutUrl} className="block w-full mt-4">
                             <Button size="lg" className="w-full text-lg h-14 bg-green-600 hover:bg-green-700 text-white animate-pulse-strong">
@@ -143,7 +143,7 @@ export function Step30_FinalOffer({ data }: Props) {
                 </ul>
                 <p className="font-semibold text-gray-800"> O mesmo controle mental, sem riscos, sem agulhas e sem gastar uma fortuna.</p>
                 <p className="text-blue-600 font-bold">🎧 Reprograme sua mente. Emagreça naturalmente. E sinta os resultados desde a primeira sessão.</p>
-                <p className="text-xl font-bold text-green-600 mt-4">• 🧠 Hipnoterapia para Emagrecimento (MÉTODO COMPLETO): R$ 47,00</p>
+                <p className="text-xl font-bold text-green-600 mt-4">• 🧠 Hipnoterapia para Emagrecimento (MÉTODO COMPLETO): R$ 27,00</p>
               </CardContent>
             </Card>
 
