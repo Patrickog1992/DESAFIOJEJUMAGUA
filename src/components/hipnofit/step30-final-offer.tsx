@@ -110,10 +110,16 @@ export function Step30_FinalOffer({ data }: Props) {
                      <div>
                         <h3 className="font-bold text-lg">Bônus Exclusivos (por tempo limitado):</h3>
                         <ul className="list-none space-y-3 mt-2">
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">E-book “Alimentação Consciente”:</span> Um guia prático para transformar sua relação com a comida.</div></li>
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Áudio Hipnótico Extra "Sono Reparador":</span> Um áudio bônus para melhorar a qualidade do seu sono e acelerar a recuperação.</div></li>
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Suporte em Grupo VIP:</span> Junte-se à nossa comunidade exclusiva para trocar experiências e receber apoio.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">E-book “Alimentação Consciente”</span> (VALOR: R$ 47,00)</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Áudio Extra "Sono Reparador"</span> (VALOR: R$ 37,00)</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Suporte em Grupo VIP Vitalício</span> (VALOR: R$ 197,00)</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Guia "Vencendo a Autossabotagem"</span> (VALOR: R$ 57,00)</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Playlist para Relaxamento Profundo</span> (VALOR: R$ 27,00)</div></li>
                         </ul>
+                        <div className="mt-4 text-center bg-yellow-100 p-2 rounded-lg">
+                            <p className="font-bold">VALOR TOTAL DOS BÔNUS: <span className="line-through">R$ 365,00</span></p>
+                            <p className="font-bold text-green-600">HOJE: TOTALMENTE GRATUITO JUNTO COM O MÉTODO HIPNOFIT!</p>
+                        </div>
                     </div>
                     <div className="text-center pt-4">
                         <p className="text-xl text-gray-500">
