@@ -93,6 +93,36 @@ export function Step30_FinalOffer({ data }: Props) {
                 </CardContent>
             </Card>
 
+            <Card className="shadow-lg border-none bg-transparent">
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl font-bold font-headline">Volte a ser tratada como realmente merece...</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <ul className="space-y-2 text-left">
+                  <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /><span>Redescubra o prazer de se olhar no espelho e sorrir com orgulho</span></li>
+                  <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /><span>Sinta suas roupas preferidas voltarem a servir como se fossem novas</span></li>
+                  <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /><span>Acorde mais leve, com o corpo desinchado e a autoestima lá em cima</span></li>
+                  <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /><span>Perca o medo da balança e da câmera, e volte a se mostrar pro mundo</span></li>
+                  <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /><span>Escute das amigas: “Você fez lipo? Tá irreconhecível!”</span></li>
+                </ul>
+                <div className="space-y-4 rounded-lg border p-4">
+                  <h3 className="text-lg font-bold text-center">Sua Jornada de Transformação Com a CrioCaseira</h3>
+                  <div className="text-left">
+                    <h4 className="font-semibold">7 Dias - Primeira Semana</h4>
+                    <p className="text-gray-600">Você acorda e sente sua calça jeans escorregando pela cintura. A gordura da região de Culotes/Flancos já diminuiu significativamente</p>
+                  </div>
+                  <div className="text-left">
+                    <h4 className="font-semibold">14 Dias - Segunda Semana</h4>
+                    <p className="text-gray-600">Seu marido te abraça por trás e sussurra “Nossa, você está diferente… O que você fez?”</p>
+                  </div>
+                  <div className="text-left">
+                    <h4 className="font-semibold">21 Dias - Terceira Semana</h4>
+                    <p className="text-gray-600">Suas Amigas param a conversa quando você chega “Gente, você fez lipo? Está irreconhecível!”</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             <Card className="shadow-2xl border-4 border-green-500">
                 <CardHeader className="text-center bg-gray-50">
                     <CardTitle className="text-2xl font-bold font-headline">O QUE VOCÊ VAI RECEBER</CardTitle>
@@ -110,11 +140,11 @@ export function Step30_FinalOffer({ data }: Props) {
                      <div>
                         <h3 className="font-bold text-lg">Bônus Exclusivos (por tempo limitado):</h3>
                         <ul className="list-none space-y-3 mt-2">
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">E-book “Alimentação Consciente”</span> (VALOR: R$ 47,00)</div></li>
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Áudio Extra "Sono Reparador"</span> (VALOR: R$ 37,00)</div></li>
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Suporte em Grupo VIP Vitalício</span> (VALOR: R$ 197,00)</div></li>
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Guia "Vencendo a Autossabotagem"</span> (VALOR: R$ 57,00)</div></li>
-                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Playlist para Relaxamento Profundo</span> (VALOR: R$ 27,00)</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">E-book “Alimentação Consciente”</span> (VALOR: R$ 47,00): Um guia prático para transformar sua relação com a comida e saborear cada momento.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Áudio Extra "Sono Reparador"</span> (VALOR: R$ 37,00): Um áudio bônus para melhorar a qualidade do seu sono, essencial para a recuperação e perda de peso.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Suporte em Grupo VIP Vitalício</span> (VALOR: R$ 197,00): Junte-se à nossa comunidade exclusiva para trocar experiências, tirar dúvidas e receber apoio contínuo.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Guia "Vencendo a Autossabotagem"</span> (VALOR: R$ 57,00): Aprenda a identificar e superar os padrões mentais que te impedem de alcançar seus objetivos.</div></li>
+                            <li className="flex items-start gap-2">🎁 <div><span className="font-semibold">Playlist para Relaxamento Profundo</span> (VALOR: R$ 27,00): Uma seleção de músicas e sons para te ajudar a relaxar e potencializar os efeitos da hipnoterapia.</div></li>
                         </ul>
                         <div className="mt-4 text-center bg-yellow-100 p-2 rounded-lg">
                             <p className="font-bold">VALOR TOTAL DOS BÔNUS: <span className="line-through">R$ 365,00</span></p>
@@ -156,7 +186,7 @@ export function Step30_FinalOffer({ data }: Props) {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-center font-headline">ALGUMAS TRANSFORMAÇÕES COM A HIPNOFIT</CardTitle>
+                    <CardTitle className="text-center font-headline">ALGUMAS TRANSFORMAÇÕES COM O HIPNOFIT</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Carousel plugins={[imageCarouselPlugin.current]} className="w-full" opts={{ loop: true, align: "start" }}>
