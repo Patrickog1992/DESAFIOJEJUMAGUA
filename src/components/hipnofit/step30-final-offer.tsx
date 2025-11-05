@@ -106,7 +106,7 @@ export function Step30_FinalOffer({ data }: Props) {
                   <li className="flex items-start gap-2"><Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" /><span>Escute das amigas: “Você fez lipo? Tá irreconhecível!”</span></li>
                 </ul>
                 <div className="space-y-4 rounded-lg border p-4">
-                  <h3 className="text-lg font-bold text-center">Sua Jornada de Transformação Com a CrioCaseira</h3>
+                  <h3 className="text-lg font-bold text-center">Sua jornada de transformação com o HipnoFIT</h3>
                   <div className="text-left">
                     <h4 className="font-semibold">7 Dias - Primeira Semana</h4>
                     <p className="text-gray-600">Você acorda e sente sua calça jeans escorregando pela cintura. A gordura da região de Culotes/Flancos já diminuiu significativamente</p>
